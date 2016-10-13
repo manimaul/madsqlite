@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "Database.h"
-#include "ContentValues.h"
 
 static int callback(void *data, int argc, char **argv, char **azColName) {
     //todo:
