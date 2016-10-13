@@ -47,7 +47,7 @@ long Database::insert(std::string const &table, ContentValues &values) {
     std::string bindings = " VALUES (";
     auto keys = values.keys();
     for (auto key: keys) {
-        sql += "[" + key + "]";
+        sql += "[" + key + "] ";
 
         if (key == keys.back()) {
             sql += ")";
@@ -59,8 +59,9 @@ long Database::insert(std::string const &table, ContentValues &values) {
     }
     sql = sql + bindings;
     sqlite3_stmt *stmt;
-    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0) != SQLITE_OK) {
-        std::cout << "Could not prepare statement." << std::endl;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cout << "Could not prepare statement: " << sqlite3_errmsg(db) << std::endl;
         return -1;
     }
 
@@ -94,10 +95,10 @@ long Database::insert(std::string const &table, ContentValues &values) {
             }
             case ContentValues::BLOB: {
                 const std::vector<byte> vector = values.getAsBlob(key);
-//                if (sqlite3_bind_blob(stmt, i + 1, vector.begin(), (int) vector.size(), SQLITE_STATIC) != SQLITE_OK) {
-//                    std::cout << "Could not bind statement." << std::endl;
-//                    return -1;
-//                };
+                if (sqlite3_bind_blob(stmt, i + 1, &vector.front(), (int) vector.size(), SQLITE_STATIC) != SQLITE_OK) {
+                    std::cout << "Could not bind statement." << std::endl;
+                    return -1;
+                };
                 break;
             }
         }

@@ -5,6 +5,6 @@
 #ifndef PROJECT_CONSTANTS_H
 #define PROJECT_CONSTANTS_H
 
-using byte = char;
+using byte = unsigned char;
 
 #endif //PROJECT_CONSTANTS_H

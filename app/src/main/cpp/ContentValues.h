@@ -78,6 +78,8 @@ public:
 
     void putBlob(std::string const &key, std::vector<byte> &blob);
 
+    void putBlob(std::string const &key, void *blob, size_t sz);
+
     //endregion
 
 };

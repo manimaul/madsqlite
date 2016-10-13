@@ -45,8 +45,10 @@ std::int64_t ContentValues::getAsInteger(std::string const &key) {
             case TEXT:
                 return stoi(data.dataText);
             case BLOB:
-                return ntohs(*reinterpret_cast<const std::int64_t*>(&data.dataBlob[0]));
-            case NONE:default:break;
+                return ntohs(*reinterpret_cast<const std::int64_t *>(&data.dataBlob[0]));
+            case NONE:
+            default:
+                break;
         }
     }
     return 0;
@@ -63,8 +65,10 @@ double ContentValues::getAsReal(std::string const &key) {
             case TEXT:
                 return stod(data.dataText);
             case BLOB:
-                return ntohs(*reinterpret_cast<const double*>(&data.dataBlob[0]));
-            case NONE:default:break;
+                return ntohs(*reinterpret_cast<const double *>(&data.dataBlob[0]));
+            case NONE:
+            default:
+                break;
         }
     }
     return 0;
@@ -81,8 +85,10 @@ std::string ContentValues::getAsText(std::string const &key) {
             case TEXT:
                 return data.dataText;
             case BLOB:
-                return std::string(data.dataBlob.begin(),data.dataBlob.end());
-            case NONE:default:break;
+                return std::string(data.dataBlob.begin(), data.dataBlob.end());
+            case NONE:
+            default:
+                break;
         }
     }
     return std::string();
@@ -124,4 +130,11 @@ ContentValues::DataType ContentValues::typeForKey(std::string const &key) {
         return getData(key).dataType;
     }
     return NONE;
+}
+
+void ContentValues::putBlob(std::string const &key, void *blob, size_t sz) {
+    byte *charBuf = (byte*)blob;
+    std::vector<byte> value(charBuf, charBuf + sz);
+    Data d = {value};
+    putData(key, d);
 }
