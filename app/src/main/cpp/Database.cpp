@@ -16,7 +16,7 @@ static int callback(void *data, int argc, char **argv, char **azColName) {
     return 0;
 }
 
-std::string Database::execute(std::string sql) {
+std::string Database::execute(std::string const &sql) {
     char *errorMessage = 0;
     int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errorMessage);
     std::string message;
@@ -29,7 +29,7 @@ std::string Database::execute(std::string sql) {
     return message;
 }
 
-std::unique_ptr<Cursor> Database::query(std::string sql, std::vector<std::string> args) {
+std::unique_ptr<Cursor> Database::query(std::string const &sql, std::vector<std::string> &args) {
     auto cursor = std::unique_ptr<Cursor>();
     //todo:
 //    char *errorMessage = 0;
@@ -37,7 +37,7 @@ std::unique_ptr<Cursor> Database::query(std::string sql, std::vector<std::string
     return cursor;
 }
 
-long Database::insert(std::string table, ContentValues values) {
+long Database::insert(std::string const &table, ContentValues &values) {
     if (values.isEmpty()) {
         return -1;
     }
@@ -94,10 +94,10 @@ long Database::insert(std::string table, ContentValues values) {
             }
             case ContentValues::BLOB: {
                 const std::vector<byte> vector = values.getAsBlob(key);
-                if (sqlite3_bind_blob(stmt, i + 1, vector.begin(), (int) vector.size(), SQLITE_STATIC) != SQLITE_OK) {
-                    std::cout << "Could not bind statement." << std::endl;
-                    return -1;
-                };
+//                if (sqlite3_bind_blob(stmt, i + 1, vector.begin(), (int) vector.size(), SQLITE_STATIC) != SQLITE_OK) {
+//                    std::cout << "Could not bind statement." << std::endl;
+//                    return -1;
+//                };
                 break;
             }
         }
@@ -111,4 +111,12 @@ long Database::insert(std::string table, ContentValues values) {
     }
 
     return 0;
+}
+
+Database::Database(std::string const &dbPath) {
+    sqlite3_open(dbPath.c_str(), &db);
+}
+
+Database::~Database() {
+    sqlite3_close(db);
 }

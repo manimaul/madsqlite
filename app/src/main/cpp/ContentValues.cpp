@@ -13,11 +13,11 @@ const std::vector<std::string> ContentValues::keys() const {
     return std::vector<std::string>(_keys.begin(), _keys.end());
 }
 
-bool ContentValues::containsKey(std::string key) {
+bool ContentValues::containsKey(std::string const &key) {
     return _keys.find(key) != _keys.end();
 }
 
-void ContentValues::putData(std::string key, ContentValues::Data &data) {
+void ContentValues::putData(std::string const &key, ContentValues::Data &data) {
     if (containsKey(key)) {
         long i = _dataMap.at(key);
         _values[i] = data;
@@ -29,12 +29,12 @@ void ContentValues::putData(std::string key, ContentValues::Data &data) {
     _keys.emplace(key);
 }
 
-ContentValues::Data ContentValues::getData(std::string key) {
+ContentValues::Data ContentValues::getData(std::string const &key) {
     long i = _dataMap.at(key);
     return _values[i];
 }
 
-std::int64_t ContentValues::getAsInteger(std::string key) {
+std::int64_t ContentValues::getAsInteger(std::string const &key) {
     if (containsKey(key)) {
         const Data &data = getData(key);
         switch (data.dataType) {
@@ -52,7 +52,7 @@ std::int64_t ContentValues::getAsInteger(std::string key) {
     return 0;
 }
 
-double ContentValues::getAsReal(std::string key) {
+double ContentValues::getAsReal(std::string const &key) {
     if (containsKey(key)) {
         const Data &data = getData(key);
         switch (data.dataType) {
@@ -70,7 +70,7 @@ double ContentValues::getAsReal(std::string key) {
     return 0;
 }
 
-std::string ContentValues::getAsText(std::string key) {
+std::string ContentValues::getAsText(std::string const &key) {
     if (containsKey(key)) {
         const Data &data = getData(key);
         switch (data.dataType) {
@@ -88,29 +88,29 @@ std::string ContentValues::getAsText(std::string key) {
     return std::string();
 }
 
-std::vector<byte> ContentValues::getAsBlob(std::string key) {
+std::vector<byte> ContentValues::getAsBlob(std::string const &key) {
     if (containsKey(key)) {
         return getData(key).dataBlob;
     }
     return std::vector<byte>();
 }
 
-void ContentValues::putInteger(std::string key, std::int64_t value) {
+void ContentValues::putInteger(std::string const &key, std::int64_t value) {
     Data d = {value};
     putData(key, d);
 }
 
-void ContentValues::putReal(std::string key, double value) {
+void ContentValues::putReal(std::string const &key, double value) {
     Data d = {value};
     putData(key, d);
 }
 
-void ContentValues::putString(std::string key, std::string value) {
+void ContentValues::putString(std::string const &key, std::string const &value) {
     Data d = {value};
     putData(key, d);
 }
 
-void ContentValues::putBlob(std::string key, std::vector<byte> &value) {
+void ContentValues::putBlob(std::string const &key, std::vector<byte> &value) {
     Data d = {value};
     putData(key, d);
 }
@@ -119,7 +119,7 @@ bool ContentValues::isEmpty() {
     return _keys.size() <= 0;
 }
 
-ContentValues::DataType ContentValues::typeForKey(std::string key) {
+ContentValues::DataType ContentValues::typeForKey(std::string const &key) {
     if (containsKey(key)) {
         return getData(key).dataType;
     }

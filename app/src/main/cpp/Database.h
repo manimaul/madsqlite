@@ -22,21 +22,17 @@ public:
 
     //region CTOR
 
-    Database(std::string dbPath) {
-        sqlite3_open(dbPath.c_str(), &db);
-    }
+    Database(std::string const &dbPath);
 
-    virtual ~Database() {
-        sqlite3_close(db);
-    }
+    virtual ~Database();
 
     //endregion
 
-    long insert(std::string table, ContentValues values);
+    long insert(std::string const &table, ContentValues &values);
 
-    std::unique_ptr<Cursor> query(std::string sql, std::vector<std::string> args);
+    std::unique_ptr<Cursor> query(std::string const  &sql, std::vector<std::string> &args);
 
-    std::string execute(std::string sql);
+    std::string execute(std::string const &sql);
 };
 
 

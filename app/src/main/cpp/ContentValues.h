@@ -48,8 +48,8 @@ private:
     std::unordered_set<std::string> _keys;
     std::vector<Data> _values;
     std::unordered_map<std::string, long> _dataMap;
-    void putData(std::string key, Data &data);
-    Data getData(std::string key);
+    void putData(std::string const &key, Data &data);
+    Data getData(std::string const &key);
 public:
 
 
@@ -57,26 +57,26 @@ public:
     const std::vector<std::string> keys() const;
 
     bool isEmpty();
-    bool containsKey(std::string key);
-    DataType typeForKey(std::string key);
+    bool containsKey(std::string const &key);
+    DataType typeForKey(std::string const &key);
 
     //region ACCESSORS
 
-    std::int64_t getAsInteger(std::string key);
+    std::int64_t getAsInteger(std::string const &key);
 
-    double getAsReal(std::string key);
+    double getAsReal(std::string const &key);
 
-    std::string getAsText(std::string key);
+    std::string getAsText(std::string const &key);
 
-    std::vector<byte> getAsBlob(std::string key);
+    std::vector<byte> getAsBlob(std::string const &key);
 
-    void putInteger(std::string key, std::int64_t value);
+    void putInteger(std::string const &key, std::int64_t value);
 
-    void putReal(std::string key, double value);
+    void putReal(std::string const &key, double value);
 
-    void putString(std::string key, std::string value);
+    void putString(std::string const &key, std::string const &value);
 
-    void putBlob(std::string key, std::vector<byte> &blob);
+    void putBlob(std::string const &key, std::vector<byte> &blob);
 
     //endregion
 
