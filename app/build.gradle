@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+ext {
+    ANDROID = true
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -12,7 +16,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags "-std=c++11 -frtti -fexceptions"
+                cppFlags "-std=c++14 -frtti -fexceptions"
             }
         }
     }
