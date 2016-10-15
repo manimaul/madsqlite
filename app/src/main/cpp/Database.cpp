@@ -4,45 +4,69 @@
 
 #include <iostream>
 #include "Database.h"
+#include "Util.cpp"
 
-static int callback(void *data, int argc, char **argv, char **azColName) {
-    //todo:
-    Cursor *cursor = reinterpret_cast<Cursor *>(data);
-    int i;
-    for (i = 0; i < argc; i++) {
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-    }
-    printf("\n");
-    return 0;
+Database::Database() {
+    sqlite3_open(":memory:", &db);
 }
 
-std::string Database::execute(std::string const &sql) {
+Database::Database(std::string const &dbPath) {
+    sqlite3_open(dbPath.c_str(), &db);
+}
+
+Database::~Database() {
+    sqlite3_close(db);
+}
+
+void Database::beginTransaction() {
+    if (!isInTransaction) {
+        execInternal("BEGIN");
+        isInTransaction = true;
+    }
+}
+
+void Database::rollbackTransaction() {
+    if (isInTransaction) {
+        execInternal("ROLLBACK");
+        isInTransaction = false;
+    }
+}
+
+void Database::endTransaction() {
+    if (isInTransaction) {
+        execInternal("COMMIT");
+        isInTransaction = false;
+    }
+}
+
+int Database::exec(std::string const &sql) {
+    std::string upper = upperCaseString(sql);
+    if (transactionKeyWords.find(upper) != transactionKeyWords.end()) {
+        return 0;
+    }
+    return execInternal(sql);
+}
+
+int Database::execInternal(std::string const &sql) {
     char *errorMessage = 0;
     int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errorMessage);
-    std::string message;
     if (rc == SQLITE_OK) {
-        message = "OK";
+        std::cout << "exec: " << sql << " " << rc << std::endl;
     } else {
-        message = std::string(errorMessage);
+        std::cout << "exec: " << sql << " " << rc << " " << errorMessage << std::endl;
         sqlite3_free(errorMessage);
     }
-    return message;
-}
-
-std::unique_ptr<Cursor> Database::query(std::string const &sql, std::vector<std::string> &args) {
-    auto cursor = std::unique_ptr<Cursor>();
-    //todo:
-//    char *errorMessage = 0;
-//    sqlite3_exec(db, sql.c_str(), &callback, cursor.get(), &errorMessage);
-    return cursor;
+    return sqlite3_changes(db);
 }
 
 long Database::insert(std::string const &table, ContentValues &values) {
     if (values.isEmpty()) {
         return -1;
     }
-    // INSERT INTO [table] ([row1], [row2]) VALUES (0,"value");
-    // INSERT INTO [table] ([?], [?]) VALUES (?,?);
+    /*
+     * INSERT INTO [table] ([row1], [row2]) VALUES (0,"value");
+     * INSERT INTO [table] ([?], [?]) VALUES (?,?);
+     */
     std::string sql = "INSERT INTO [" + table + "] (";
     std::string bindings = " VALUES (";
     auto keys = values.keys();
@@ -114,10 +138,17 @@ long Database::insert(std::string const &table, ContentValues &values) {
     return 0;
 }
 
-Database::Database(std::string const &dbPath) {
-    sqlite3_open(dbPath.c_str(), &db);
+std::unique_ptr<Cursor> Database::query(std::string const &sql, std::vector<std::string> const &args) {
+    auto cursor = std::unique_ptr<Cursor>();
+    for (int i = 0; i < args.size(); ++i) {
+
+    }
+    //todo:
+//    char *errorMessage = 0;
+//    sqlite3_exec(db, sql.c_str(), &callback, cursor.get(), &errorMessage);
+    return cursor;
 }
 
-Database::~Database() {
-    sqlite3_close(db);
+std::unique_ptr<Cursor> Database::query(std::string const &sql) {
+    return query(sql, {});
 }

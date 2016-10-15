@@ -8,6 +8,7 @@ set(SOURCE_FILES
         src/main/cpp/Cursor.h
         src/main/cpp/Database.cpp
         src/main/cpp/Database.h
+        src/main/cpp/Util.cpp
         src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h
         src/main/cpp/sqlite-amalgamation-3140200/sqlite3.c)
 
