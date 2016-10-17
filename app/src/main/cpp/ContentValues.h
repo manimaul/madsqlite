@@ -59,6 +59,7 @@ public:
     bool isEmpty();
     bool containsKey(std::string const &key);
     DataType typeForKey(std::string const &key);
+    void clear();
 
     //region ACCESSORS
 

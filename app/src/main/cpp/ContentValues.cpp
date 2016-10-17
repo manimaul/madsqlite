@@ -132,6 +132,12 @@ ContentValues::DataType ContentValues::typeForKey(std::string const &key) {
     return NONE;
 }
 
+void ContentValues::clear() {
+    _keys.clear();
+    _values.clear();
+    _dataMap.clear();
+}
+
 void ContentValues::putBlob(std::string const &key, void *blob, size_t sz) {
     byte *charBuf = (byte*)blob;
     std::vector<byte> value(charBuf, charBuf + sz);
