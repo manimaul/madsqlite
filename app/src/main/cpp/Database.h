@@ -15,14 +15,20 @@
 
 class Database {
 
+//region Members ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 private:
+
     sqlite3 *db;
     bool isInTransaction = false;
     int execInternal(std::string const &sql);
     const std::unordered_set<std::string> transactionKeyWords = {"BEGIN", "COMMIT", "ROLLBACK"};
-public:
 
-    //region CTOR
+//endregion
+
+//region Constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+public:
 
     /**
      * Opens an in memory database.
@@ -39,12 +45,15 @@ public:
 
     virtual ~Database();
 
-    //endregion
+//endregion
 
-    long insert(std::string const &table, ContentValues &values);
+//region Public Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    std::unique_ptr<Cursor> query(std::string const &sql);
-    std::unique_ptr<Cursor> query(std::string const &sql, std::vector<std::string> const &args);
+public:
+
+    bool insert(std::string const &table, ContentValues &values);
+    Cursor query(std::string const &sql);
+    Cursor query(std::string const &sql, std::vector<std::string> const &args);
 
     /**
      * Execute a sql statement.
@@ -57,7 +66,15 @@ public:
     void beginTransaction();
     void rollbackTransaction();
     void endTransaction();
-};
 
+//endregion
+
+//region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+private:
+
+//endregion
+
+};
 
 #endif //MADSQLITE_DATABASE_H

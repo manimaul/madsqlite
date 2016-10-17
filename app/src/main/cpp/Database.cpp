@@ -6,6 +6,11 @@
 #include "Database.h"
 #include "Util.cpp"
 
+//region Class Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//endregion
+
+//region Constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Database::Database() {
     sqlite3_open(":memory:", &db);
 }
@@ -17,6 +22,10 @@ Database::Database(std::string const &dbPath) {
 Database::~Database() {
     sqlite3_close(db);
 }
+
+//endregion
+
+//region Public Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void Database::beginTransaction() {
     if (!isInTransaction) {
@@ -59,9 +68,9 @@ int Database::execInternal(std::string const &sql) {
     return sqlite3_changes(db);
 }
 
-long Database::insert(std::string const &table, ContentValues &values) {
+bool Database::insert(std::string const &table, ContentValues &values) {
     if (values.isEmpty()) {
-        return -1;
+        return false;
     }
     /*
      * INSERT INTO [table] ([row1], [row2]) VALUES (0,"value");
@@ -86,7 +95,7 @@ long Database::insert(std::string const &table, ContentValues &values) {
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0);
     if (rc != SQLITE_OK) {
         std::cout << "Could not prepare statement: " << sqlite3_errmsg(db) << std::endl;
-        return -1;
+        return false;
     }
 
     for (int i = 0; i < keys.size(); ++i) {
@@ -128,27 +137,36 @@ long Database::insert(std::string const &table, ContentValues &values) {
         }
     }
 
-    //sqlite3_reset(stmt);
+    // sqlite3_reset(stmt);
 
     if (sqlite3_step(stmt) != SQLITE_DONE) {
         std::cout << "Could not step (execute) stmt." << std::endl;
-        return -1;
+        return false;
     }
 
-    return 0;
+    return true;
 }
 
-std::unique_ptr<Cursor> Database::query(std::string const &sql, std::vector<std::string> const &args) {
-    auto cursor = std::unique_ptr<Cursor>();
+Cursor Database::query(std::string const &sql, std::vector<std::string> const &args) {
+    sqlite3_stmt *stmt = nullptr;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cout << "Could not prepare statement: " << sqlite3_errmsg(db) << std::endl;
+    }
     for (int i = 0; i < args.size(); ++i) {
-
+        rc = sqlite3_bind_text(stmt, i + 1, args.at((unsigned long) i).c_str(), -1, SQLITE_STATIC);
+        if (rc != SQLITE_OK) {
+            std::cout << "Could not bind text: " << args.at((unsigned long)i) << std::endl;
+        }
     }
-    //todo:
-//    char *errorMessage = 0;
-//    sqlite3_exec(db, sql.c_str(), &callback, cursor.get(), &errorMessage);
-    return cursor;
+    return Cursor(stmt);
 }
 
-std::unique_ptr<Cursor> Database::query(std::string const &sql) {
+Cursor Database::query(std::string const &sql) {
     return query(sql, {});
 }
+
+//endregion
+
+//region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//endregion
