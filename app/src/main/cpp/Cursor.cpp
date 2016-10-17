@@ -33,7 +33,7 @@ bool Cursor::isAfterLast() {
     return stepResult != kUninitialized && stepResult != SQLITE_ROW;
 }
 
-const sqlstr Cursor::getString(int columnIndex) const {
+const std::string Cursor::getString(int columnIndex) const {
     const unsigned char* text = sqlite3_column_text(statement, columnIndex);
     if (text) {
         return std::string(reinterpret_cast<const char*>(text));
@@ -41,19 +41,19 @@ const sqlstr Cursor::getString(int columnIndex) const {
     return "";
 }
 
-const sqlblob Cursor::getBlob(int columnIndex) const {
+const std::vector<byte> Cursor::getBlob(int columnIndex) const {
     const void *blob = sqlite3_column_blob(statement, columnIndex);
     int sz = sqlite3_column_bytes(statement, columnIndex);
     const byte *charBuf = reinterpret_cast<const byte*>(blob);
-    sqlblob value(charBuf, charBuf + sz);
+    std::vector<byte> value(charBuf, charBuf + sz);
     return value;
 }
 
-sqlint Cursor::getInt(int columnIndex) {
-    return (sqlint) sqlite3_column_int(statement, columnIndex);
+uint64_t Cursor::getInt(int columnIndex) {
+    return (uint64_t) sqlite3_column_int(statement, columnIndex);
 }
 
-sqlreal Cursor::getReal(int columnIndex) {
+double Cursor::getReal(int columnIndex) {
     return sqlite3_column_double(statement, columnIndex);
 }
 

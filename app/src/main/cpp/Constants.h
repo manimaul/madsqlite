@@ -9,9 +9,5 @@
 #include <vector>
 
 using byte = unsigned char;
-using sqlstr = std::string;
-using sqlblob = std::vector<byte>;
-using sqlint = uint64_t;
-using sqlreal = double;
 
 #endif //PROJECT_CONSTANTS_H

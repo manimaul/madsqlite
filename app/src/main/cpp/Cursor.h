@@ -35,10 +35,10 @@ public:
     bool moveToNext();
     bool isAfterLast();
     int getDataCount();
-    const sqlstr getString(int columnIndex) const;
-    const sqlblob getBlob(int columnIndex) const;
-    sqlint getInt(int columnIndex);
-    sqlreal getReal(int columnIndex);
+    const std::string getString(int columnIndex) const;
+    const std::vector<byte> getBlob(int columnIndex) const;
+    uint64_t getInt(int columnIndex);
+    double getReal(int columnIndex);
 
 //endregion
 

@@ -4,11 +4,11 @@
 #include <iostream>
 #include "Database.h"
 
-static void print(std::string const &msg, sqlreal &value) {
+static void print(std::string const &msg, double &value) {
     std::cout << msg << " " << value << std::endl;
 }
 
-static void print(std::string const &msg, sqlstr &value) {
+static void print(std::string const &msg, std::string &value) {
     std::cout << msg << " " << value << std::endl;
 }
 
@@ -16,11 +16,11 @@ static void print(std::string const &msg, int &value) {
     std::cout << msg << " " << value << std::endl;
 }
 
-static void print(std::string const &msg, sqlint &value) {
+static void print(std::string const &msg, uint64_t &value) {
     std::cout << msg << " " << value << std::endl;
 }
 
-static void print(std::string const &msg, sqlblob &blob) {
+static void print(std::string const &msg, std::vector<byte> &blob) {
     std::cout << msg << " ";
     for (byte &b : blob) {
         std::cout << b;
@@ -53,11 +53,11 @@ int main() {
     auto cursor = db.query("SELECT * FROM test");
     cursor.moveToNext();
     while (!cursor.isAfterLast()) {
-        sqlint storedX = cursor.getInt(0);
+        uint64_t storedX = cursor.getInt(0);
         print("x:", storedX);
-        sqlstr storedY = cursor.getString(1);
+        std::string storedY = cursor.getString(1);
         print("y:", storedY);
-        sqlblob storedBlob = cursor.getBlob(2);
+        std::vector<byte> storedBlob = cursor.getBlob(2);
         print("z:", storedBlob);
         cursor.moveToNext();
     }
