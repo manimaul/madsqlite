@@ -56,6 +56,10 @@ int Database::exec(std::string const &sql) {
     return execInternal(sql);
 }
 
+std::string Database::getError() {
+    return std::string(sqlite3_errmsg(db));
+}
+
 int Database::execInternal(std::string const &sql) {
     char *errorMessage = 0;
     int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errorMessage);

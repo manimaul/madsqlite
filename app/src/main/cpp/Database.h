@@ -51,8 +51,30 @@ public:
 
 public:
 
+    /**
+     * Insert values into a table
+     *
+     * @param table the table to insert into
+     * @param values the values to insert
+     * @return if the insertion was successful
+     */
     bool insert(std::string const &table, ContentValues &values);
+
+    /**
+     * Execute a sql query
+     *
+     * @param sql the query
+     * @return a Cursor to retrive query results
+     */
     Cursor query(std::string const &sql);
+
+    /**
+     * Execute a sql query
+     *
+     * @param sql the query
+     * @param sql query arguments
+     * @return a Cursor to retrive query results
+     */
     Cursor query(std::string const &sql, std::vector<std::string> const &args);
 
     /**
@@ -62,6 +84,11 @@ public:
      * @return the number of rows modified by those SQL statements (INSERT, UPDATE or DELETE only)
      */
     int exec(std::string const &sql);
+
+    /**
+     * @return the most recent database API call error message.
+     */
+    std::string getError();
 
     void beginTransaction();
     void rollbackTransaction();
