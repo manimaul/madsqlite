@@ -5,6 +5,10 @@
 #include <iostream>
 #include "ContentValues.h"
 
+#ifdef ANDROID
+#include <arpa/inet.h>
+#endif
+
 const std::unordered_set<std::string> &ContentValues::keySet() const {
     return _keys;
 }
