@@ -1,5 +1,7 @@
 package io.madrona.madsqlite;
 
+import android.support.annotation.Nullable;
+
 import java.io.Closeable;
 import java.io.IOException;
 
@@ -20,11 +22,17 @@ public final class Database implements Closeable {
     //region INJECTED VIEWS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //endregion
 
+    //region CONSTRUCTOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    public Database() {
+        nativePtr = JniBridge.openDatabase(null);
+    }
+
     public Database(final String absPath) {
         nativePtr = JniBridge.openDatabase(absPath);
     }
 
-    //region CONSTRUCTOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //endregion
 
     //region PRIVATE METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,7 +41,12 @@ public final class Database implements Closeable {
     //region PUBLIC METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     public Cursor query(String query, String... args) {
+        long cursorPtr = JniBridge.query(nativePtr, query, args);
+        return new Cursor(cursorPtr);
+    }
 
+    public Cursor query(String query) {
+        return query(query, (String[]) null);
     }
 
     //endregion

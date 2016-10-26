@@ -25,6 +25,7 @@ enum JniBridge {
     //region Cursor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static native void closeCursor(long nativePtr);
+    static native long query(long dbPtr, String query, String[] args);
 
     //endregion
 
