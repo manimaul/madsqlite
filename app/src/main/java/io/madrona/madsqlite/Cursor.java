@@ -3,6 +3,7 @@ package io.madrona.madsqlite;
 import java.io.Closeable;
 import java.io.IOException;
 
+@SuppressWarnings("WeakerAccess")
 public final class Cursor implements Closeable {
 
     //region CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,6 +33,35 @@ public final class Cursor implements Closeable {
     //endregion
 
     //region PUBLIC METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public boolean moveToNext() {
+        return JniBridge.moveToNext(nativePtr);
+    }
+    public boolean isAfterLast() {
+        return JniBridge.isAfterLast(nativePtr);
+    }
+
+    public int getDataCount() {
+        return JniBridge.getDataCount(nativePtr);
+    }
+
+    public String getString(int columnIndex) {
+        return JniBridge.getString(nativePtr, columnIndex);
+    }
+
+    public byte[] getBlob(int columnIndex) {
+        return JniBridge.getBlob(nativePtr, columnIndex);
+    }
+
+    public long getInt(int columnIndex) {
+        return JniBridge.getInt(nativePtr, columnIndex);
+    }
+
+    public double getReal(int columnIndex) {
+        return JniBridge.getReal(nativePtr, columnIndex);
+    }
+
+
     //endregion
 
     //region ACCESSORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +70,7 @@ public final class Cursor implements Closeable {
     //region {Closeable} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         JniBridge.closeCursor(nativePtr);
         nativePtr = 0L;
     }

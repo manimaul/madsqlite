@@ -19,13 +19,26 @@ enum JniBridge {
 
     static native long openDatabase(String absPath);
     static native void closeDatabase(long ptr);
+    static native boolean insert(long dbPtr, String table, String[] keys, Object[] values);
+    static native long query(long dbPtr, String query, String[] args);
+    static native int exec(long dbPtr, String sql);
+    static native String getError(long dbPtr);
+    static native void beginTransaction(long dbPtr);
+    static native void rollbackTransaction(long dbPtr);
+    static native void endTransaction(long dbPtr);
 
     //endregion
 
     //region Cursor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static native void closeCursor(long nativePtr);
-    static native long query(long dbPtr, String query, String[] args);
+    static native boolean moveToNext(long nativePtr);
+    static native boolean isAfterLast(long nativePtr);
+    static native int getDataCount(long nativePtr);
+    static native String getString(long nativePtr, int columnIndex);
+    static native byte[] getBlob(long nativePtr, int columnIndex);
+    static native long getInt(long nativePtr, int columnIndex);
+    static native double getReal(long nativePtr, int columnIndex);
 
     //endregion
 

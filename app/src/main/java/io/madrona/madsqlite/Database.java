@@ -1,10 +1,10 @@
 package io.madrona.madsqlite;
 
-import android.support.annotation.Nullable;
+import android.content.ContentValues;
 
 import java.io.Closeable;
-import java.io.IOException;
 
+@SuppressWarnings("WeakerAccess")
 public final class Database implements Closeable {
 
     //region CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,6 +40,22 @@ public final class Database implements Closeable {
 
     //region PUBLIC METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    public int exec(String query) {
+        return JniBridge.exec(nativePtr, query);
+    }
+
+    public void insert(String table, ContentValues contentValues) {
+        String[] keys = new String[contentValues.size()];
+        Object[] values = new Object[contentValues.size()];
+        int i = 0;
+        for (String key: contentValues.keySet()) {
+            keys[i] = key;
+            values[i] = contentValues.get(key);
+            ++i;
+        }
+        JniBridge.insert(nativePtr, table, keys, values);
+    }
+
     public Cursor query(String query, String... args) {
         long cursorPtr = JniBridge.query(nativePtr, query, args);
         return new Cursor(cursorPtr);
@@ -57,7 +73,7 @@ public final class Database implements Closeable {
     //region {Closeable} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         JniBridge.closeDatabase(nativePtr);
         nativePtr = 0L;
     }
