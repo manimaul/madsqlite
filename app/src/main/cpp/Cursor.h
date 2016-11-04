@@ -13,9 +13,9 @@ class Cursor {
 //region Members ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 private:
-    static const int kUninitialized = -1;
     sqlite3_stmt *statement;
-    int stepResult = kUninitialized;
+    int count = 0;
+    int position = 0;
 
 //endregion
 
@@ -32,6 +32,9 @@ public:
 
 public:
 
+    bool moveToFirst();
+    bool moveToPosition(int p);
+    int getCount();
     bool moveToNext();
     bool isAfterLast();
     int getDataCount();
@@ -45,6 +48,7 @@ public:
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 private:
+    int evaluateCount();
 
 //endregion
 

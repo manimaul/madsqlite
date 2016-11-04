@@ -51,7 +51,8 @@ int main() {
     db.insert("test", cv);
 
     auto cursor = db.query("SELECT * FROM test");
-    cursor.moveToNext();
+    auto count = cursor.getCount();
+    print("count", count);
     while (!cursor.isAfterLast()) {
         uint64_t storedX = cursor.getInt(0);
         print("x:", storedX);
@@ -60,5 +61,23 @@ int main() {
         std::vector<byte> storedBlob = cursor.getBlob(2);
         print("z:", storedBlob);
         cursor.moveToNext();
+    }
+
+    if (cursor.moveToPosition(1)) {
+        uint64_t storedX = cursor.getInt(0);
+        print("x:", storedX);
+        std::string storedY = cursor.getString(1);
+        print("y:", storedY);
+        std::vector<byte> storedBlob = cursor.getBlob(2);
+        print("z:", storedBlob);
+    }
+
+    if (cursor.moveToPosition(0)) {
+        uint64_t storedX = cursor.getInt(0);
+        print("x:", storedX);
+        std::string storedY = cursor.getString(1);
+        print("y:", storedY);
+        std::vector<byte> storedBlob = cursor.getBlob(2);
+        print("z:", storedBlob);
     }
 }

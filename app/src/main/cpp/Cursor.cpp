@@ -10,6 +10,8 @@
 //region Constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cursor::Cursor(sqlite3_stmt *statement) : statement(statement) {
+    count = -1;
+    count = evaluateCount();
 }
 
 Cursor::~Cursor() {
@@ -20,16 +22,38 @@ Cursor::~Cursor() {
 
 //region Public Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-bool Cursor::moveToNext() {
-    if (!isAfterLast()) {
-        stepResult = sqlite3_step(statement);
+bool Cursor::moveToFirst() {
+    if (sqlite3_reset(statement) == SQLITE_OK) {
+        position = 0;
         return true;
     }
     return false;
 }
 
+int Cursor::getCount() {
+    return count;
+}
+
+bool Cursor::moveToPosition(int p) {
+    if (p < position) {
+        moveToFirst();
+    }
+    while (position < p && moveToNext());
+    return position == p;
+}
+
+bool Cursor::moveToNext() {
+    if (!isAfterLast()) {
+        if (sqlite3_step(statement) == SQLITE_ROW) {
+            ++position;
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Cursor::isAfterLast() {
-    return stepResult != kUninitialized && stepResult != SQLITE_ROW;
+    return position == count;
 }
 
 const std::string Cursor::getString(int columnIndex) const {
@@ -63,4 +87,12 @@ int Cursor::getDataCount() {
 //endregion
 
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+int Cursor::evaluateCount() {
+    while (moveToNext());
+    int c = position;
+    moveToFirst();
+    return c;
+}
+
 //endregion
