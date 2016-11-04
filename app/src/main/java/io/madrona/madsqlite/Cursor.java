@@ -34,6 +34,18 @@ public final class Cursor implements Closeable {
 
     //region PUBLIC METHODS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    public boolean moveToFirst() {
+        return JniBridge.moveToFirst(nativePtr);
+    }
+
+    public boolean moveToPosition(int position) {
+        return JniBridge.moveToPosition(nativePtr, position);
+    }
+
+    public int getCount() {
+        return JniBridge.getCount(nativePtr);
+    }
+
     public boolean moveToNext() {
         return JniBridge.moveToNext(nativePtr);
     }

@@ -2,7 +2,85 @@
 #include <string>
 #include "Database.h"
 
+/*
+ * How to find java class,field and method signatures:
+ * $unzip /Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home/jre/lib/rt.jar
+ * $javap -s ./java/lang/Object.class
+ */
+
+ContentValues::DataType typeOf(JNIEnv *env, jobject &object) {
+    jclass integerClass = env->FindClass("java/lang/Integer");
+    jclass doubleClass = env->FindClass("java/lang/Double");
+    jclass stringClass = env->FindClass("java/lang/String");
+    jclass arrayClass = env->FindClass("java/lang/reflect/Array");
+
+    jclass objectClass = env->FindClass("java/lang/Object");
+    jmethodID getClassMethodId = env->GetMethodID(objectClass, "getClass", "()Ljava/lang/Class;");
+    jmethodID equalsMethodId = env->GetMethodID(objectClass, "equals", "(Ljava/lang/Object;)Z");
+    jobject theClass = env->CallObjectMethod(object, getClassMethodId);
+    if (env->CallBooleanMethod(theClass, equalsMethodId, integerClass)) {
+        return ContentValues::DataType::INT;
+    }
+    if (env->CallBooleanMethod(theClass, equalsMethodId, doubleClass)) {
+        return ContentValues::DataType::REAL;
+    }
+    if (env->CallBooleanMethod(theClass, equalsMethodId, stringClass)) {
+        return ContentValues::DataType::TEXT;
+    }
+    if (env->CallBooleanMethod(theClass, equalsMethodId, arrayClass)) {
+        return ContentValues::DataType::BLOB;
+    }
+    return ContentValues::DataType::NONE;
+}
+
+int jobjectToInteger(JNIEnv *env, jobject &value) {
+    jclass jClass = env->FindClass("java/lang/Integer");
+    jmethodID methodId = env->GetMethodID(jClass, "intValue", "()I");
+    return env->CallIntMethod(value, methodId);
+}
+
+double jobjectToDouble(JNIEnv *env, jobject &value) {
+    jclass jClass = env->FindClass("java/lang/Double");
+    jmethodID methodId = env->GetMethodID(jClass, "doubleValue", "()D");
+    return env->CallDoubleMethod(value, methodId);
+}
+
+std::string jobjectToString(JNIEnv *env, jobject &value) {
+    const char *strValue = env->GetStringUTFChars((jstring) value, 0);
+    std::string retVal(strValue);
+    env->ReleaseStringUTFChars((jstring) value, strValue);
+    return retVal;
+}
+
+
 extern "C" {
+
+JNIEXPORT jboolean JNICALL
+Java_io_madrona_madsqlite_JniBridge_moveToFirst(JNIEnv *env,
+                                                jclass type,
+                                                jlong nativePtr) {
+
+    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
+    return (jboolean) cursor->moveToFirst();
+}
+
+JNIEXPORT jboolean JNICALL
+Java_io_madrona_madsqlite_JniBridge_moveToPosition(JNIEnv *env,
+                                                   jclass type,
+                                                   jlong nativePtr,
+                                                   jint position) {
+    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
+    return (jboolean) cursor->moveToPosition(position);
+}
+
+JNIEXPORT jint JNICALL
+Java_io_madrona_madsqlite_JniBridge_getCount(JNIEnv *env,
+                                             jclass type,
+                                             jlong nativePtr) {
+
+    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
+    return cursor->getCount();
+}
 
 JNIEXPORT jboolean JNICALL
 Java_io_madrona_madsqlite_JniBridge_moveToNext(JNIEnv *env,
@@ -101,21 +179,6 @@ Java_io_madrona_madsqlite_JniBridge_endTransaction(JNIEnv *env,
     db->endTransaction();
 }
 
-//JNIEXPORT jboolean JNICALL
-//Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
-//                                           jclass type,
-//                                           jlong dbPtr,
-//                                           jstring table,
-//                                           jobject values) {
-//    const char *tableStr = env->GetStringUTFChars(table, 0);
-//    jclass contentValuesClass = env->GetObjectClass(values);
-//    jmethodID getMethodId = env->GetMethodID(contentValuesClass, "get", "()Ljava/lang/String;");
-//    jobject value = env->CallObjectMethod(values, getMethodId, "key");
-//    Database *db = reinterpret_cast<Database *>(dbPtr);
-//
-//    env->ReleaseStringUTFChars(table, tableStr);
-//}
-
 JNIEXPORT jboolean JNICALL
 Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
                                            jclass type,
@@ -132,8 +195,25 @@ Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
             jstring key = (jstring) (env->GetObjectArrayElement(keys, i));
             const char *keyStr = env->GetStringUTFChars(key, 0);
             jobject value = env->GetObjectArrayElement(values, i);
-            size_t sz = sizeof(value);
-            contentValues.putBlob(keyStr, &value, sz); //todo: put specific type
+            ContentValues::DataType dataType = typeOf(env, value);
+            switch (dataType) {
+                case ContentValues::INT:
+                    contentValues.putInteger(keyStr, jobjectToInteger(env, value));
+                    break;
+                case ContentValues::REAL:
+                    contentValues.putReal(keyStr, jobjectToDouble(env, value));
+                    break;
+                case ContentValues::TEXT:
+                    contentValues.putString(keyStr, jobjectToString(env, value));
+                    break;
+                case ContentValues::BLOB: {
+                    size_t sz = sizeof(value);
+                    contentValues.putBlob(keyStr, &value, sz);
+                    break;
+                }
+                case ContentValues::NONE:
+                    break;
+            }
             env->ReleaseStringUTFChars(key, keyStr);
         }
         Database *db = reinterpret_cast<Database *>(dbPtr);
@@ -169,7 +249,7 @@ Java_io_madrona_madsqlite_JniBridge_query(JNIEnv *env,
     if (args) {
         int count = env->GetArrayLength(args);
         auto argsVector = std::vector<std::string>((unsigned long) count);
-        for (int i=0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             jstring str = (jstring) (env->GetObjectArrayElement(args, i));
             const char *rawString = env->GetStringUTFChars(str, 0);
             argsVector.push_back(rawString);
@@ -204,7 +284,7 @@ Java_io_madrona_madsqlite_JniBridge_closeDatabase(JNIEnv *env,
                                                   jclass type,
                                                   jlong nativePtr) {
     void *db = reinterpret_cast<void *>(nativePtr);
-    delete(db);
+    delete (db);
 }
 
 JNIEXPORT void JNICALL
@@ -212,7 +292,12 @@ Java_io_madrona_madsqlite_JniBridge_closeCursor(JNIEnv *env,
                                                 jclass type,
                                                 jlong nativePtr) {
     void *db = reinterpret_cast<void *>(nativePtr);
-    delete(db);
+    delete (db);
+}
+
+JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    //todo: index class, field and method ids
+    return JNI_VERSION_1_6;
 }
 
 }
