@@ -34,7 +34,6 @@ enum JniBridge {
     static native void closeCursor(long nativePtr);
     static native boolean moveToNext(long nativePtr);
     static native boolean isAfterLast(long nativePtr);
-    static native int getDataCount(long nativePtr);
     static native String getString(long nativePtr, int columnIndex);
     static native byte[] getBlob(long nativePtr, int columnIndex);
     static native long getInt(long nativePtr, int columnIndex);

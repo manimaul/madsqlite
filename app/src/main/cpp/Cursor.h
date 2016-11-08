@@ -24,6 +24,8 @@ private:
 public:
 
     Cursor(sqlite3_stmt *statement);
+    Cursor(Cursor &&curs);
+    Cursor(Cursor &curs) = delete; // disallow copy
     virtual ~Cursor();
 
 //endregion
@@ -37,7 +39,6 @@ public:
     int getCount();
     bool moveToNext();
     bool isAfterLast();
-    int getDataCount();
     const std::string getString(int columnIndex) const;
     const std::vector<byte> getBlob(int columnIndex) const;
     uint64_t getInt(int columnIndex);

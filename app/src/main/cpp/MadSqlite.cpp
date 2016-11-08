@@ -98,14 +98,6 @@ Java_io_madrona_madsqlite_JniBridge_isAfterLast(JNIEnv *env,
     return (jboolean) cursor->isAfterLast();
 }
 
-JNIEXPORT jint JNICALL
-Java_io_madrona_madsqlite_JniBridge_getDataCount(JNIEnv *env,
-                                                 jclass type,
-                                                 jlong nativePtr) {
-    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
-    return cursor->getDataCount();
-}
-
 JNIEXPORT jstring JNICALL
 Java_io_madrona_madsqlite_JniBridge_getString(JNIEnv *env,
                                               jclass type,
@@ -256,10 +248,10 @@ Java_io_madrona_madsqlite_JniBridge_query(JNIEnv *env,
             env->ReleaseStringUTFChars(str, rawString);
         }
         auto c = db->query(queryStr, argsVector);
-        cursor = new Cursor(c);
+        cursor = new Cursor(std::move(c));
     } else {
         auto c = db->query(queryStr);
-        cursor = new Cursor(c);
+        cursor = new Cursor(std::move(c));
     }
     env->ReleaseStringUTFChars(query, queryStr);
     return reinterpret_cast<jlong>(cursor);

@@ -14,8 +14,19 @@ Cursor::Cursor(sqlite3_stmt *statement) : statement(statement) {
     count = evaluateCount();
 }
 
+Cursor::Cursor(Cursor &&curs) {
+    statement = curs.statement;
+    count = curs.count;
+    position = curs.position;
+    curs.statement = nullptr;
+    curs.count = 0;
+    curs.position = 0;
+}
+
 Cursor::~Cursor() {
-    sqlite3_finalize(statement);
+    if (statement) {
+        sqlite3_finalize(statement);
+    }
 }
 
 //endregion
@@ -78,10 +89,6 @@ uint64_t Cursor::getInt(int columnIndex) {
 
 double Cursor::getReal(int columnIndex) {
     return sqlite3_column_double(statement, columnIndex);
-}
-
-int Cursor::getDataCount() {
-    return sqlite3_data_count(statement);
 }
 
 //endregion

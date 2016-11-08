@@ -2,10 +2,9 @@ package io.madrona.madsqlite;
 
 import android.content.ContentValues;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 import io.madrona.madsqlite.databinding.ActivityMainBinding;
 
@@ -26,18 +25,23 @@ public class MainActivity extends AppCompatActivity {
                 "z BLOB);");
 
         ContentValues cv = new ContentValues();
-        cv.put("z", "i'm a blob");
-        cv.put("y", 7070);
         cv.put("x", 1970);
+        cv.put("y", 7070);
+        cv.put("z", "i'm a blob");
+        memDb.insert("test", cv);
+
+        cv.clear();
+        cv.put("x", 456);
+        cv.put("y", "123");
+        cv.put("z", "entry blob 2");
         memDb.insert("test", cv);
 
         Cursor cursor = memDb.query("SELECT * FROM test;");
         Log.e(TAG, "count " + cursor.getCount());
         while (!cursor.isAfterLast()) {
-            Log.d(TAG, "data count " + cursor.getDataCount());
             Log.d(TAG, "x: " + cursor.getInt(0));
             Log.d(TAG, "y: " + cursor.getString(1));
-            Log.d(TAG, "z: " + new String(cursor.getBlob(2)));
+//            Log.d(TAG, "z: " + new String(cursor.getBlob(2)));
             cursor.moveToNext();
         }
 

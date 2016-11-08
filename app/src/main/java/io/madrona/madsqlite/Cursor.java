@@ -1,7 +1,6 @@
 package io.madrona.madsqlite;
 
 import java.io.Closeable;
-import java.io.IOException;
 
 @SuppressWarnings("WeakerAccess")
 public final class Cursor implements Closeable {
@@ -49,12 +48,9 @@ public final class Cursor implements Closeable {
     public boolean moveToNext() {
         return JniBridge.moveToNext(nativePtr);
     }
+
     public boolean isAfterLast() {
         return JniBridge.isAfterLast(nativePtr);
-    }
-
-    public int getDataCount() {
-        return JniBridge.getDataCount(nativePtr);
     }
 
     public String getString(int columnIndex) {
@@ -72,7 +68,6 @@ public final class Cursor implements Closeable {
     public double getReal(int columnIndex) {
         return JniBridge.getReal(nativePtr, columnIndex);
     }
-
 
     //endregion
 
