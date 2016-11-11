@@ -41,7 +41,7 @@ public:
     bool isAfterLast();
     const std::string getString(int columnIndex) const;
     const std::vector<byte> getBlob(int columnIndex) const;
-    uint64_t getInt(int columnIndex);
+    int64_t getInt(int columnIndex);
     double getReal(int columnIndex);
 
 //endregion
@@ -49,7 +49,7 @@ public:
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 private:
-    int evaluateCount();
+    void evaluateCount();
 
 //endregion
 

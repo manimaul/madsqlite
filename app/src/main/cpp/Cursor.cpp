@@ -10,8 +10,7 @@
 //region Constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cursor::Cursor(sqlite3_stmt *statement) : statement(statement) {
-    count = -1;
-    count = evaluateCount();
+    evaluateCount();
 }
 
 Cursor::Cursor(Cursor &&curs) {
@@ -34,7 +33,7 @@ Cursor::~Cursor() {
 //region Public Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bool Cursor::moveToFirst() {
-    if (sqlite3_reset(statement) == SQLITE_OK) {
+    if (sqlite3_reset(statement) == SQLITE_OK && sqlite3_step(statement) == SQLITE_ROW) {
         position = 0;
         return true;
     }
@@ -46,6 +45,9 @@ int Cursor::getCount() {
 }
 
 bool Cursor::moveToPosition(int p) {
+    if (p >= count) {
+        return false;
+    }
     if (p < position) {
         moveToFirst();
     }
@@ -55,7 +57,8 @@ bool Cursor::moveToPosition(int p) {
 
 bool Cursor::moveToNext() {
     if (!isAfterLast()) {
-        if (sqlite3_step(statement) == SQLITE_ROW) {
+        int stepResult = sqlite3_step(statement);
+        if (stepResult == SQLITE_ROW || SQLITE_DONE) {
             ++position;
             return true;
         }
@@ -64,7 +67,7 @@ bool Cursor::moveToNext() {
 }
 
 bool Cursor::isAfterLast() {
-    return position == count;
+    return count > 0 && position >= count;
 }
 
 const std::string Cursor::getString(int columnIndex) const {
@@ -83,8 +86,8 @@ const std::vector<byte> Cursor::getBlob(int columnIndex) const {
     return value;
 }
 
-uint64_t Cursor::getInt(int columnIndex) {
-    return (uint64_t) sqlite3_column_int(statement, columnIndex);
+int64_t Cursor::getInt(int columnIndex) {
+    return (int64_t) sqlite3_column_int(statement, columnIndex);
 }
 
 double Cursor::getReal(int columnIndex) {
@@ -95,11 +98,11 @@ double Cursor::getReal(int columnIndex) {
 
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-int Cursor::evaluateCount() {
-    while (moveToNext());
-    int c = position;
-    moveToFirst();
-    return c;
+void Cursor::evaluateCount() {
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        ++count;
+    }
+    sqlite3_reset(statement);
 }
 
 //endregion
