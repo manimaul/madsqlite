@@ -12,6 +12,8 @@ ContentValues::DataType typeOf(JNIEnv *env, jobject &object) {
     jclass integerClass = env->FindClass("java/lang/Integer");
     jclass doubleClass = env->FindClass("java/lang/Double");
     jclass stringClass = env->FindClass("java/lang/String");
+    // todo: Float
+    // todo: Long
     jclass arrayClass = env->FindClass("java/lang/reflect/Array");
 
     jclass objectClass = env->FindClass("java/lang/Object");
