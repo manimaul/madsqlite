@@ -133,7 +133,8 @@ Java_io_madrona_madsqlite_JniBridge_getBlob(JNIEnv *env,
     Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
     auto vec = cursor->getBlob(columnIndex);
     jbyteArray retVal = env->NewByteArray((jsize) vec.size());
-    env->SetByteArrayRegion(retVal, 0, (jsize) vec.size(), (const jbyte *) vec.front());
+    jbyte *data = reinterpret_cast<jbyte *>(vec.data());
+    env->SetByteArrayRegion(retVal, 0, (jsize) vec.size(), data);
     return retVal;
 }
 
@@ -206,28 +207,38 @@ Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
             jobject value = env->GetObjectArrayElement(values, i);
             auto dataType = typeOf(env, value);
             switch (dataType) {
-                case JINT:
+                case JINT: {
                     contentValues.putInteger(keyStr, jobjectToInteger(env, value));
                     break;
-                case JLONG:
+                }
+                case JLONG: {
                     contentValues.putInteger(keyStr, jobjectToLong(env, value));
                     break;
-                case JFLOAT:
+                }
+                case JFLOAT: {
                     contentValues.putReal(keyStr, jobjectToFloat(env, value));
                     break;
-                case JDOUBLE:
+                }
+                case JDOUBLE: {
                     contentValues.putReal(keyStr, jobjectToDouble(env, value));
                     break;
-                case JSTRING:
+                }
+                case JSTRING: {
                     contentValues.putString(keyStr, jobjectToString(env, value));
                     break;
+                }
                 case JBYTEARRAY: {
-                    size_t sz = sizeof(value);
-                    contentValues.putBlob(keyStr, &value, sz);
+                    jbyteArray array = (jbyteArray) value;
+                    jboolean isCopy;
+                    jbyte* elements = env->GetByteArrayElements(array, &isCopy);
+                    jsize size = env->GetArrayLength(array);
+                    contentValues.putBlob(keyStr, elements, (size_t) size);
+                    env->ReleaseByteArrayElements(array, elements, 0);
                     break;
                 }
-                case UNKNOWN:
+                case UNKNOWN: {
                     break;
+                }
             }
             env->ReleaseStringUTFChars(key, keyStr);
         }
