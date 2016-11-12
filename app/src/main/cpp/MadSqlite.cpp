@@ -271,7 +271,7 @@ Java_io_madrona_madsqlite_JniBridge_query(JNIEnv *env,
     Cursor *cursor;
     if (args) {
         int count = env->GetArrayLength(args);
-        auto argsVector = std::vector<std::string>((unsigned long) count);
+        auto argsVector = std::vector<std::string>();
         for (int i = 0; i < count; i++) {
             jstring str = (jstring) (env->GetObjectArrayElement(args, i));
             const char *rawString = env->GetStringUTFChars(str, 0);

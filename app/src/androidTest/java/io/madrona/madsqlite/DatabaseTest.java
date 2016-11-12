@@ -179,17 +179,33 @@ public class DatabaseTest {
         cv.put("keyInt", 34);
         assertTrue(_database.insert("test", cv));
 
-        final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        final long number = cursor.getLong(0);
-        final String value = cursor.getString(1);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
-
+        long number;
+        String value;
+        {
+            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+            assertTrue(cursor.moveToFirst());
+            assertFalse(cursor.isAfterLast());
+            value = cursor.getString(0);
+            number = cursor.getLong(1);
+            assertTrue(cursor.moveToNext());
+            assertTrue(cursor.isAfterLast());
+            cursor.close();
+        }
         assertEquals(99, number);
         assertEquals("the quick brown fox", value);
+
+        {
+            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "34");
+            assertTrue(cursor.moveToFirst());
+            assertFalse(cursor.isAfterLast());
+            value = cursor.getString(0);
+            number = cursor.getLong(1);
+            assertTrue(cursor.moveToNext());
+            assertTrue(cursor.isAfterLast());
+            cursor.close();
+        }
+        assertEquals(34, number);
+        assertEquals("the slow white tortoise", value);
     }
 
 }
