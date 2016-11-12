@@ -3,6 +3,7 @@ package io.madrona.madsqlite;
 import android.content.ContentValues;
 
 import java.io.Closeable;
+import java.io.File;
 
 @SuppressWarnings("WeakerAccess")
 public final class Database implements Closeable {
@@ -29,8 +30,8 @@ public final class Database implements Closeable {
         nativePtr = JniBridge.openDatabase(null);
     }
 
-    public Database(final String absPath) {
-        nativePtr = JniBridge.openDatabase(absPath);
+    public Database(final File dbFile) {
+        nativePtr = JniBridge.openDatabase(dbFile.getAbsolutePath());
     }
 
     //endregion

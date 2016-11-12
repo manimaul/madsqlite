@@ -37,11 +37,10 @@ public class MainActivity extends AppCompatActivity {
         memDb.insert("test", cv);
 
         Cursor cursor = memDb.query("SELECT * FROM test;");
-        Log.e(TAG, "count " + cursor.getCount());
+        cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Log.d(TAG, "x: " + cursor.getInt(0));
+            Log.d(TAG, "x: " + cursor.getLong(0));
             Log.d(TAG, "y: " + cursor.getString(1));
-//            Log.d(TAG, "z: " + new String(cursor.getBlob(2)));
             cursor.moveToNext();
         }
 
