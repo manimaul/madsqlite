@@ -114,4 +114,18 @@ public class DatabaseTest {
         assertEquals(Double.MAX_VALUE, secondResult, 0);
     }
 
+    @Test
+    public void insert_blob() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyBlob", "data".getBytes());
+        _database.insert("test", cv);
+
+        final Cursor cursor = _database.query("SELECT keyBlob FROM test;");
+        assertTrue(cursor.moveToFirst());
+        final byte[] data = cursor.getBlob(0);
+        cursor.close();
+
+        assertEquals("data", new String(data));
+    }
+
 }
