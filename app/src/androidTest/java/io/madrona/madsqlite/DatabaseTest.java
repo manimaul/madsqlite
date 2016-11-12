@@ -182,7 +182,7 @@ public class DatabaseTest {
         long number;
         String value;
         {
-            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", 99);
             assertTrue(cursor.moveToFirst());
             assertFalse(cursor.isAfterLast());
             value = cursor.getString(0);
@@ -195,17 +195,42 @@ public class DatabaseTest {
         assertEquals("the quick brown fox", value);
 
         {
-            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "34");
+            final Cursor cursor = _database.query("SELECT keyInt,keyText FROM test WHERE keyInt is ?;", 34);
             assertTrue(cursor.moveToFirst());
             assertFalse(cursor.isAfterLast());
-            value = cursor.getString(0);
-            number = cursor.getLong(1);
+            number = cursor.getLong(0);
+            value = cursor.getString(1);
             assertTrue(cursor.moveToNext());
             assertTrue(cursor.isAfterLast());
             cursor.close();
         }
         assertEquals(34, number);
         assertEquals("the slow white tortoise", value);
+    }
+
+
+    @Test
+    public void query_args_str() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyText", "the quick brown fox");
+        cv.put("keyInt", 99);
+        assertTrue(_database.insert("test", cv));
+
+        cv.clear();
+        cv.put("keyText", "the slow white tortoise");
+        cv.put("keyInt", 34);
+        assertTrue(_database.insert("test", cv));
+
+        final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+        assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
+        String value = cursor.getString(0);
+        long number = cursor.getLong(1);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
+        cursor.close();
+        assertEquals(99, number);
+        assertEquals("the quick brown fox", value);
     }
 
 }

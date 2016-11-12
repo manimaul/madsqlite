@@ -62,6 +62,17 @@ public final class Database implements Closeable {
         return new Cursor(cursorPtr);
     }
 
+    public Cursor query(String query, Object... args) {
+        String[] strArgs = null;
+        if (args != null) {
+            strArgs = new String[args.length];
+            for (int i = 0; i < args.length; i++) {
+                strArgs[i] = args[i].toString();
+            }
+        }
+        return query(query, strArgs);
+    }
+
     public Cursor query(String query) {
         return query(query, (String[]) null);
     }
