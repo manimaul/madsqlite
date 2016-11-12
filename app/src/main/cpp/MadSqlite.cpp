@@ -6,7 +6,19 @@
  * How to find java class,field and method signatures:
  * $unzip /Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home/jre/lib/rt.jar
  * $javap -s ./java/lang/Object.class
+ *
+ * http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html
  */
+static jclass integerClass;
+static jclass longClass;
+static jclass floatClass;
+static jclass doubleClass;
+static jclass stringClass;
+static jclass byteArrayClass;
+static jmethodID intValueMethodId;
+static jmethodID longValueMethodId;
+static jmethodID doubleValueMethodId;
+static jmethodID floatValueMethodId;
 
 enum JTYPE {
     UNKNOWN,
@@ -19,13 +31,6 @@ enum JTYPE {
 };
 
 JTYPE typeOf(JNIEnv *env, jobject &object) {
-    // http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html
-    jclass integerClass = env->FindClass("java/lang/Integer");
-    jclass longClass = env->FindClass("java/lang/Long");
-    jclass floatClass = env->FindClass("java/lang/Float");
-    jclass doubleClass = env->FindClass("java/lang/Double");
-    jclass stringClass = env->FindClass("java/lang/String");
-    jclass byteArrayClass = env->FindClass("[B");
 
     // INTEGER
     if (env->IsInstanceOf(object, integerClass)) {
@@ -57,27 +62,19 @@ JTYPE typeOf(JNIEnv *env, jobject &object) {
 }
 
 int jobjectToInteger(JNIEnv *env, jobject &value) {
-    jclass jClass = env->FindClass("java/lang/Integer");
-    jmethodID methodId = env->GetMethodID(jClass, "intValue", "()I");
-    return env->CallIntMethod(value, methodId);
+    return env->CallIntMethod(value, intValueMethodId);
 }
 
 long jobjectToLong(JNIEnv *env, jobject &value) {
-    jclass jClass = env->FindClass("java/lang/Long");
-    jmethodID methodId = env->GetMethodID(jClass, "longValue", "()J");
-    return env->CallLongMethod(value, methodId);
+    return env->CallLongMethod(value, longValueMethodId);
 }
 
 double jobjectToDouble(JNIEnv *env, jobject &value) {
-    jclass jClass = env->FindClass("java/lang/Double");
-    jmethodID methodId = env->GetMethodID(jClass, "doubleValue", "()D");
-    return env->CallDoubleMethod(value, methodId);
+    return env->CallDoubleMethod(value, doubleValueMethodId);
 }
 
 float jobjectToFloat(JNIEnv *env, jobject &value) {
-    jclass jClass = env->FindClass("java/lang/Float");
-    jmethodID methodId = env->GetMethodID(jClass, "floatValue", "()F");
-    return env->CallFloatMethod(value, methodId);
+    return env->CallFloatMethod(value, floatValueMethodId);
 }
 
 std::string jobjectToString(JNIEnv *env, jobject &value) {
@@ -191,7 +188,7 @@ Java_io_madrona_madsqlite_JniBridge_endTransaction(JNIEnv,
 
 JNIEXPORT jboolean JNICALL
 Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
-                                           jclass type,
+                                           jclass,
                                            jlong dbPtr,
                                            jstring table,
                                            jobjectArray keys,
@@ -321,8 +318,29 @@ Java_io_madrona_madsqlite_JniBridge_closeCursor(JNIEnv,
     delete (db);
 }
 
+jclass FindClass(JNIEnv *env, const char* name) {
+    jclass localRef = env->FindClass(name);
+    jclass globalRef = (jclass) env->NewGlobalRef(localRef);
+    env->DeleteLocalRef(localRef);
+    return globalRef;
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
-    //todo: index class, field and method ids
+    JNIEnv *env;
+    vm->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+    integerClass = FindClass(env, "java/lang/Integer");
+    longClass = FindClass(env, "java/lang/Long");
+    floatClass = FindClass(env, "java/lang/Float");
+    doubleClass = FindClass(env, "java/lang/Double");
+    stringClass = FindClass(env, "java/lang/String");
+    byteArrayClass = FindClass(env, "[B");
+
+    intValueMethodId = env->GetMethodID(integerClass, "intValue", "()I");
+    longValueMethodId = env->GetMethodID(longClass, "longValue", "()J");
+    doubleValueMethodId = env->GetMethodID(doubleClass, "doubleValue", "()D");
+    floatValueMethodId = env->GetMethodID(floatClass, "floatValue", "()F");
+
     return JNI_VERSION_1_6;
 }
 
