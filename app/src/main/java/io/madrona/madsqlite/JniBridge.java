@@ -39,8 +39,6 @@ enum JniBridge {
     static native long getInt(long nativePtr, int columnIndex);
     static native double getReal(long nativePtr, int columnIndex);
     static native boolean moveToFirst(long nativePtr);
-    static native boolean moveToPosition(long nativePtr, int position);
-    static native int getCount(long nativePtr);
 
     //endregion
 

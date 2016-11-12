@@ -18,9 +18,11 @@ public class DatabaseTest {
     @Before
     public void setup() {
         _database = new Database();
-        _database.exec("CREATE TABLE test(x INTEGER, " +
-                "y TEXT, " +
-                "z BLOB);");
+        _database.exec("CREATE TABLE test(" +
+                "keyInt INTEGER, " +
+                "keyReal REAL," +
+                "keyText TEXT, " +
+                "keyBlob BLOB);");
     }
 
     @After
@@ -29,35 +31,87 @@ public class DatabaseTest {
     }
 
     @Test
-    public void insert_int() throws Exception {
+    public void insert_integer() throws Exception {
         ContentValues cv = new ContentValues();
-        cv.put("x", Long.MIN_VALUE);
+        cv.put("keyInt", Integer.MIN_VALUE);
         _database.insert("test", cv);
 
         cv.clear();
-        cv.put("x", Long.MAX_VALUE);
+        cv.put("keyInt", Integer.MAX_VALUE);
         _database.insert("test", cv);
 
-        final Cursor cursor = _database.query("SELECT x FROM test;");
-        assertEquals(2, cursor.getCount());
+        final Cursor cursor = _database.query("SELECT keyInt FROM test;");
         assertTrue(cursor.moveToFirst());
-        assertEquals(Long.MIN_VALUE, cursor.getInt(0));
+        final long firstResult = cursor.getInt(0);
         assertTrue(cursor.moveToNext());
-        assertEquals(Long.MAX_VALUE, cursor.getInt(0));
+        final long secondResult = cursor.getInt(0);
         cursor.close();
+
+        assertEquals(Integer.MIN_VALUE, firstResult);
+        assertEquals(Integer.MAX_VALUE, secondResult);
     }
 
     @Test
-    public void insert_blob() throws Exception {
+    public void insert_long() throws Exception {
         ContentValues cv = new ContentValues();
-        cv.put("z", "blob".getBytes());
+        cv.put("keyInt", Long.MIN_VALUE);
         _database.insert("test", cv);
 
-        final Cursor cursor = _database.query("SELECT * FROM test;");
-        assertEquals(1, cursor.getCount());
+        cv.clear();
+        cv.put("keyInt", Long.MAX_VALUE);
+        _database.insert("test", cv);
+
+        final Cursor cursor = _database.query("SELECT keyInt FROM test;");
         assertTrue(cursor.moveToFirst());
-        assertEquals("blob", new String(cursor.getBlob(0)));
+        final long firstResult = cursor.getInt(0);
+        assertTrue(cursor.moveToNext());
+        final long secondResult = cursor.getInt(0);
         cursor.close();
+
+        assertEquals(Long.MIN_VALUE, firstResult);
+        assertEquals(Long.MAX_VALUE, secondResult);
+    }
+
+    @Test
+    public void insert_float() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyReal", Float.MIN_VALUE);
+        _database.insert("test", cv);
+
+        cv.clear();
+        cv.put("keyReal", Float.MAX_VALUE);
+        _database.insert("test", cv);
+
+        final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        assertTrue(cursor.moveToFirst());
+        final double firstResult = cursor.getReal(0);
+        assertTrue(cursor.moveToNext());
+        final double secondResult = cursor.getReal(0);
+        cursor.close();
+
+        assertEquals(Float.MIN_VALUE, firstResult, 0);
+        assertEquals(Float.MAX_VALUE, secondResult, 0);
+    }
+
+    @Test
+    public void insert_double() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyReal", Double.MIN_VALUE);
+        _database.insert("test", cv);
+
+        cv.clear();
+        cv.put("keyReal", Double.MAX_VALUE);
+        _database.insert("test", cv);
+
+        final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        assertTrue(cursor.moveToFirst());
+        final double firstResult = cursor.getReal(0);
+        assertTrue(cursor.moveToNext());
+        final double secondResult = cursor.getReal(0);
+        cursor.close();
+
+        assertEquals(Double.MIN_VALUE, firstResult, 0);
+        assertEquals(Double.MAX_VALUE, secondResult, 0);
     }
 
 }

@@ -8,31 +8,59 @@
  * $javap -s ./java/lang/Object.class
  */
 
-ContentValues::DataType typeOf(JNIEnv *env, jobject &object) {
+enum JTYPE {
+    UNKNOWN,
+    JINT,
+    JLONG,
+    JFLOAT,
+    JDOUBLE,
+    JSTRING,
+    JARRAY,
+};
+
+JTYPE typeOf(JNIEnv *env, jobject &object) {
     jclass integerClass = env->FindClass("java/lang/Integer");
+    jclass longClass = env->FindClass("java/lang/Long");
+
+    jclass floatClass = env->FindClass("java/lang/Float");
     jclass doubleClass = env->FindClass("java/lang/Double");
+
     jclass stringClass = env->FindClass("java/lang/String");
-    // todo: Float
-    // todo: Long
+
     jclass arrayClass = env->FindClass("java/lang/reflect/Array");
 
     jclass objectClass = env->FindClass("java/lang/Object");
     jmethodID getClassMethodId = env->GetMethodID(objectClass, "getClass", "()Ljava/lang/Class;");
     jmethodID equalsMethodId = env->GetMethodID(objectClass, "equals", "(Ljava/lang/Object;)Z");
     jobject theClass = env->CallObjectMethod(object, getClassMethodId);
+
+    // INTEGER
     if (env->CallBooleanMethod(theClass, equalsMethodId, integerClass)) {
-        return ContentValues::DataType::INT;
+        return JINT;
+    }
+    if (env->CallBooleanMethod(theClass, equalsMethodId, longClass)) {
+        return JLONG;
+    }
+
+    // REAL
+    if (env->CallBooleanMethod(theClass, equalsMethodId, floatClass)) {
+        return JFLOAT;
     }
     if (env->CallBooleanMethod(theClass, equalsMethodId, doubleClass)) {
-        return ContentValues::DataType::REAL;
+        return JDOUBLE;
     }
+
+    // TEXT
     if (env->CallBooleanMethod(theClass, equalsMethodId, stringClass)) {
-        return ContentValues::DataType::TEXT;
+        return JSTRING;
     }
+
+    // BLOB
     if (env->CallBooleanMethod(theClass, equalsMethodId, arrayClass)) {
-        return ContentValues::DataType::BLOB;
+        return JARRAY;
     }
-    return ContentValues::DataType::NONE;
+
+    return UNKNOWN;
 }
 
 int jobjectToInteger(JNIEnv *env, jobject &value) {
@@ -41,10 +69,22 @@ int jobjectToInteger(JNIEnv *env, jobject &value) {
     return env->CallIntMethod(value, methodId);
 }
 
+long jobjectToLong(JNIEnv *env, jobject &value) {
+    jclass jClass = env->FindClass("java/lang/Long");
+    jmethodID methodId = env->GetMethodID(jClass, "longValue", "()J");
+    return env->CallLongMethod(value, methodId);
+}
+
 double jobjectToDouble(JNIEnv *env, jobject &value) {
     jclass jClass = env->FindClass("java/lang/Double");
     jmethodID methodId = env->GetMethodID(jClass, "doubleValue", "()D");
     return env->CallDoubleMethod(value, methodId);
+}
+
+float jobjectToFloat(JNIEnv *env, jobject &value) {
+    jclass jClass = env->FindClass("java/lang/Float");
+    jmethodID methodId = env->GetMethodID(jClass, "floatValue", "()F");
+    return env->CallFloatMethod(value, methodId);
 }
 
 std::string jobjectToString(JNIEnv *env, jobject &value) {
@@ -64,24 +104,6 @@ Java_io_madrona_madsqlite_JniBridge_moveToFirst(JNIEnv *env,
 
     Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
     return (jboolean) cursor->moveToFirst();
-}
-
-JNIEXPORT jboolean JNICALL
-Java_io_madrona_madsqlite_JniBridge_moveToPosition(JNIEnv *env,
-                                                   jclass type,
-                                                   jlong nativePtr,
-                                                   jint position) {
-    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
-    return (jboolean) cursor->moveToPosition(position);
-}
-
-JNIEXPORT jint JNICALL
-Java_io_madrona_madsqlite_JniBridge_getCount(JNIEnv *env,
-                                             jclass type,
-                                             jlong nativePtr) {
-
-    Cursor *cursor = reinterpret_cast<Cursor *>(nativePtr);
-    return cursor->getCount();
 }
 
 JNIEXPORT jboolean JNICALL
@@ -189,23 +211,29 @@ Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
             jstring key = (jstring) (env->GetObjectArrayElement(keys, i));
             const char *keyStr = env->GetStringUTFChars(key, 0);
             jobject value = env->GetObjectArrayElement(values, i);
-            ContentValues::DataType dataType = typeOf(env, value);
+            auto dataType = typeOf(env, value);
             switch (dataType) {
-                case ContentValues::INT:
+                case JINT:
                     contentValues.putInteger(keyStr, jobjectToInteger(env, value));
                     break;
-                case ContentValues::REAL:
+                case JLONG:
+                    contentValues.putInteger(keyStr, jobjectToLong(env, value));
+                    break;
+                case JFLOAT:
+                    contentValues.putReal(keyStr, jobjectToFloat(env, value));
+                    break;
+                case JDOUBLE:
                     contentValues.putReal(keyStr, jobjectToDouble(env, value));
                     break;
-                case ContentValues::TEXT:
+                case JSTRING:
                     contentValues.putString(keyStr, jobjectToString(env, value));
                     break;
-                case ContentValues::BLOB: {
+                case JARRAY: {
                     size_t sz = sizeof(value);
                     contentValues.putBlob(keyStr, &value, sz);
                     break;
                 }
-                case ContentValues::NONE:
+                case UNKNOWN:
                     break;
             }
             env->ReleaseStringUTFChars(key, keyStr);

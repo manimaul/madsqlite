@@ -10,15 +10,12 @@
 //region Constructor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Cursor::Cursor(sqlite3_stmt *statement) : statement(statement) {
-    evaluateCount();
 }
 
 Cursor::Cursor(Cursor &&curs) {
     statement = curs.statement;
-    count = curs.count;
     position = curs.position;
     curs.statement = nullptr;
-    curs.count = 0;
     curs.position = 0;
 }
 
@@ -33,31 +30,19 @@ Cursor::~Cursor() {
 //region Public Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bool Cursor::moveToFirst() {
-    if (sqlite3_reset(statement) == SQLITE_OK && sqlite3_step(statement) == SQLITE_ROW) {
+    if (sqlite3_reset(statement) == SQLITE_OK) {
+        stepResult = sqlite3_step(statement);
         position = 0;
-        return true;
+        if (stepResult == SQLITE_ROW || stepResult == SQLITE_DONE) {
+            return true;
+        }
     }
     return false;
 }
 
-int Cursor::getCount() {
-    return count;
-}
-
-bool Cursor::moveToPosition(int p) {
-    if (p >= count) {
-        return false;
-    }
-    if (p < position) {
-        moveToFirst();
-    }
-    while (position < p && moveToNext());
-    return position == p;
-}
-
 bool Cursor::moveToNext() {
     if (!isAfterLast()) {
-        int stepResult = sqlite3_step(statement);
+        stepResult = sqlite3_step(statement);
         if (stepResult == SQLITE_ROW || SQLITE_DONE) {
             ++position;
             return true;
@@ -67,7 +52,7 @@ bool Cursor::moveToNext() {
 }
 
 bool Cursor::isAfterLast() {
-    return count > 0 && position >= count;
+    return stepResult != SQLITE_ROW;
 }
 
 const std::string Cursor::getString(int columnIndex) const {
@@ -97,12 +82,4 @@ double Cursor::getReal(int columnIndex) {
 //endregion
 
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-void Cursor::evaluateCount() {
-    while (sqlite3_step(statement) == SQLITE_ROW) {
-        ++count;
-    }
-    sqlite3_reset(statement);
-}
-
 //endregion

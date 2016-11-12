@@ -14,8 +14,8 @@ class Cursor {
 
 private:
     sqlite3_stmt *statement;
-    int count = 0;
-    int position = 0;
+    int position = -1;
+    int stepResult = -1;
 
 //endregion
 
@@ -35,8 +35,6 @@ public:
 public:
 
     bool moveToFirst();
-    bool moveToPosition(int p);
-    int getCount();
     bool moveToNext();
     bool isAfterLast();
     const std::string getString(int columnIndex) const;
@@ -49,7 +47,6 @@ public:
 //region Private Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 private:
-    void evaluateCount();
 
 //endregion
 
