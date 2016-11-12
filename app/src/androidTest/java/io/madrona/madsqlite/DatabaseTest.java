@@ -42,9 +42,9 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyInt FROM test;");
         assertTrue(cursor.moveToFirst());
-        final long firstResult = cursor.getInt(0);
+        final long firstResult = cursor.getLong(0);
         assertTrue(cursor.moveToNext());
-        final long secondResult = cursor.getInt(0);
+        final long secondResult = cursor.getLong(0);
         cursor.close();
 
         assertEquals(Integer.MIN_VALUE, firstResult);
@@ -63,9 +63,9 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyInt FROM test;");
         assertTrue(cursor.moveToFirst());
-        final long firstResult = cursor.getInt(0);
+        final long firstResult = cursor.getLong(0);
         assertTrue(cursor.moveToNext());
-        final long secondResult = cursor.getInt(0);
+        final long secondResult = cursor.getLong(0);
         cursor.close();
 
         assertEquals(Long.MIN_VALUE, firstResult);

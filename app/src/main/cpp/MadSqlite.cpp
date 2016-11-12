@@ -145,7 +145,7 @@ Java_io_madrona_madsqlite_JniBridge_getBlob(JNIEnv *env,
 }
 
 JNIEXPORT jlong JNICALL
-Java_io_madrona_madsqlite_JniBridge_getInt(JNIEnv *env,
+Java_io_madrona_madsqlite_JniBridge_getLong(JNIEnv *env,
                                            jclass type,
                                            jlong nativePtr,
                                            jint columnIndex) {

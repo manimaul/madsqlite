@@ -36,7 +36,7 @@ enum JniBridge {
     static native boolean isAfterLast(long nativePtr);
     static native String getString(long nativePtr, int columnIndex);
     static native byte[] getBlob(long nativePtr, int columnIndex);
-    static native long getInt(long nativePtr, int columnIndex);
+    static native long getLong(long nativePtr, int columnIndex);
     static native double getReal(long nativePtr, int columnIndex);
     static native boolean moveToFirst(long nativePtr);
 

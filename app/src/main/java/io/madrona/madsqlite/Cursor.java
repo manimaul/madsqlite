@@ -53,8 +53,8 @@ public final class Cursor implements Closeable {
         return JniBridge.getBlob(nativePtr, columnIndex);
     }
 
-    public long getInt(int columnIndex) {
-        return JniBridge.getInt(nativePtr, columnIndex);
+    public long getLong(int columnIndex) {
+        return JniBridge.getLong(nativePtr, columnIndex);
     }
 
     public double getReal(int columnIndex) {
