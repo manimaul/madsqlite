@@ -15,49 +15,42 @@ enum JTYPE {
     JFLOAT,
     JDOUBLE,
     JSTRING,
-    JARRAY,
+    JBYTEARRAY,
 };
 
 JTYPE typeOf(JNIEnv *env, jobject &object) {
+    // http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html
     jclass integerClass = env->FindClass("java/lang/Integer");
     jclass longClass = env->FindClass("java/lang/Long");
-
     jclass floatClass = env->FindClass("java/lang/Float");
     jclass doubleClass = env->FindClass("java/lang/Double");
-
     jclass stringClass = env->FindClass("java/lang/String");
-
-    jclass arrayClass = env->FindClass("java/lang/reflect/Array");
-
-    jclass objectClass = env->FindClass("java/lang/Object");
-    jmethodID getClassMethodId = env->GetMethodID(objectClass, "getClass", "()Ljava/lang/Class;");
-    jmethodID equalsMethodId = env->GetMethodID(objectClass, "equals", "(Ljava/lang/Object;)Z");
-    jobject theClass = env->CallObjectMethod(object, getClassMethodId);
+    jclass byteArrayClass = env->FindClass("[B");
 
     // INTEGER
-    if (env->CallBooleanMethod(theClass, equalsMethodId, integerClass)) {
+    if (env->IsInstanceOf(object, integerClass)) {
         return JINT;
     }
-    if (env->CallBooleanMethod(theClass, equalsMethodId, longClass)) {
+    if (env->IsInstanceOf(object, longClass)) {
         return JLONG;
     }
 
     // REAL
-    if (env->CallBooleanMethod(theClass, equalsMethodId, floatClass)) {
+    if (env->IsInstanceOf(object, floatClass)) {
         return JFLOAT;
     }
-    if (env->CallBooleanMethod(theClass, equalsMethodId, doubleClass)) {
+    if (env->IsInstanceOf(object, doubleClass)) {
         return JDOUBLE;
     }
 
     // TEXT
-    if (env->CallBooleanMethod(theClass, equalsMethodId, stringClass)) {
+    if (env->IsInstanceOf(object, stringClass)) {
         return JSTRING;
     }
 
     // BLOB
-    if (env->CallBooleanMethod(theClass, equalsMethodId, arrayClass)) {
-        return JARRAY;
+    if (env->IsInstanceOf(object, byteArrayClass)) {
+        return JBYTEARRAY;
     }
 
     return UNKNOWN;
@@ -228,7 +221,7 @@ Java_io_madrona_madsqlite_JniBridge_insert(JNIEnv *env,
                 case JSTRING:
                     contentValues.putString(keyStr, jobjectToString(env, value));
                     break;
-                case JARRAY: {
+                case JBYTEARRAY: {
                     size_t sz = sizeof(value);
                     contentValues.putBlob(keyStr, &value, sz);
                     break;
