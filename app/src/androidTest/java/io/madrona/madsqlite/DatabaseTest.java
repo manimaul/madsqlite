@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Locale;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class DatabaseTest {
@@ -44,9 +44,13 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyInt FROM test;");
         assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
         final long firstResult = cursor.getLong(0);
         assertTrue(cursor.moveToNext());
+        assertFalse(cursor.isAfterLast());
         final long secondResult = cursor.getLong(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals(Integer.MIN_VALUE, firstResult);
@@ -67,7 +71,10 @@ public class DatabaseTest {
         assertTrue(cursor.moveToFirst());
         final long firstResult = cursor.getLong(0);
         assertTrue(cursor.moveToNext());
+        assertFalse(cursor.isAfterLast());
         final long secondResult = cursor.getLong(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals(Long.MIN_VALUE, firstResult);
@@ -86,9 +93,13 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyReal FROM test;");
         assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
         final double firstResult = cursor.getReal(0);
         assertTrue(cursor.moveToNext());
+        assertFalse(cursor.isAfterLast());
         final double secondResult = cursor.getReal(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals(Float.MIN_VALUE, firstResult, 0);
@@ -107,9 +118,13 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyReal FROM test;");
         assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
         final double firstResult = cursor.getReal(0);
         assertTrue(cursor.moveToNext());
+        assertFalse(cursor.isAfterLast());
         final double secondResult = cursor.getReal(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals(Double.MIN_VALUE, firstResult, 0);
@@ -124,8 +139,11 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyBlob FROM test;");
         assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
         final byte[] data = cursor.getBlob(0);
         final String dataStr = cursor.getString(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals("data", new String(data));
@@ -140,10 +158,38 @@ public class DatabaseTest {
 
         final Cursor cursor = _database.query("SELECT keyText FROM test;");
         assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
         final String data = cursor.getString(0);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
         cursor.close();
 
         assertEquals("data", data);
+    }
+
+    @Test
+    public void query_args() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyText", "the quick brown fox");
+        cv.put("keyInt", 99);
+        assertTrue(_database.insert("test", cv));
+
+        cv.clear();
+        cv.put("keyText", "the slow white tortoise");
+        cv.put("keyInt", 34);
+        assertTrue(_database.insert("test", cv));
+
+        final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+        assertTrue(cursor.moveToFirst());
+        assertFalse(cursor.isAfterLast());
+        final long number = cursor.getLong(0);
+        final String value = cursor.getString(1);
+        assertTrue(cursor.moveToNext());
+        assertTrue(cursor.isAfterLast());
+        cursor.close();
+
+        assertEquals(99, number);
+        assertEquals("the quick brown fox", value);
     }
 
 }
