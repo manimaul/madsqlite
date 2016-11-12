@@ -45,7 +45,7 @@ public final class Database implements Closeable {
         return JniBridge.exec(nativePtr, query);
     }
 
-    public void insert(String table, ContentValues contentValues) {
+    public boolean insert(String table, ContentValues contentValues) {
         String[] keys = new String[contentValues.size()];
         Object[] values = new Object[contentValues.size()];
         int i = 0;
@@ -54,7 +54,7 @@ public final class Database implements Closeable {
             values[i] = contentValues.get(key);
             ++i;
         }
-        JniBridge.insert(nativePtr, table, keys, values);
+        return JniBridge.insert(nativePtr, table, keys, values);
     }
 
     public Cursor query(String query, String... args) {
