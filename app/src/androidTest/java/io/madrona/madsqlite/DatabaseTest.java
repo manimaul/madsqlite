@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Locale;
+
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
@@ -123,9 +125,25 @@ public class DatabaseTest {
         final Cursor cursor = _database.query("SELECT keyBlob FROM test;");
         assertTrue(cursor.moveToFirst());
         final byte[] data = cursor.getBlob(0);
+        final String dataStr = cursor.getString(0);
         cursor.close();
 
         assertEquals("data", new String(data));
+        assertEquals("data", dataStr);
+    }
+
+    @Test
+    public void insert_text() throws Exception {
+        ContentValues cv = new ContentValues();
+        cv.put("keyText", "data");
+        assertTrue(_database.insert("test", cv));
+
+        final Cursor cursor = _database.query("SELECT keyText FROM test;");
+        assertTrue(cursor.moveToFirst());
+        final String data = cursor.getString(0);
+        cursor.close();
+
+        assertEquals("data", data);
     }
 
 }
