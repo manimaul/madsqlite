@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)
+[![Build Status](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)](https://travis-ci.org/manimaul/madsqlite)
 
 #MadSqlite
 
