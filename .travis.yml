@@ -5,13 +5,9 @@ android:
     - platform-tools
     - tools
     - build-tools-25.0.0
-    - android-22
-    - extra-google-google_play_services
-    - extra-google-m2repository
+    - android-25
     - extra-android-m2repository
-    - addon-google_apis-google-19
     - sys-img-armeabi-v7a-android-22
-    - sys-img-x86-android-17
 
 jdk:
   - oraclejdk8
