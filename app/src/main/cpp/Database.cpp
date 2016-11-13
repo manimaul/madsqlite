@@ -158,9 +158,10 @@ Cursor Database::query(std::string const &sql, std::vector<std::string> const &a
         std::cout << "Could not prepare statement: " << sqlite3_errmsg(db) << std::endl;
     }
     for (int i = 0; i < args.size(); ++i) {
-        rc = sqlite3_bind_text(stmt, i + 1, args.at((unsigned long) i).c_str(), -1, SQLITE_STATIC);
+        const std::string &str = args.at((unsigned long) i);
+        rc = sqlite3_bind_text(stmt, i + 1, str.c_str(), (int) str.length(), SQLITE_STATIC);
         if (rc != SQLITE_OK) {
-            std::cout << "Could not bind text: " << args.at((unsigned long)i) << std::endl;
+            std::cout << "Could not bind text: " << str << std::endl;
         }
     }
     return Cursor(stmt);
