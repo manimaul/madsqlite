@@ -1,5 +1,7 @@
 language: android
 
+sudo: true
+
 android:
   components:
     - platform-tools
@@ -11,5 +13,9 @@ android:
 
 jdk:
   - oraclejdk8
+
+before_install:
+  - git clone https://github.com/urho3d/android-ndk.git $HOME/android-ndk-root
+  - export ANDROID_NDK_HOME=$HOME/android-ndk-root
 
 script: ./gradlew build ./gradlew connectedAndroidTest
