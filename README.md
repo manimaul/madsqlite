@@ -11,4 +11,4 @@ Why:
  (FTS4, FTS5, R*Tree) that was not available in the Android SDK
  
 Status:
- * Work in progress
+ * Beta
