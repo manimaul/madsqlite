@@ -2,8 +2,6 @@ package io.madrona.madsqlite;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertNull;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -73,15 +69,15 @@ public class DatabaseFTS5Test {
         assertDoesNotMatche("SELECT * FROM f WHERE f MATCH 'NEAR(\"a b c d\" \"b c\" \"e f\", 3)';");
     }
 
-    void assertMatches(String query) {
+    private void assertMatches(String query) {
         assertFalse(queryMatches(query).isEmpty());
     }
 
-    void assertDoesNotMatche(String query) {
+    private void assertDoesNotMatche(String query) {
         assertTrue(queryMatches(query).isEmpty());
     }
 
-    List<String> queryMatches(String query) {
+    private List<String> queryMatches(String query) {
         List<String> matches = new ArrayList<>();
         Cursor cursor = _database.query(query);
         assertNull(_database.getError());
