@@ -1,4 +1,6 @@
-#MadSqlite 
+[![Build Status](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)
+
+#MadSqlite
 
 MadSqlite is:
  * A simple C++14 wrapper around [Sqlite](https://www.sqlite.org/)
