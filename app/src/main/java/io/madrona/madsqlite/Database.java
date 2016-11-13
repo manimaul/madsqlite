@@ -1,6 +1,7 @@
 package io.madrona.madsqlite;
 
 import android.content.ContentValues;
+import android.support.annotation.Nullable;
 
 import java.io.Closeable;
 import java.io.File;
@@ -75,6 +76,28 @@ public final class Database implements Closeable {
 
     public Cursor query(String query) {
         return query(query, (String[]) null);
+    }
+
+    public void beginTransaction() {
+        JniBridge.beginTransaction(nativePtr);
+    }
+
+    public void rollbackTransaction() {
+        JniBridge.rollbackTransaction(nativePtr);
+    }
+
+    public void endTransaction() {
+        JniBridge.endTransaction(nativePtr);
+    }
+
+    @Nullable
+    public String getError() {
+        String error = JniBridge.getError(nativePtr);
+        if (error.isEmpty()) {
+            return null;
+        } else {
+            return error;
+        }
     }
 
     //endregion

@@ -52,7 +52,7 @@ bool Cursor::moveToNext() {
 }
 
 bool Cursor::isAfterLast() {
-    return stepResult != SQLITE_ROW;
+    return stepResult == SQLITE_DONE;
 }
 
 const std::string Cursor::getString(int columnIndex) const {
