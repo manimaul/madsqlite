@@ -38,18 +38,18 @@ ContentValues::Data ContentValues::getData(std::string const &key) {
     return _values[i];
 }
 
-std::int64_t ContentValues::getAsInteger(std::string const &key) {
+sqlite3_int64 ContentValues::getAsInteger(std::string const &key) {
     if (containsKey(key)) {
         const Data &data = getData(key);
         switch (data.dataType) {
             case INT:
                 return data.dataInt;
             case REAL:
-                return (std::int64_t) data.dataReal;
+                return (sqlite3_int64) data.dataReal;
             case TEXT:
                 return stoi(data.dataText);
             case BLOB:
-                return ntohs(*reinterpret_cast<const std::int64_t *>(&data.dataBlob[0]));
+                return ntohs(*reinterpret_cast<const sqlite3_int64 *>(&data.dataBlob[0]));
             case NONE:
             default:
                 break;
@@ -105,7 +105,7 @@ std::vector<byte> ContentValues::getAsBlob(std::string const &key) {
     return std::vector<byte>();
 }
 
-void ContentValues::putInteger(std::string const &key, std::int64_t value) {
+void ContentValues::putInteger(std::string const &key, sqlite3_int64 value) {
     Data d = {value};
     putData(key, d);
 }

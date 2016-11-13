@@ -71,8 +71,8 @@ const std::vector<byte> Cursor::getBlob(int columnIndex) const {
     return value;
 }
 
-int64_t Cursor::getInt(int columnIndex) {
-    return (int64_t) sqlite3_column_int64(statement, columnIndex);
+sqlite3_int64 Cursor::getInt(int columnIndex) {
+    return (sqlite3_int64) sqlite3_column_int64(statement, columnIndex);
 }
 
 double Cursor::getReal(int columnIndex) {

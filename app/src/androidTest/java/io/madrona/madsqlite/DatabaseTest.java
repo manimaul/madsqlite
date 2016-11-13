@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -25,6 +26,7 @@ public class DatabaseTest {
                 "keyReal REAL," +
                 "keyText TEXT, " +
                 "keyBlob BLOB);");
+        assertNull(_database.getError());
     }
 
     @After
@@ -37,12 +39,15 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyInt", Integer.MIN_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyInt", Integer.MAX_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyInt FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         final long firstResult = cursor.getLong(0);
@@ -62,12 +67,15 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyInt", Long.MIN_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyInt", Long.MAX_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyInt FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         final long firstResult = cursor.getLong(0);
         assertTrue(cursor.moveToNext());
@@ -86,12 +94,15 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyReal", Float.MIN_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyReal", Float.MAX_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         final double firstResult = cursor.getReal(0);
@@ -111,12 +122,15 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyReal", Double.MIN_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyReal", Double.MAX_VALUE);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         final double firstResult = cursor.getReal(0);
@@ -136,8 +150,10 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyBlob", "data".getBytes());
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyBlob FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         final byte[] data = cursor.getBlob(0);
@@ -155,8 +171,10 @@ public class DatabaseTest {
         ContentValues cv = new ContentValues();
         cv.put("keyText", "data");
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyText FROM test;");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         final String data = cursor.getString(0);
@@ -173,16 +191,19 @@ public class DatabaseTest {
         cv.put("keyText", "the quick brown fox");
         cv.put("keyInt", 99);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyText", "the slow white tortoise");
         cv.put("keyInt", 34);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         long number;
         String value;
         {
             final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", 99);
+            assertNull(_database.getError());
             assertTrue(cursor.moveToFirst());
             assertFalse(cursor.isAfterLast());
             value = cursor.getString(0);
@@ -196,6 +217,7 @@ public class DatabaseTest {
 
         {
             final Cursor cursor = _database.query("SELECT keyInt,keyText FROM test WHERE keyInt is ?;", 34);
+            assertNull(_database.getError());
             assertTrue(cursor.moveToFirst());
             assertFalse(cursor.isAfterLast());
             number = cursor.getLong(0);
@@ -214,13 +236,16 @@ public class DatabaseTest {
         cv.put("keyText", "the quick brown fox");
         cv.put("keyInt", 99);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         cv.clear();
         cv.put("keyText", "the slow white tortoise");
         cv.put("keyInt", 34);
         assertTrue(_database.insert("test", cv));
+        assertNull(_database.getError());
 
         final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+        assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         assertFalse(cursor.isAfterLast());
         String value = cursor.getString(0);

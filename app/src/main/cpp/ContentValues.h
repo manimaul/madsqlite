@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include "Constants.h"
+#include "sqlite-amalgamation-3140200/sqlite3.h"
 
 class ContentValues {
 public:
@@ -28,7 +29,7 @@ private:
         DataType dataType;
         std::vector<byte> dataBlob;
         double dataReal;
-        std::int64_t dataInt;
+        sqlite3_int64 dataInt;
         std::string dataText;
 
         Data() {};
@@ -40,7 +41,7 @@ private:
             dataType = REAL;
         };
 
-        Data(const std::int64_t dataInt) : dataInt(dataInt) {
+        Data(const sqlite3_int64 dataInt) : dataInt(dataInt) {
             dataType = INT;
         };
 
@@ -74,7 +75,7 @@ public:
 
     //region ACCESSORS
 
-    std::int64_t getAsInteger(std::string const &key);
+    sqlite3_int64 getAsInteger(std::string const &key);
 
     double getAsReal(std::string const &key);
 
@@ -82,7 +83,7 @@ public:
 
     std::vector<byte> getAsBlob(std::string const &key);
 
-    void putInteger(std::string const &key, std::int64_t value);
+    void putInteger(std::string const &key, sqlite3_int64 value);
 
     void putReal(std::string const &key, double value);
 

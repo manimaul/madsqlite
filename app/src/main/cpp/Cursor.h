@@ -39,7 +39,7 @@ public:
     bool isAfterLast();
     const std::string getString(int columnIndex) const;
     const std::vector<byte> getBlob(int columnIndex) const;
-    int64_t getInt(int columnIndex);
+    sqlite3_int64 getInt(int columnIndex);
     double getReal(int columnIndex);
 
 //endregion

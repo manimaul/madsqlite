@@ -65,7 +65,7 @@ int jobjectToInteger(JNIEnv *env, jobject &value) {
     return env->CallIntMethod(value, intValueMethodId);
 }
 
-long jobjectToLong(JNIEnv *env, jobject &value) {
+sqlite3_int64 jobjectToLong(JNIEnv *env, jobject &value) {
     return env->CallLongMethod(value, longValueMethodId);
 }
 
