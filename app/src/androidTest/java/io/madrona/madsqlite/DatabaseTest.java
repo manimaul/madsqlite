@@ -208,7 +208,6 @@ public class DatabaseTest {
         assertEquals("the slow white tortoise", value);
     }
 
-
     @Test
     public void query_args_str() throws Exception {
         ContentValues cv = new ContentValues();
