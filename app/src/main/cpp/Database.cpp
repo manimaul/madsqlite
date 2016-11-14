@@ -124,7 +124,7 @@ bool Database::insert(std::string const &table, ContentValues &values) {
             }
             case ContentValues::TEXT: {
                 const std::string &text = values.getAsText(key);
-                if (sqlite3_bind_text(stmt, i + 1, text.c_str(), -1, SQLITE_STATIC) != SQLITE_OK) {
+                if (sqlite3_bind_text(stmt, i + 1, text.c_str(), (int) text.length(), SQLITE_STATIC) != SQLITE_OK) {
                     std::cout << "Could not bind statement." << std::endl;
                     return -1;
                 };
@@ -159,7 +159,7 @@ Cursor Database::query(std::string const &sql, std::vector<std::string> const &a
     }
     for (int i = 0; i < args.size(); ++i) {
         const std::string &str = args.at((unsigned long) i);
-        rc = sqlite3_bind_text(stmt, i + 1, str.c_str(), (int) str.length(), SQLITE_STATIC);
+        rc = sqlite3_bind_text(stmt, i + 1, str.c_str(), (int) str.length(), SQLITE_TRANSIENT);
         if (rc != SQLITE_OK) {
             std::cout << "Could not bind text: " << str << std::endl;
         }
