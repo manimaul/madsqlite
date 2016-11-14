@@ -1,14 +1,14 @@
 package io.madrona.madsqlite;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import io.madrona.madsqlite.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
