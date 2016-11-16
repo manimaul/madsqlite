@@ -1,7 +1,6 @@
 package io.madrona.madsqlite;
 
 import android.content.ContentValues;
-import android.support.annotation.Nullable;
 
 import java.io.Closeable;
 import java.io.File;
@@ -94,7 +93,6 @@ public final class Database implements Closeable {
         JniBridge.endTransaction(nativePtr);
     }
 
-    @Nullable
     public String getError() {
         String error = JniBridge.getError(nativePtr);
         if (error.isEmpty() || NOT_AN_ERROR.equals(error) || UNKNOWN_ERROR.equals(error)) {

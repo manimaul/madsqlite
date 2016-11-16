@@ -1,4 +1,4 @@
-package io.madrona.madsqlite;
+package io.madrona.testapplication;
 
 import android.content.ContentValues;
 import android.support.test.runner.AndroidJUnit4;
@@ -7,6 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import io.madrona.madsqlite.Cursor;
+import io.madrona.madsqlite.Database;
 
 import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
