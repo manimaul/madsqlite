@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/manimaul/madsqlite.png?branch=master)](https://travis-ci.org/manimaul/madsqlite)
+[![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)
 
 #MadSqlite
 
@@ -8,7 +8,7 @@ MadSqlite is:
   
 Why:
  * We needed Sqlite with a [customized build configuration](https://www.sqlite.org/compile.html) such as 
- (FTS4, FTS5, R*Tree) that was not available in the Android SDK
+ (FTS5, R*Tree, Json) that was not available in the Android SDK
  
 Status:
- * Beta
+ * Alpha
