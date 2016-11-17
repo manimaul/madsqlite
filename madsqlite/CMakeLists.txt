@@ -15,7 +15,7 @@ set(SOURCE_FILES
 add_definitions(-DSQLITE_ENABLE_RTREE)
 #add_definitions(-DSQLITE_ENABLE_FTS4)
 add_definitions(-DSQLITE_ENABLE_FTS5)
-add_definitions(-DSQLITE_ENABLE_JSON1)
+#add_definitions(-DSQLITE_ENABLE_JSON1)
 
 if (ANDROID)
     set(SOURCE_FILES

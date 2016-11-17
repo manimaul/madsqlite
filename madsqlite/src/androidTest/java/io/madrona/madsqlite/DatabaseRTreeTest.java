@@ -29,6 +29,9 @@ public class DatabaseRTreeTest {
         _database.close();
     }
 
+    //todo: add tests for Custom R-Tree Queries
+    //(sqlite3_rtree_query_callback and sqlite3_rtree_geometry_callback)
+
     @Test
     public void rtree() throws Exception {
         givenAnRtreeDatabase();
