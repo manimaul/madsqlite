@@ -57,23 +57,23 @@ public class DatabaseFTS5Test {
 
         assertMatches("SELECT * FROM f WHERE f MATCH 'NEAR(e d, 4)';");
         assertMatches("SELECT * FROM f WHERE f MATCH 'NEAR(e d, 3)';");
-        assertDoesNotMatche("SELECT * FROM f WHERE f MATCH 'NEAR(e d, 2)';");
+        assertDoesNotMatch("SELECT * FROM f WHERE f MATCH 'NEAR(e d, 2)';");
 
         assertMatches("SELECT * FROM f WHERE f MATCH 'NEAR(\"c d\" \"e f\", 3)';");
-        assertDoesNotMatche("SELECT * FROM f WHERE f MATCH 'NEAR(\"c\" \"e f\", 3)';");
+        assertDoesNotMatch("SELECT * FROM f WHERE f MATCH 'NEAR(\"c\" \"e f\", 3)';");
 
         assertMatches("SELECT * FROM f WHERE f MATCH 'NEAR(a d e, 6)';");
-        assertDoesNotMatche("SELECT * FROM f WHERE f MATCH 'NEAR(a d e, 5)';");
+        assertDoesNotMatch("SELECT * FROM f WHERE f MATCH 'NEAR(a d e, 5)';");
 
         assertMatches("SELECT * FROM f WHERE f MATCH 'NEAR(\"a b c d\" \"b c\" \"e f\", 4)';");
-        assertDoesNotMatche("SELECT * FROM f WHERE f MATCH 'NEAR(\"a b c d\" \"b c\" \"e f\", 3)';");
+        assertDoesNotMatch("SELECT * FROM f WHERE f MATCH 'NEAR(\"a b c d\" \"b c\" \"e f\", 3)';");
     }
 
     private void assertMatches(String query) {
         assertFalse(queryMatches(query).isEmpty());
     }
 
-    private void assertDoesNotMatche(String query) {
+    private void assertDoesNotMatch(String query) {
         assertTrue(queryMatches(query).isEmpty());
     }
 
