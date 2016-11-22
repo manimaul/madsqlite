@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2672C09E47B0D64B3524EC90 /* MadDatabase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C6B7FAF1F0D7F7085A51 /* MadDatabase.mm */; };
+		2672C3C2808B0A7786A1F762 /* MadQueryImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672C2ADFBAF45F6278FE659 /* MadQueryImpl.h */; };
+		2672C5A7F5BDD7A12EA3D2DD /* MadContentValuesImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672CB6449AB3BED7DDB3E4F /* MadContentValuesImpl.h */; };
+		2672C612EE55CAB60C4B6C2D /* MadQueryImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C8FD20F84FF7C95177CF /* MadQueryImpl.mm */; };
+		2672CB1A6AEE63E1107A4E2A /* MadContentValuesImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C408441706F83DFCAB48 /* MadContentValuesImpl.mm */; };
+		2672CCF099FA3690D29016E5 /* MadContentValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672C5C206CC808E60FB3E10 /* MadContentValues.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D072C19E1DDD2EF1003FF38F /* MadSqlite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D072C1941DDD2EF0003FF38F /* MadSqlite.framework */; };
 		D072C1A31DDD2EF1003FF38F /* MadSqliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072C1A21DDD2EF1003FF38F /* MadSqliteTests.swift */; };
 		D072C1A51DDD2EF1003FF38F /* MadSqlite.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1971DDD2EF0003FF38F /* MadSqlite.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D072C1BA1DDD36F3003FF38F /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1AE1DDD36F3003FF38F /* Constants.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D072C1BA1DDD36F3003FF38F /* Constants.h in Sources */ = {isa = PBXBuildFile; fileRef = D072C1AE1DDD36F3003FF38F /* Constants.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D072C1BB1DDD36F3003FF38F /* ContentValues.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072C1AF1DDD36F3003FF38F /* ContentValues.cpp */; };
-		D072C1BC1DDD36F3003FF38F /* ContentValues.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1B01DDD36F3003FF38F /* ContentValues.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D072C1BC1DDD36F3003FF38F /* ContentValues.h in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B01DDD36F3003FF38F /* ContentValues.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D072C1BD1DDD36F3003FF38F /* Cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B11DDD36F3003FF38F /* Cursor.cpp */; };
-		D072C1BE1DDD36F3003FF38F /* Cursor.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1B21DDD36F3003FF38F /* Cursor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D072C1BE1DDD36F3003FF38F /* Cursor.h in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B21DDD36F3003FF38F /* Cursor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D072C1BF1DDD36F3003FF38F /* Database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B31DDD36F3003FF38F /* Database.cpp */; };
-		D072C1C01DDD36F3003FF38F /* Database.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1B41DDD36F3003FF38F /* Database.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D072C1C01DDD36F3003FF38F /* Database.h in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B41DDD36F3003FF38F /* Database.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D072C1C31DDD36F3003FF38F /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B71DDD36F3003FF38F /* sqlite3.c */; };
-		D072C1C41DDD36F3003FF38F /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = D072C1B81DDD36F3003FF38F /* sqlite3.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		D072C1C51DDD36F3003FF38F /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B91DDD36F3003FF38F /* Util.cpp */; };
+		D072C1C41DDD36F3003FF38F /* sqlite3.h in Sources */ = {isa = PBXBuildFile; fileRef = D072C1B81DDD36F3003FF38F /* sqlite3.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D0C0CED11DE47E2500F00E79 /* MadDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672CE5A3819C725488AD23B /* MadDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0C0CED21DE47E5500F00E79 /* MadQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = D08E37921DDD823600F8F4D9 /* MadQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0C0CF001DE48B8500F00E79 /* MadContentValuesFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0C0CEFF1DE48B8500F00E79 /* MadContentValuesFactory.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2672C2ADFBAF45F6278FE659 /* MadQueryImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadQueryImpl.h; sourceTree = "<group>"; };
+		2672C408441706F83DFCAB48 /* MadContentValuesImpl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadContentValuesImpl.mm; sourceTree = "<group>"; };
+		2672C5C206CC808E60FB3E10 /* MadContentValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadContentValues.h; sourceTree = "<group>"; };
+		2672C6B7FAF1F0D7F7085A51 /* MadDatabase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadDatabase.mm; sourceTree = "<group>"; };
+		2672C8FD20F84FF7C95177CF /* MadQueryImpl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadQueryImpl.mm; sourceTree = "<group>"; };
+		2672CB6449AB3BED7DDB3E4F /* MadContentValuesImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadContentValuesImpl.h; sourceTree = "<group>"; };
+		2672CE5A3819C725488AD23B /* MadDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadDatabase.h; sourceTree = "<group>"; };
 		D072C1941DDD2EF0003FF38F /* MadSqlite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MadSqlite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072C1971DDD2EF0003FF38F /* MadSqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MadSqlite.h; sourceTree = "<group>"; };
 		D072C1981DDD2EF0003FF38F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,7 +63,9 @@
 		D072C1B41DDD36F3003FF38F /* Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Database.h; path = ../madsqlite/src/main/cpp/Database.h; sourceTree = "<group>"; };
 		D072C1B71DDD36F3003FF38F /* sqlite3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = "../madsqlite/src/main/cpp/sqlite-amalgamation-3140200/sqlite3.c"; sourceTree = "<group>"; };
 		D072C1B81DDD36F3003FF38F /* sqlite3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = "../madsqlite/src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h"; sourceTree = "<group>"; };
-		D072C1B91DDD36F3003FF38F /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = ../madsqlite/src/main/cpp/Util.cpp; sourceTree = "<group>"; };
+		D08E37921DDD823600F8F4D9 /* MadQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MadQuery.h; sourceTree = "<group>"; };
+		D0C0CED01DE47D9900F00E79 /* MadSqlite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MadSqlite-Swift.h"; sourceTree = "<group>"; };
+		D0C0CEFF1DE48B8500F00E79 /* MadContentValuesFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadContentValuesFactory.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,19 +90,20 @@
 		D072C18A1DDD2EF0003FF38F = {
 			isa = PBXGroup;
 			children = (
-				D072C1AE1DDD36F3003FF38F /* Constants.h */,
-				D072C1AF1DDD36F3003FF38F /* ContentValues.cpp */,
-				D072C1B01DDD36F3003FF38F /* ContentValues.h */,
-				D072C1B11DDD36F3003FF38F /* Cursor.cpp */,
-				D072C1B21DDD36F3003FF38F /* Cursor.h */,
-				D072C1B31DDD36F3003FF38F /* Database.cpp */,
-				D072C1B41DDD36F3003FF38F /* Database.h */,
-				D072C1B71DDD36F3003FF38F /* sqlite3.c */,
-				D072C1B81DDD36F3003FF38F /* sqlite3.h */,
-				D072C1B91DDD36F3003FF38F /* Util.cpp */,
+				D0C0CED01DE47D9900F00E79 /* MadSqlite-Swift.h */,
+				D08E37911DDD7E6A00F8F4D9 /* cpp */,
+				D08E37921DDD823600F8F4D9 /* MadQuery.h */,
+				2672C8FD20F84FF7C95177CF /* MadQueryImpl.mm */,
+				2672C2ADFBAF45F6278FE659 /* MadQueryImpl.h */,
+				2672C6B7FAF1F0D7F7085A51 /* MadDatabase.mm */,
+				2672CE5A3819C725488AD23B /* MadDatabase.h */,
 				D072C1961DDD2EF0003FF38F /* MadSqlite */,
 				D072C1A11DDD2EF1003FF38F /* MadSqliteTests */,
 				D072C1951DDD2EF0003FF38F /* Products */,
+				2672C5C206CC808E60FB3E10 /* MadContentValues.h */,
+				D0C0CEFF1DE48B8500F00E79 /* MadContentValuesFactory.mm */,
+				2672C408441706F83DFCAB48 /* MadContentValuesImpl.mm */,
+				2672CB6449AB3BED7DDB3E4F /* MadContentValuesImpl.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +134,22 @@
 			path = MadSqliteTests;
 			sourceTree = "<group>";
 		};
+		D08E37911DDD7E6A00F8F4D9 /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				D072C1AE1DDD36F3003FF38F /* Constants.h */,
+				D072C1AF1DDD36F3003FF38F /* ContentValues.cpp */,
+				D072C1B01DDD36F3003FF38F /* ContentValues.h */,
+				D072C1B11DDD36F3003FF38F /* Cursor.cpp */,
+				D072C1B21DDD36F3003FF38F /* Cursor.h */,
+				D072C1B31DDD36F3003FF38F /* Database.cpp */,
+				D072C1B41DDD36F3003FF38F /* Database.h */,
+				D072C1B71DDD36F3003FF38F /* sqlite3.c */,
+				D072C1B81DDD36F3003FF38F /* sqlite3.h */,
+			);
+			name = cpp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -124,11 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D072C1A51DDD2EF1003FF38F /* MadSqlite.h in Headers */,
-				D072C1C01DDD36F3003FF38F /* Database.h in Headers */,
-				D072C1BE1DDD36F3003FF38F /* Cursor.h in Headers */,
-				D072C1C41DDD36F3003FF38F /* sqlite3.h in Headers */,
-				D072C1BA1DDD36F3003FF38F /* Constants.h in Headers */,
-				D072C1BC1DDD36F3003FF38F /* ContentValues.h in Headers */,
+				2672C3C2808B0A7786A1F762 /* MadQueryImpl.h in Headers */,
+				D0C0CED21DE47E5500F00E79 /* MadQuery.h in Headers */,
+				2672CCF099FA3690D29016E5 /* MadContentValues.h in Headers */,
+				2672C5A7F5BDD7A12EA3D2DD /* MadContentValuesImpl.h in Headers */,
+				D0C0CED11DE47E2500F00E79 /* MadDatabase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +218,7 @@
 					D072C1931DDD2EF0003FF38F = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = TH39V46468;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					D072C19C1DDD2EF1003FF38F = {
@@ -237,7 +272,15 @@
 				D072C1BD1DDD36F3003FF38F /* Cursor.cpp in Sources */,
 				D072C1BF1DDD36F3003FF38F /* Database.cpp in Sources */,
 				D072C1C31DDD36F3003FF38F /* sqlite3.c in Sources */,
-				D072C1C51DDD36F3003FF38F /* Util.cpp in Sources */,
+				D072C1C01DDD36F3003FF38F /* Database.h in Sources */,
+				D072C1BE1DDD36F3003FF38F /* Cursor.h in Sources */,
+				D072C1C41DDD36F3003FF38F /* sqlite3.h in Sources */,
+				D072C1BA1DDD36F3003FF38F /* Constants.h in Sources */,
+				D072C1BC1DDD36F3003FF38F /* ContentValues.h in Sources */,
+				2672C09E47B0D64B3524EC90 /* MadDatabase.mm in Sources */,
+				2672C612EE55CAB60C4B6C2D /* MadQueryImpl.mm in Sources */,
+				2672CB1A6AEE63E1107A4E2A /* MadContentValuesImpl.mm in Sources */,
+				D0C0CF001DE48B8500F00E79 /* MadContentValuesFactory.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +405,8 @@
 		D072C1A91DDD2EF1003FF38F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TH39V46468;
@@ -374,6 +419,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.madrona.MadSqlite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -381,6 +427,8 @@
 		D072C1AA1DDD2EF1003FF38F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TH39V46468;
@@ -400,11 +448,14 @@
 		D072C1AC1DDD2EF1003FF38F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				DEVELOPMENT_TEAM = TH39V46468;
 				INFOPLIST_FILE = MadSqliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.madrona.MadSqliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MadSqlite-Swift.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -412,11 +463,14 @@
 		D072C1AD1DDD2EF1003FF38F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				DEVELOPMENT_TEAM = TH39V46468;
 				INFOPLIST_FILE = MadSqliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.madrona.MadSqliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MadSqlite-Swift.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

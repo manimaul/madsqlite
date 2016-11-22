@@ -13,7 +13,6 @@ class MadSqliteTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
@@ -21,16 +20,36 @@ class MadSqliteTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testInsertInteger() {
+        let md = MadDatabase()!
+        md.exec("CREATE TABLE test(keyInt INTEGER);")
+        XCTAssertNil(md.getError())
+        
+        let cv = MadContentValuesFactory.values()!
+        cv.putInteger("keyInt", withValue: Int.max)
+        md.insert("test", with: cv)
+        XCTAssertNil(md.getError())
+        
+        cv.clear()
+        cv.putInteger("keyInt", withValue: Int.min)
+        md.insert("test", with: cv)
+        XCTAssertNil(md.getError())
+        
+        let query = md.query("SELECT keyInt FROM test;")!
+        XCTAssertNotNil(query)
+        XCTAssertTrue(query.moveToFirst())
+        XCTAssertFalse(query.isAfterLast())
+        let firstResult = query.getInt(0)
+        XCTAssertTrue(Int.max == firstResult)
+        
+        XCTAssertTrue(query.moveToNext())
+        XCTAssertFalse(query.isAfterLast())
+        let secondResult = query.getInt(0)
+        XCTAssertTrue(Int.min == secondResult)
+        
+        XCTAssertTrue(query.moveToNext())
+        XCTAssertTrue(query.isAfterLast())
+        
     }
     
 }

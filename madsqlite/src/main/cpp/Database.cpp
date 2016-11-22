@@ -57,7 +57,12 @@ int Database::exec(std::string const &sql) {
 }
 
 std::string Database::getError() {
-    return std::string(sqlite3_errmsg(db));
+    auto err = std::string(sqlite3_errmsg(db));
+    if (err.compare("not an error") == 0 || err.compare("unknown error") == 0) {
+        return "";
+    } else {
+        return err;
+    }
 }
 
 int Database::execInternal(std::string const &sql) {
