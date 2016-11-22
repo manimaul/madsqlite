@@ -17,7 +17,7 @@ android {
             cmake {
                 // https://developer.android.com/ndk/guides/cpp-support.html
                 arguments "-DANDROID_STL=gnustl_shared"
-                cppFlags "-std=c++11 -frtti -fexceptions"
+                cppFlags "-std=c++14 -frtti -fexceptions"
             }
         }
     }
