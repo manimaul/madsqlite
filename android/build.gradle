@@ -15,9 +15,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                // https://developer.android.com/ndk/guides/cpp-support.html#cs
-                arguments "-DANDROID_STL=c++_shared"
-                cppFlags "-std=c++14 -frtti -fexceptions"
+                // https://developer.android.com/ndk/guides/cpp-support.html
+                arguments "-DANDROID_STL=gnustl_shared"
+                cppFlags "-std=c++11 -frtti -fexceptions"
             }
         }
     }

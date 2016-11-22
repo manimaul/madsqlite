@@ -58,8 +58,11 @@ private:
 
     Data getData(std::string const &key);
 
-public:
+    double stringToDouble(std::string const &str);
+    sqlite3_int64 stringToInt(std::string const &str);
+    template <typename T> std::string numberToString(T number);
 
+public:
 
     const std::unordered_set<std::string> &keySet() const;
 

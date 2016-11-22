@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include "ContentValues.h"
 
 #ifdef ANDROID
@@ -46,8 +47,13 @@ sqlite3_int64 ContentValues::getAsInteger(std::string const &key) {
                 return data.dataInt;
             case REAL:
                 return (sqlite3_int64) data.dataReal;
-            case TEXT:
+            case TEXT: {
+#ifdef ANDROID
+                return stringToInt(data.dataText);
+#else
                 return stoi(data.dataText);
+#endif
+            }
             case BLOB:
                 return ntohs(*reinterpret_cast<const sqlite3_int64 *>(&data.dataBlob[0]));
             case NONE:
@@ -66,8 +72,13 @@ double ContentValues::getAsReal(std::string const &key) {
                 return data.dataInt;
             case REAL:
                 return data.dataReal;
-            case TEXT:
+            case TEXT: {
+#ifdef ANDROID
+                return stringToDouble(data.dataText);
+#else
                 return stod(data.dataText);
+#endif
+            }
             case BLOB:
                 return ntohs(*reinterpret_cast<const double *>(&data.dataBlob[0]));
             case NONE:
@@ -83,9 +94,17 @@ std::string ContentValues::getAsText(std::string const &key) {
         const Data &data = getData(key);
         switch (data.dataType) {
             case INT:
+#ifdef ANDROID
+                return numberToString(data.dataInt);
+#else
                 return std::to_string(data.dataInt);
+#endif
             case REAL:
+#ifdef ANDROID
+                return numberToString(data.dataReal);
+#else
                 return std::to_string(data.dataReal);
+#endif
             case TEXT:
                 return data.dataText;
             case BLOB:
@@ -148,3 +167,26 @@ void ContentValues::putBlob(std::string const &key, void *blob, size_t sz) {
     Data d = {value};
     putData(key, d);
 }
+
+double ContentValues::stringToDouble(std::string const &str){
+    std::stringstream ss(str);
+    double result;
+    return ss >> result ? result : 0;
+}
+
+sqlite3_int64 ContentValues::stringToInt(std::string const &str){
+    std::stringstream ss(str);
+    sqlite3_int64 result;
+    return ss >> result ? result : 0;
+}
+
+template <typename T> std::string
+ContentValues::numberToString(T number) {
+    std::stringstream ss;
+    ss << number;
+    return ss.str();
+}
+
+
+
+

@@ -31,15 +31,13 @@ private:
 public:
 
     /**
-     * Opens an in memory database.
-     * @return an in memor database.
+     * Creates an in memory database an in memory database.
      */
     Database();
 
     /**
-     * Opens / creates a database.
+     * Creates a database.
      * @param dbPath the absolute path of the database to open / create.
-     * @return a database.
      */
     Database(std::string const &dbPath);
 
@@ -72,7 +70,7 @@ public:
      * Execute a sql query
      *
      * @param sql the query
-     * @param sql query arguments
+     * @param args query arguments
      * @return a Cursor to retrive query results
      */
     Cursor query(std::string const &sql, std::vector<std::string> const &args);

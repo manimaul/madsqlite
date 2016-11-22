@@ -6,13 +6,13 @@
 
 static std::string upperCaseString(char const *str) {
     std::string aStr(str);
-    std::transform(aStr.begin(), aStr.end(), aStr.begin(), ::toupper);
+    for (auto &c: aStr) c = (char) toupper(c);
     return aStr;
 }
 
 static std::string lowerCaseString(char const *str) {
     std::string aStr(str);
-    std::transform(aStr.begin(), aStr.end(), aStr.begin(), ::tolower);
+    for (auto &c: aStr) c = (char) tolower(c);
     return aStr;
 }
 
