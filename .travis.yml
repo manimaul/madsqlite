@@ -8,6 +8,7 @@ android:
     - tools
     - build-tools
     - android-22
+    - extra-google-m2repository
     - sys-img-armeabi-v7a-android-18
 
 jdk:
