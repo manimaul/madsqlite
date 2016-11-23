@@ -9,10 +9,6 @@ import java.io.File;
 public final class Database implements Closeable {
 
     //region CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    private static final String NOT_AN_ERROR = "not an error";
-    private static final String UNKNOWN_ERROR = "unknown error";
-
     //endregion
 
     //region FIELDS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -95,7 +91,7 @@ public final class Database implements Closeable {
 
     public String getError() {
         String error = JniBridge.getError(nativePtr);
-        if (error.isEmpty() || NOT_AN_ERROR.equals(error) || UNKNOWN_ERROR.equals(error)) {
+        if (error.isEmpty()) {
             return null;
         } else {
             return error;
