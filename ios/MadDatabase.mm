@@ -32,7 +32,7 @@ std::shared_ptr<Database> database;
 }
 
 - (BOOL)insert:(NSString *)table withValues:(id <MadContentValues>)values {
-    MadContentValuesImpl *impl = (MadContentValuesImpl *)values;
+    MadContentValuesImpl *impl = (MadContentValuesImpl *) values;
     return database->insert(table.UTF8String, *impl.getValues);
 }
 
@@ -75,10 +75,6 @@ std::shared_ptr<Database> database;
 
 - (void)endTransaction {
     database->endTransaction();
-}
-
-- (void)dealloc {
-    //?
 }
 
 @end

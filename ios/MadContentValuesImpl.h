@@ -8,9 +8,10 @@
 #import "ContentValues.h"
 
 
-@interface MadContentValuesImpl : NSObject<MadContentValues>
+@interface MadContentValuesImpl : NSObject <MadContentValues>
 
 - (instancetype)init;
--(std::shared_ptr<ContentValues>) getValues;
+
+- (std::shared_ptr<ContentValues>)getValues;
 
 @end

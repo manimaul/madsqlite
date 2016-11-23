@@ -46,8 +46,4 @@
     return contentValues;
 }
 
-- (void)dealloc {
-    //?
-}
-
 @end

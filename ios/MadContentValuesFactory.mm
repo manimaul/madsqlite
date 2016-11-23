@@ -12,9 +12,9 @@
 
 @implementation MadContentValuesFactory
 
-+(id<MadContentValues>) values {
++ (id <MadContentValues>)values {
     MadContentValuesImpl *values = [[MadContentValuesImpl alloc] init];
-    return (id<MadContentValues>) values;
+    return (id <MadContentValues>) values;
 }
 
 @end

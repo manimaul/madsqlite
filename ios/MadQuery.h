@@ -15,9 +15,9 @@
 -(BOOL) moveToFirst;
 -(BOOL) moveToNext;
 -(BOOL) isAfterLast;
--(NSString *) getString:(NSInteger)columnIndex;
--(NSData *) getBlob:(NSInteger)columnIndex;
--(NSInteger) getInt:(NSInteger)columnIndex;
--(NSNumber *) getReal:(NSInteger)columnIndex;
+-(NSString *) getString:(int)columnIndex;
+-(NSData *) getBlob:(int)columnIndex;
+-(NSNumber *) getInt:(int)columnIndex;
+-(NSNumber *) getReal:(int)columnIndex;
 
 @end

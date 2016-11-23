@@ -7,17 +7,22 @@
 
 @protocol MadContentValues
 
--(instancetype) init;
--(void) putInteger:(NSString *)key withValue:(NSInteger)value;
--(void) putReal:(NSString *)key withValue:(NSNumber *)value;
--(void) putString:(NSString *)key withValue:(NSString *)value;
--(void) putBlob:(NSString *)key withValue:(NSData *)value;
--(void) clear;
+- (instancetype)init;
+
+- (void)putInteger:(NSString *)key withValue:(NSInteger)value;
+
+- (void)putReal:(NSString *)key withValue:(NSNumber *)value;
+
+- (void)putString:(NSString *)key withValue:(NSString *)value;
+
+- (void)putBlob:(NSString *)key withValue:(NSData *)value;
+
+- (void)clear;
 
 @end
 
 @interface MadContentValuesFactory : NSObject
 
-+(id<MadContentValues>) values;
-  
++ (id <MadContentValues>)values;
+
 @end

@@ -31,21 +31,21 @@
     return curs->isAfterLast();
 }
 
-- (NSString *)getString:(NSInteger)columnIndex {
+- (NSString *)getString:(int)columnIndex {
     std::string val = curs->getString(columnIndex);
     return [NSString stringWithUTF8String:val.c_str()];
 }
 
-- (NSData *)getBlob:(NSInteger)columnIndex {
+- (NSData *)getBlob:(int)columnIndex {
     std::vector<byte> blob = curs->getBlob(columnIndex);
     return [NSData dataWithBytes:blob.data() length:blob.size()];
 }
 
-- (NSInteger)getInt:(NSInteger)columnIndex {
-    return curs->getInt(columnIndex);
+- (NSNumber *)getInt:(int)columnIndex {
+    return @(curs->getInt(columnIndex));
 }
 
-- (NSNumber *)getReal:(NSInteger)columnIndex {
+- (NSNumber *)getReal:(int)columnIndex {
     return @(curs->getReal(columnIndex));
 }
 
