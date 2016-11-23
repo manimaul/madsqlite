@@ -9,7 +9,7 @@
 
 - (instancetype)init;
 
-- (void)putInteger:(NSString *)key withValue:(NSInteger)value;
+- (void)putInteger:(NSString *)key withValue:(NSNumber *)value;
 
 - (void)putReal:(NSString *)key withValue:(NSNumber *)value;
 

@@ -20,8 +20,8 @@
     }
 }
 
-- (void)putInteger:(NSString *)key withValue:(NSInteger)value {
-    contentValues->putInteger(key.UTF8String, value);
+- (void)putInteger:(NSString *)key withValue:(NSNumber *)value {
+    contentValues->putInteger(key.UTF8String, value.longValue);
 }
 
 - (void)putReal:(NSString *)key withValue:(NSNumber *)value {
