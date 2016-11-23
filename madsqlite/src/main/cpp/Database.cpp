@@ -129,7 +129,7 @@ bool Database::insert(std::string const &table, ContentValues &values) {
             }
             case ContentValues::TEXT: {
                 const std::string &text = values.getAsText(key);
-                if (sqlite3_bind_text(stmt, i + 1, text.c_str(), (int) text.length(), SQLITE_STATIC) != SQLITE_OK) {
+                if (sqlite3_bind_text(stmt, i + 1, text.c_str(), (int) text.length(), SQLITE_TRANSIENT) != SQLITE_OK) {
                     std::cout << "Could not bind statement." << std::endl;
                     return -1;
                 };
@@ -137,7 +137,7 @@ bool Database::insert(std::string const &table, ContentValues &values) {
             }
             case ContentValues::BLOB: {
                 const std::vector<byte> vector = values.getAsBlob(key);
-                if (sqlite3_bind_blob(stmt, i + 1, &vector.front(), (int) vector.size(), SQLITE_STATIC) != SQLITE_OK) {
+                if (sqlite3_bind_blob(stmt, i + 1, vector.data(), (int) vector.size(), SQLITE_TRANSIENT) != SQLITE_OK) {
                     std::cout << "Could not bind statement." << std::endl;
                     return -1;
                 };
