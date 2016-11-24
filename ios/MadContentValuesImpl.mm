@@ -21,7 +21,7 @@
 }
 
 - (void)putInteger:(NSString *)key withValue:(NSNumber *)value {
-    contentValues->putInteger(key.UTF8String, value.longValue);
+    contentValues->putInteger(key.UTF8String, value.longLongValue);
 }
 
 - (void)putReal:(NSString *)key withValue:(NSNumber *)value {
