@@ -3,7 +3,7 @@ package io.madrona.madsqlite;
 import java.io.Closeable;
 
 @SuppressWarnings("WeakerAccess")
-public final class Cursor implements Closeable {
+public final class MadQuery implements Closeable {
 
     //region CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //endregion
@@ -22,7 +22,7 @@ public final class Cursor implements Closeable {
 
     //region CONSTRUCTOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Cursor(long ptr) {
+    MadQuery(long ptr) {
         nativePtr = ptr;
     }
 

@@ -1,6 +1,6 @@
 #include <jni.h>
 #include <string>
-#include "Database.h"
+#include "Database.hpp"
 
 /*
  * How to find java class,field and method signatures:

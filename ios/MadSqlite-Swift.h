@@ -9,8 +9,8 @@
 #ifndef MadSqlite_Swift_h
 #define MadSqlite_Swift_h
 
-#import "MadQuery.h" 
-#import "MadDatabase.h"
+#import "MadQuery.hh"
+#import "MadDatabase.hh"
 #import "MadContentValues.h"
 
 #endif /* MadSqlite_Swift_h */

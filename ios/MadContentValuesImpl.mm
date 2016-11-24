@@ -3,7 +3,7 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadContentValuesImpl.h"
+#import "MadContentValuesImpl.hh"
 
 
 @implementation MadContentValuesImpl {

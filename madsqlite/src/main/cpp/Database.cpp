@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Database.h"
+#include "Database.hpp"
 #include "Util.cpp"
 
 //region Class Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

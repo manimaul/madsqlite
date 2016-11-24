@@ -7,9 +7,9 @@
 
 
 #include "sqlite-amalgamation-3140200/sqlite3.h"
-#include "Cursor.h"
-#include "Constants.h"
-#include "ContentValues.h"
+#include "Cursor.hpp"
+#include "Constants.hpp"
+#include "ContentValues.hpp"
 #include <string>
 #include <unordered_map>
 
@@ -62,7 +62,7 @@ public:
      * Execute a sql query
      *
      * @param sql the query
-     * @return a Cursor to retrive query results
+     * @return a MadQuery to retrive query results
      */
     Cursor query(std::string const &sql);
 
@@ -71,7 +71,7 @@ public:
      *
      * @param sql the query
      * @param args query arguments
-     * @return a Cursor to retrive query results
+     * @return a MadQuery to retrive query results
      */
     Cursor query(std::string const &sql, std::vector<std::string> const &args);
 

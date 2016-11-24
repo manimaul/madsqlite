@@ -6,7 +6,7 @@ import java.io.Closeable;
 import java.io.File;
 
 @SuppressWarnings("WeakerAccess")
-public final class Database implements Closeable {
+public final class MadDatabase implements Closeable {
 
     //region CONSTANTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //endregion
@@ -26,11 +26,11 @@ public final class Database implements Closeable {
     //region CONSTRUCTOR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-    public Database() {
+    public MadDatabase() {
         nativePtr = JniBridge.openDatabase(null);
     }
 
-    public Database(final File dbFile) {
+    public MadDatabase(final File dbFile) {
         nativePtr = JniBridge.openDatabase(dbFile.getAbsolutePath());
     }
 
@@ -57,12 +57,12 @@ public final class Database implements Closeable {
         return JniBridge.insert(nativePtr, table, keys, values);
     }
 
-    public Cursor query(String query, String... args) {
+    public MadQuery query(String query, String... args) {
         long cursorPtr = JniBridge.query(nativePtr, query, args);
-        return new Cursor(cursorPtr);
+        return new MadQuery(cursorPtr);
     }
 
-    public Cursor query(String query, Object... args) {
+    public MadQuery query(String query, Object... args) {
         String[] strArgs = null;
         if (args != null) {
             strArgs = new String[args.length];
@@ -73,7 +73,7 @@ public final class Database implements Closeable {
         return query(query, strArgs);
     }
 
-    public Cursor query(String query) {
+    public MadQuery query(String query) {
         return query(query, (String[]) null);
     }
 

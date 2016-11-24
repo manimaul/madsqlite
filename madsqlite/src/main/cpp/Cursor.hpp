@@ -5,7 +5,7 @@
 #ifndef PROJECT_CURSOR_H
 #define PROJECT_CURSOR_H
 
-#include "Constants.h"
+#include "Constants.hpp"
 #include "sqlite-amalgamation-3140200/sqlite3.h"
 
 class Cursor {

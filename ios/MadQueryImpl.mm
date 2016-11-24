@@ -3,7 +3,7 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadQueryImpl.h"
+#import "MadQueryImpl.hh"
 
 
 @implementation MadQueryImpl {

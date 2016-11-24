@@ -14,14 +14,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class DatabaseRTreeTest {
+public class MadDatabaseRTreeTest {
 
     private static final double PRECISION_MAX_DELTA = .00002;
-    private Database _database;
+    private MadDatabase _database;
 
     @Before
     public void setup() {
-        _database = new Database();
+        _database = new MadDatabase();
     }
 
     @After
@@ -39,31 +39,31 @@ public class DatabaseRTreeTest {
         final ContentValues cv = givenContentValuesInserted();
 
         {
-            Cursor cursor = _database.query("SELECT * FROM demo_index WHERE id=2;");
-            assertTrue(cursor.moveToFirst());
-            assertEquals(cursor.getLong(0), 2);
-            assertEquals(cv.getAsDouble("minX"), cursor.getReal(1), PRECISION_MAX_DELTA);
-            assertEquals(cv.getAsDouble("maxX"), cursor.getReal(2), PRECISION_MAX_DELTA);
-            assertEquals(cv.getAsDouble("minY"), cursor.getReal(3), PRECISION_MAX_DELTA);
-            assertEquals(cv.getAsDouble("maxY"), cursor.getReal(4), PRECISION_MAX_DELTA);
-            assertTrue(cursor.moveToNext());
-            assertTrue(cursor.isAfterLast());
-            assertFalse(cursor.moveToNext());
-            cursor.close();
+            MadQuery query = _database.query("SELECT * FROM demo_index WHERE id=2;");
+            assertTrue(query.moveToFirst());
+            assertEquals(query.getLong(0), 2);
+            assertEquals(cv.getAsDouble("minX"), query.getReal(1), PRECISION_MAX_DELTA);
+            assertEquals(cv.getAsDouble("maxX"), query.getReal(2), PRECISION_MAX_DELTA);
+            assertEquals(cv.getAsDouble("minY"), query.getReal(3), PRECISION_MAX_DELTA);
+            assertEquals(cv.getAsDouble("maxY"), query.getReal(4), PRECISION_MAX_DELTA);
+            assertTrue(query.moveToNext());
+            assertTrue(query.isAfterLast());
+            assertFalse(query.moveToNext());
+            query.close();
         }
 
         {
-            Cursor cursor = _database.query("SELECT * FROM demo_index WHERE id=1;");
-            assertTrue(cursor.moveToFirst());
-            assertEquals(cursor.getLong(0), 1);
-            assertEquals(-80.7749582, cursor.getReal(1), PRECISION_MAX_DELTA);
-            assertEquals(-80.7747392, cursor.getReal(2), PRECISION_MAX_DELTA);
-            assertEquals(35.3776136, cursor.getReal(3), PRECISION_MAX_DELTA);
-            assertEquals(35.3778356, cursor.getReal(4), PRECISION_MAX_DELTA);
-            assertTrue(cursor.moveToNext());
-            assertTrue(cursor.isAfterLast());
-            assertFalse(cursor.moveToNext());
-            cursor.close();
+            MadQuery query = _database.query("SELECT * FROM demo_index WHERE id=1;");
+            assertTrue(query.moveToFirst());
+            assertEquals(query.getLong(0), 1);
+            assertEquals(-80.7749582, query.getReal(1), PRECISION_MAX_DELTA);
+            assertEquals(-80.7747392, query.getReal(2), PRECISION_MAX_DELTA);
+            assertEquals(35.3776136, query.getReal(3), PRECISION_MAX_DELTA);
+            assertEquals(35.3778356, query.getReal(4), PRECISION_MAX_DELTA);
+            assertTrue(query.moveToNext());
+            assertTrue(query.isAfterLast());
+            assertFalse(query.moveToNext());
+            query.close();
         }
 
     }
@@ -75,16 +75,16 @@ public class DatabaseRTreeTest {
         givenContentValuesInserted();
 
         String sql = "SELECT id FROM demo_index WHERE minX>=-81.08 AND maxX<=-80.58 AND minY>=35.00 AND maxY<=35.44;";
-        Cursor cursor = _database.query(sql);
-        assertFalse(cursor.isAfterLast());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        assertEquals(1, cursor.getLong(0));
+        MadQuery query = _database.query(sql);
+        assertFalse(query.isAfterLast());
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        assertEquals(1, query.getLong(0));
 
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        assertFalse(cursor.moveToNext());
-        cursor.close();
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        assertFalse(query.moveToNext());
+        query.close();
     }
 
     private void givenAnRtreeDatabase() {

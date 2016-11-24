@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MadContentValues.h"
-#import "MadContentValuesImpl.h"
+#import "MadContentValuesImpl.hh"
 
 @implementation MadContentValuesFactory
 

@@ -15,13 +15,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class DatabaseFTS5Test {
+public class MadDatabaseFTS5Test {
 
-    private Database _database;
+    private MadDatabase _database;
 
     @Before
     public void setup() {
-        _database = new Database();
+        _database = new MadDatabase();
     }
 
     @After
@@ -79,7 +79,7 @@ public class DatabaseFTS5Test {
 
     private List<String> queryMatches(String query) {
         List<String> matches = new ArrayList<>();
-        Cursor cursor = _database.query(query);
+        MadQuery cursor = _database.query(query);
         assertNull(_database.getError());
         assertTrue(cursor.moveToFirst());
         while (!cursor.isAfterLast()) {

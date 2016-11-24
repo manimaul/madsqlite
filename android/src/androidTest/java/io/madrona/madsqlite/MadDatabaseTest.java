@@ -14,13 +14,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class DatabaseTest {
+public class MadDatabaseTest {
 
-    private Database _database;
+    private MadDatabase _database;
 
     @Before
     public void setup() {
-        _database = new Database();
+        _database = new MadDatabase();
     }
 
     @After
@@ -43,17 +43,17 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyInt FROM test;");
+        final MadQuery query = _database.query("SELECT keyInt FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        final long firstResult = cursor.getLong(0);
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
-        final long secondResult = cursor.getLong(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        final long firstResult = query.getLong(0);
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
+        final long secondResult = query.getLong(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
 
         assertEquals(Integer.MIN_VALUE, firstResult);
         assertEquals(Integer.MAX_VALUE, secondResult);
@@ -74,16 +74,16 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyInt FROM test;");
+        final MadQuery query = _database.query("SELECT keyInt FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        final long firstResult = cursor.getLong(0);
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
-        final long secondResult = cursor.getLong(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        final long firstResult = query.getLong(0);
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
+        final long secondResult = query.getLong(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
 
         assertEquals(Long.MIN_VALUE, firstResult);
         assertEquals(Long.MAX_VALUE, secondResult);
@@ -109,26 +109,26 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        final MadQuery query = _database.query("SELECT keyReal FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
+        assertTrue(query.moveToFirst());
 
-        assertFalse(cursor.isAfterLast());
-        final double firstResult = cursor.getReal(0);
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
+        assertFalse(query.isAfterLast());
+        final double firstResult = query.getReal(0);
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
 
-        assertFalse(cursor.isAfterLast());
-        final double secondResult = cursor.getReal(0);
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
+        assertFalse(query.isAfterLast());
+        final double secondResult = query.getReal(0);
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
 
-        assertFalse(cursor.isAfterLast());
-        final double thirdResult = cursor.getReal(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
+        assertFalse(query.isAfterLast());
+        final double thirdResult = query.getReal(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
 
-        cursor.close();
+        query.close();
         assertEquals(Float.MIN_VALUE, firstResult, 0);
         assertEquals(Float.MAX_VALUE, secondResult, 0);
         assertEquals(47.38723987F, thirdResult, 0);
@@ -149,17 +149,17 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyReal FROM test;");
+        final MadQuery query = _database.query("SELECT keyReal FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        final double firstResult = cursor.getReal(0);
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
-        final double secondResult = cursor.getReal(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        final double firstResult = query.getReal(0);
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
+        final double secondResult = query.getReal(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
 
         assertEquals(Double.MIN_VALUE, firstResult, 0);
         assertEquals(Double.MAX_VALUE, secondResult, 0);
@@ -175,15 +175,15 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyBlob FROM test;");
+        final MadQuery query = _database.query("SELECT keyBlob FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        final byte[] data = cursor.getBlob(0);
-        final String dataStr = cursor.getString(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        final byte[] data = query.getBlob(0);
+        final String dataStr = query.getString(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
 
         assertEquals("data", new String(data));
         assertEquals("data", dataStr);
@@ -199,14 +199,14 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyText FROM test;");
+        final MadQuery query = _database.query("SELECT keyText FROM test;");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        final String data = cursor.getString(0);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        final String data = query.getString(0);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
 
         assertEquals("data", data);
     }
@@ -231,29 +231,29 @@ public class DatabaseTest {
         long number;
         String value;
         {
-            final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", 99);
+            final MadQuery query = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", 99);
             assertNull(_database.getError());
-            assertTrue(cursor.moveToFirst());
-            assertFalse(cursor.isAfterLast());
-            value = cursor.getString(0);
-            number = cursor.getLong(1);
-            assertTrue(cursor.moveToNext());
-            assertTrue(cursor.isAfterLast());
-            cursor.close();
+            assertTrue(query.moveToFirst());
+            assertFalse(query.isAfterLast());
+            value = query.getString(0);
+            number = query.getLong(1);
+            assertTrue(query.moveToNext());
+            assertTrue(query.isAfterLast());
+            query.close();
         }
         assertEquals(99, number);
         assertEquals("the quick brown fox", value);
 
         {
-            final Cursor cursor = _database.query("SELECT keyInt,keyText FROM test WHERE keyInt is ?;", 34);
+            final MadQuery query = _database.query("SELECT keyInt,keyText FROM test WHERE keyInt is ?;", 34);
             assertNull(_database.getError());
-            assertTrue(cursor.moveToFirst());
-            assertFalse(cursor.isAfterLast());
-            number = cursor.getLong(0);
-            value = cursor.getString(1);
-            assertTrue(cursor.moveToNext());
-            assertTrue(cursor.isAfterLast());
-            cursor.close();
+            assertTrue(query.moveToFirst());
+            assertFalse(query.isAfterLast());
+            number = query.getLong(0);
+            value = query.getString(1);
+            assertTrue(query.moveToNext());
+            assertTrue(query.isAfterLast());
+            query.close();
         }
         assertEquals(34, number);
         assertEquals("the slow white tortoise", value);
@@ -276,15 +276,15 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
+        final MadQuery query = _database.query("SELECT keyText,keyInt FROM test WHERE keyInt is ?;", "99");
         assertNull(_database.getError());
-        assertTrue(cursor.moveToFirst());
-        assertFalse(cursor.isAfterLast());
-        String value = cursor.getString(0);
-        long number = cursor.getLong(1);
-        assertTrue(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
-        cursor.close();
+        assertTrue(query.moveToFirst());
+        assertFalse(query.isAfterLast());
+        String value = query.getString(0);
+        long number = query.getLong(1);
+        assertTrue(query.moveToNext());
+        assertTrue(query.isAfterLast());
+        query.close();
         assertEquals(99, number);
         assertEquals("the quick brown fox", value);
     }
@@ -312,27 +312,27 @@ public class DatabaseTest {
         assertTrue(_database.insert("test", cv));
         assertNull(_database.getError());
 
-        final Cursor cursor = _database.query("SELECT * FROM test;");
+        final MadQuery query = _database.query("SELECT * FROM test;");
         assertNull(_database.getError());
 
-        assertTrue(cursor.moveToFirst());
-        assertEquals(Math.PI, cursor.getReal(1), 0);
-        assertEquals("the quick brown fox", cursor.getString(2));
-        assertEquals(99, cursor.getLong(0));
-        assertFalse(cursor.isAfterLast());
+        assertTrue(query.moveToFirst());
+        assertEquals(Math.PI, query.getReal(1), 0);
+        assertEquals("the quick brown fox", query.getString(2));
+        assertEquals(99, query.getLong(0));
+        assertFalse(query.isAfterLast());
 
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.isAfterLast());
-        assertEquals(Math.E, cursor.getReal(1), 0);
-        assertEquals("the slow red tortoise", cursor.getString(2));
-        assertEquals(42, cursor.getLong(0));
-        assertFalse(cursor.isAfterLast());
+        assertTrue(query.moveToNext());
+        assertFalse(query.isAfterLast());
+        assertEquals(Math.E, query.getReal(1), 0);
+        assertEquals("the slow red tortoise", query.getString(2));
+        assertEquals(42, query.getLong(0));
+        assertFalse(query.isAfterLast());
 
-        assertTrue(cursor.moveToNext());
-        assertFalse(cursor.moveToNext());
-        assertTrue(cursor.isAfterLast());
+        assertTrue(query.moveToNext());
+        assertFalse(query.moveToNext());
+        assertTrue(query.isAfterLast());
 
-        cursor.close();
+        query.close();
     }
 
 }

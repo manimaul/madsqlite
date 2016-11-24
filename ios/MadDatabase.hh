@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MadQuery.h"
+#import "MadQuery.hh"
 
 @protocol MadContentValues;
 

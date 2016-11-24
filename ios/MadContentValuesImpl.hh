@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MadContentValues.h"
-#import "ContentValues.h"
+#import "ContentValues.hpp"
 
 
 @interface MadContentValuesImpl : NSObject <MadContentValues>

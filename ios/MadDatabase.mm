@@ -3,11 +3,11 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadDatabase.h"
-#include "Database.h"
+#import "MadDatabase.hh"
+#include "Database.hpp"
 #import "MadContentValues.h"
-#import "MadContentValuesImpl.h"
-#import "MadQueryImpl.h"
+#import "MadContentValuesImpl.hh"
+#import "MadQueryImpl.hh"
 
 @implementation MadDatabase
 

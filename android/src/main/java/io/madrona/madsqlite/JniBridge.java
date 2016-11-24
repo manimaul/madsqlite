@@ -15,7 +15,7 @@ enum JniBridge {
 
     //endregion
 
-    //region Database ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //region Database ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static native long openDatabase(String absPath);
     static native void closeDatabase(long ptr);
@@ -29,7 +29,7 @@ enum JniBridge {
 
     //endregion
 
-    //region Cursor ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //region MadQuery ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     static native void closeCursor(long nativePtr);
     static native boolean moveToNext(long nativePtr);

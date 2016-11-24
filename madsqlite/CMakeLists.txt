@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 set(SOURCE_FILES
-        src/main/cpp/Constants.h
-        src/main/cpp/ContentValues.h
+        src/main/cpp/Constants.hpp
+        src/main/cpp/ContentValues.hpp
         src/main/cpp/ContentValues.cpp
         src/main/cpp/Cursor.cpp
-        src/main/cpp/Cursor.h
+        src/main/cpp/Cursor.hpp
         src/main/cpp/Database.cpp
-        src/main/cpp/Database.h
+        src/main/cpp/Database.hpp
         src/main/cpp/Util.cpp
         src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h
         src/main/cpp/sqlite-amalgamation-3140200/sqlite3.c)

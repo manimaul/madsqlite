@@ -7,3 +7,5 @@
 /build
 /captures
 .externalNativeBuild
+madsqlite/cmake-build*
+*.swp
