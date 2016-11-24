@@ -6,19 +6,32 @@
 #import <Foundation/Foundation.h>
 #import "MadQuery.hh"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
 @protocol MadContentValues;
 
 @interface MadDatabase : NSObject
 
--(instancetype) init;
--(instancetype) initWithPath:(NSString *)path;
--(BOOL) insert:(NSString *)table withValues:(id<MadContentValues>)values;
--(id<MadQuery>)query:(NSString*)sql;
--(id<MadQuery>)query:(NSString*)sql withArgs:(NSArray<NSString*>*)args;
--(NSInteger) exec:(NSString *)sql;
--(NSString *) getError;
--(void) beginTransaction;
--(void) rollbackTransaction;
--(void) endTransaction;
+- (instancetype)init;
+
+- (instancetype)initWithPath:(NSString *)path;
+
+- (BOOL)insert:(NSString *)table withValues:(id <MadContentValues>)values;
+
+- (id <MadQuery>)query:(NSString *)sql;
+
+- (id <MadQuery>)query:(NSString *)sql withArgs:(NSArray<NSString *> *)args;
+
+- (NSInteger)exec:(NSString *)sql;
+
+- (NSString *)getError;
+
+- (void)beginTransaction;
+
+- (void)rollbackTransaction;
+
+- (void)endTransaction;
 
 @end
+
+#pragma clang diagnostic pop
