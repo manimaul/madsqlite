@@ -12,7 +12,7 @@
 
 @implementation MadSqliteFactory
 
-+ (id <MadContentValues>)values {
++ (id <MadContentValues>)contentValues {
     MadContentValuesImpl *values = [[MadContentValuesImpl alloc] init];
     return (id <MadContentValues>) values;
 }
@@ -21,7 +21,6 @@
     MadDatabaseImpl *db = [[MadDatabaseImpl alloc] init];
     return (id <MadDatabase>) db;
 }
-
 
 + (id <MadDatabase>)databaseNamed:(NSString *)name {
     return nil;

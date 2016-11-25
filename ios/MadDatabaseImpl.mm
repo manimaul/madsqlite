@@ -73,8 +73,8 @@ std::shared_ptr<Database> database;
     database->rollbackTransaction();
 }
 
-- (void)endTransaction {
-    database->endTransaction();
+- (void)commitTransaction {
+    database->commitTransaction();
 }
 
 @end

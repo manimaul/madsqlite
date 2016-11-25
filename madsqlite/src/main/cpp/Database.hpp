@@ -90,7 +90,7 @@ public:
 
     void beginTransaction();
     void rollbackTransaction();
-    void endTransaction();
+    void commitTransaction();
 
 //endregion
 

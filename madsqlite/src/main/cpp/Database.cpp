@@ -41,7 +41,7 @@ void Database::rollbackTransaction() {
     }
 }
 
-void Database::endTransaction() {
+void Database::commitTransaction() {
     if (isInTransaction) {
         execInternal("COMMIT");
         isInTransaction = false;

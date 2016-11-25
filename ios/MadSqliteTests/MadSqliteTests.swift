@@ -26,7 +26,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyInt INTEGER);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         cv.putInteger("keyInt", withValue: NSNumber(value: Int.max))
         md.insert("test", with: cv)
         XCTAssertNil(md.getError())
@@ -57,7 +57,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyInt INTEGER);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         cv.putInteger("keyInt", withValue: NSNumber(value: Int64.max))
         md.insert("test", with: cv)
         XCTAssertNil(md.getError())
@@ -89,7 +89,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyReal REAL);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         cv.putReal("keyReal", withValue: NSNumber(value: DBL_MAX))
         md.insert("test", with: cv)
         XCTAssertNil(md.getError())
@@ -122,7 +122,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyBlob BLOB);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         let data = "data".data(using: .utf8)
         cv.putBlob("keyBlob", withValue: data)
         XCTAssertNil(md.getError())
@@ -150,7 +150,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyText TEXT);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         let text = "the quick brown fox jumped over the lazy dog!"
         cv.put("keyText", withValue: text)
         XCTAssertNil(md.getError())
@@ -176,7 +176,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyInt INTEGER, keyText TEXT);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         cv.put("keyText", withValue: "the quick brown fox")
         cv.putInteger("keyInt", withValue: 99)
         XCTAssertTrue(md.insert("test", with: cv))
@@ -219,7 +219,7 @@ class MadSqliteTests: XCTestCase {
         md.exec("CREATE TABLE test(keyInt INTEGER, keyReal REAL, keyText TEXT);")
         XCTAssertNil(md.getError())
 
-        let cv = MadSqliteFactory.values()!
+        let cv = MadSqliteFactory.contentValues()!
         cv.put("keyText", withValue: "the quick brown fox")
         cv.putInteger("keyInt", withValue: 99)
         cv.putReal("keyReal", withValue: 23829.3)
