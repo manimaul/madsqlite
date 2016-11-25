@@ -14,16 +14,21 @@
 
 + (id <MadContentValues>)contentValues {
     MadContentValuesImpl *values = [[MadContentValuesImpl alloc] init];
-    return (id <MadContentValues>) values;
+    return values;
 }
 
 + (id <MadDatabase>)inMemoryDatabase {
     MadDatabaseImpl *db = [[MadDatabaseImpl alloc] init];
-    return (id <MadDatabase>) db;
+    return db;
 }
 
 + (id <MadDatabase>)databaseNamed:(NSString *)name {
-    return nil;
+    NSMutableString *mutableString = [NSMutableString stringWithString:
+            [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
+    [mutableString appendString:@"/"];
+    [mutableString appendString:name];
+    MadDatabaseImpl *db = [[MadDatabaseImpl alloc] initWithPath:mutableString];
+    return db;
 }
 
 

@@ -217,38 +217,52 @@ class MadSqliteTests: XCTestCase {
     func testMultiIndexQuery() {
         let md = MadSqliteFactory.inMemoryDatabase()!
         md.exec("CREATE TABLE test(keyInt INTEGER, keyReal REAL, keyText TEXT);")
+        multiIndexQuery(database: md)
+        XCTAssertNil(md.getError())
+    }
+
+    func testFileSystemDatabase() {
+        // ~/Library/Developer/CoreSimulator/Devices/ED77F264-2FF3-4DBF-A2F6-F8CBC2D6EE15/data/Library/test.s3db
+        let md = MadSqliteFactory.databaseNamed("test.s3db")!
+        md.exec("DROP TABLE IF EXISTS test")
+        XCTAssertNil(md.getError())
+        md.exec("CREATE TABLE test(keyInt INTEGER, keyReal REAL, keyText TEXT);")
         XCTAssertNil(md.getError())
 
+        multiIndexQuery(database: md)
+    }
+    
+    func multiIndexQuery(database md: MadDatabase) {
         let cv = MadSqliteFactory.contentValues()!
         cv.put("keyText", withValue: "the quick brown fox")
         cv.putInteger("keyInt", withValue: 99)
         cv.putReal("keyReal", withValue: 23829.3)
         XCTAssertTrue(md.insert("test", with: cv))
         XCTAssertNil(md.getError())
-
+        
         cv.clear()
         cv.put("keyText", withValue: "the slow red tortoise")
         cv.putInteger("keyInt", withValue: 42)
         cv.putReal("keyReal", withValue: 3829.3)
         XCTAssertTrue(md.insert("test", with: cv))
         XCTAssertNil(md.getError())
-
+        
         let query = md.query("SELECT * FROM test;")!
         XCTAssertNil(md.getError())
-
+        
         XCTAssertTrue(query.moveToFirst())
         XCTAssertEqual(23829.3, query.getReal(1))
         XCTAssertEqual("the quick brown fox", query.getString(2))
         XCTAssertEqual(99, query.getInt(0))
         XCTAssertFalse(query.isAfterLast())
-
+        
         XCTAssertTrue(query.moveToNext())
         XCTAssertFalse(query.isAfterLast())
         XCTAssertEqual(3829.3, query.getReal(1))
         XCTAssertEqual("the slow red tortoise", query.getString(2))
         XCTAssertEqual(42, query.getInt(0))
         XCTAssertFalse(query.isAfterLast())
-
+        
         XCTAssertTrue(query.moveToNext())
         XCTAssertFalse(query.moveToNext())
         XCTAssertTrue(query.isAfterLast())

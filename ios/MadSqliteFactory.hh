@@ -22,7 +22,7 @@
 + (id <MadDatabase>)inMemoryDatabase;
 
 /**
- * Opens or creates a file system sqlite database
+ * Opens or creates a file system sqlite database.
  *
  * @param name the name of the database
  * @return a file system sqlite database
