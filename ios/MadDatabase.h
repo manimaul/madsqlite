@@ -1,20 +1,14 @@
 //
-// Created by William Kamp on 11/16/16.
+// Created by William Kamp on 11/24/16.
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "MadQuery.hh"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+@protocol MadQuery;
 @protocol MadContentValues;
 
-@interface MadDatabase : NSObject
-
-- (instancetype)init;
-
-- (instancetype)initWithPath:(NSString *)path;
+@protocol MadDatabase <NSObject>
 
 - (BOOL)insert:(NSString *)table withValues:(id <MadContentValues>)values;
 
@@ -33,5 +27,3 @@
 - (void)endTransaction;
 
 @end
-
-#pragma clang diagnostic pop

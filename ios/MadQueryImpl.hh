@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MadQueryImpl.hh"
-#import "MadQuery.hh"
+#import "MadQuery.h"
 #include "Cursor.hpp"
 
 @interface MadQueryImpl : NSObject <MadQuery>

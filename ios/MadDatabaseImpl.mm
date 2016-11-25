@@ -3,13 +3,13 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadDatabase.hh"
+#import "MadDatabaseImpl.hh"
 #include "Database.hpp"
 #import "MadContentValues.h"
 #import "MadContentValuesImpl.hh"
 #import "MadQueryImpl.hh"
 
-@implementation MadDatabase
+@implementation MadDatabaseImpl
 
 std::shared_ptr<Database> database;
 

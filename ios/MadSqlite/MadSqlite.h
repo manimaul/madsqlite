@@ -15,7 +15,8 @@ FOUNDATION_EXPORT double MadSqliteVersionNumber;
 FOUNDATION_EXPORT const unsigned char MadSqliteVersionString[];
 
 // In this header, you should import all the public headers of your framework
-#import "MadDatabase.hh"
-#import "MadQuery.hh"
+#import "MadSqliteFactory.hh"
+#import "MadDatabase.h"
+#import "MadQuery.h"
 #import "MadContentValues.h"
 

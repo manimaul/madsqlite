@@ -20,9 +20,3 @@
 - (void)clear;
 
 @end
-
-@interface MadContentValuesFactory : NSObject
-
-+ (id <MadContentValues>)values;
-
-@end
