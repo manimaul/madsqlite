@@ -179,11 +179,11 @@ Java_io_madrona_madsqlite_JniBridge_rollbackTransaction(JNIEnv,
 }
 
 JNIEXPORT void JNICALL
-Java_io_madrona_madsqlite_JniBridge_endTransaction(JNIEnv,
+Java_io_madrona_madsqlite_JniBridge_commitTransaction(JNIEnv,
                                                    jclass,
                                                    jlong dbPtr) {
     Database *db = reinterpret_cast<Database *>(dbPtr);
-    db->endTransaction();
+    db->commitTransaction();
 }
 
 JNIEXPORT jboolean JNICALL

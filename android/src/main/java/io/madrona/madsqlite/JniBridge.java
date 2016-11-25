@@ -25,7 +25,7 @@ enum JniBridge {
     static native String getError(long dbPtr);
     static native void beginTransaction(long dbPtr);
     static native void rollbackTransaction(long dbPtr);
-    static native void endTransaction(long dbPtr);
+    static native void commitTransaction(long dbPtr);
 
     //endregion
 

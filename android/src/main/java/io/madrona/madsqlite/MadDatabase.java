@@ -85,8 +85,8 @@ public final class MadDatabase implements Closeable {
         JniBridge.rollbackTransaction(nativePtr);
     }
 
-    public void endTransaction() {
-        JniBridge.endTransaction(nativePtr);
+    public void commitTransaction() {
+        JniBridge.commitTransaction(nativePtr);
     }
 
     public String getError() {
