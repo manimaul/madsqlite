@@ -6,7 +6,7 @@
 //  Copyright © 2016 William Kamp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for MadSqlite.
 FOUNDATION_EXPORT double MadSqliteVersionNumber;
