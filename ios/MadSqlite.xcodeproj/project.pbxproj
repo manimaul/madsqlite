@@ -15,6 +15,7 @@
 		2672C9FA99FAACF371A22E57 /* MadSqliteFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672CE5A6A589A8D046E2CA4 /* MadSqliteFactory.mm */; };
 		2672CB1A6AEE63E1107A4E2A /* MadContentValuesImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C408441706F83DFCAB48 /* MadContentValuesImpl.mm */; };
 		2672CCF099FA3690D29016E5 /* MadContentValues.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672C5C206CC808E60FB3E10 /* MadContentValues.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2672CE1911CEE0954B61316B /* MadSqliteFTS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CFC6BD5777242B16B6A4 /* MadSqliteFTS5Tests.swift */; };
 		2672CF8C3310F231117BC900 /* MadDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672CE5584F236865F92AAD1 /* MadDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2672CFD1D46559B5A316A461 /* generate_docs.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2672C41D39E7E9050ECD8134 /* generate_docs.sh */; };
 		D072C19E1DDD2EF1003FF38F /* MadSqlite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D072C1941DDD2EF0003FF38F /* MadSqlite.framework */; };
@@ -55,6 +56,7 @@
 		2672CE5584F236865F92AAD1 /* MadDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MadDatabase.h; path = ../MadDatabase.h; sourceTree = "<group>"; };
 		2672CE5A3819C725488AD23B /* MadDatabaseImpl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MadDatabaseImpl.hh; sourceTree = "<group>"; };
 		2672CE5A6A589A8D046E2CA4 /* MadSqliteFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadSqliteFactory.mm; sourceTree = "<group>"; };
+		2672CFC6BD5777242B16B6A4 /* MadSqliteFTS5Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadSqliteFTS5Tests.swift; sourceTree = "<group>"; };
 		D072C1941DDD2EF0003FF38F /* MadSqlite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MadSqlite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072C1971DDD2EF0003FF38F /* MadSqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MadSqlite.h; sourceTree = "<group>"; };
 		D072C1981DDD2EF0003FF38F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				D072C1A21DDD2EF1003FF38F /* MadSqliteTests.swift */,
 				D072C1A41DDD2EF1003FF38F /* Info.plist */,
+				2672CFC6BD5777242B16B6A4 /* MadSqliteFTS5Tests.swift */,
 			);
 			path = MadSqliteTests;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D072C1A31DDD2EF1003FF38F /* MadSqliteTests.swift in Sources */,
+				2672CE1911CEE0954B61316B /* MadSqliteFTS5Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +363,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -405,6 +410,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,6 +434,10 @@
 				INFOPLIST_FILE = MadSqlite/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = (
+					"-DSQLITE_ENABLE_FTS5",
+					"-DSQLITE_ENABLE_RTREE",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.madrona.MadSqlite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -450,6 +460,10 @@
 				INFOPLIST_FILE = MadSqlite/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = (
+					"-DSQLITE_ENABLE_FTS5",
+					"-DSQLITE_ENABLE_RTREE",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.madrona.MadSqlite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

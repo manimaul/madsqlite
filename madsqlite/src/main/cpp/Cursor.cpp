@@ -4,6 +4,8 @@
 
 #include "Cursor.hpp"
 
+#define CURSOR_STEP_UNKNOWN -1
+
 //region Class Methods ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //endregion
 
@@ -52,7 +54,7 @@ bool Cursor::moveToNext() {
 }
 
 bool Cursor::isAfterLast() {
-    return stepResult == SQLITE_DONE;
+    return stepResult > CURSOR_STEP_UNKNOWN && stepResult != SQLITE_ROW;
 }
 
 const std::string Cursor::getString(int columnIndex) const {
