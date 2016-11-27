@@ -23,35 +23,35 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>-[MadSqliteTests testQueryArgs].xcscheme</key>
+		<key>-[MadSqliteTests testFileSystemDatabase].xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>-[MadSqliteTests testMultiIndexQuery].xcscheme</key>
+		<key>-[MadSqliteFTS5Tests testMatchNear].xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>-[MadSqliteTests testFileSystemDatabase].xcscheme</key>
+		<key>All in MadSqliteFTS5Tests.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>-[MadSqliteFTS5Tests testMatchNear].xcscheme</key>
+		<key>-[MadSqliteRTreeTest testSome].xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>All in MadSqliteFTS5Tests.swift.xcscheme</key>
+		<key>-[MadSqliteRTreeTest testRTreeBetween].xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
