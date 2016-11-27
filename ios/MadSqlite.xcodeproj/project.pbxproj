@@ -18,6 +18,8 @@
 		2672CE1911CEE0954B61316B /* MadSqliteFTS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CFC6BD5777242B16B6A4 /* MadSqliteFTS5Tests.swift */; };
 		2672CF8C3310F231117BC900 /* MadDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2672CE5584F236865F92AAD1 /* MadDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2672CFD1D46559B5A316A461 /* generate_docs.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2672C41D39E7E9050ECD8134 /* generate_docs.sh */; };
+		551281614D5A70202C2F2DFF /* Pods_MadSqlite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2D76916345E50CB6D94476 /* Pods_MadSqlite.framework */; };
+		5BEEBF2D3A532B116EA126D2 /* Pods_MadSqliteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902BB600CB789AE6E00F5C8A /* Pods_MadSqliteTests.framework */; };
 		D060DF091DEB1EC700427EEF /* MadSqliteRTreeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D060DF081DEB1EC700427EEF /* MadSqliteRTreeTest.swift */; };
 		D072C19E1DDD2EF1003FF38F /* MadSqlite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D072C1941DDD2EF0003FF38F /* MadSqlite.framework */; };
 		D072C1A31DDD2EF1003FF38F /* MadSqliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D072C1A21DDD2EF1003FF38F /* MadSqliteTests.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01DB0FE9C0FBC63EACA1A2E8 /* Pods-MadSqliteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteTests/Pods-MadSqliteTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0D94EE4DEC745234DB4D6951 /* Pods-MadSqlite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqlite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqlite/Pods-MadSqlite.debug.xcconfig"; sourceTree = "<group>"; };
 		2672C281F480F476E6CB0343 /* MadSqliteFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MadSqliteFactory.hh; sourceTree = SOURCE_ROOT; };
 		2672C2ADFBAF45F6278FE659 /* MadQueryImpl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MadQueryImpl.hh; sourceTree = "<group>"; };
 		2672C408441706F83DFCAB48 /* MadContentValuesImpl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadContentValuesImpl.mm; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 		2672CE5A3819C725488AD23B /* MadDatabaseImpl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MadDatabaseImpl.hh; sourceTree = "<group>"; };
 		2672CE5A6A589A8D046E2CA4 /* MadSqliteFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MadSqliteFactory.mm; sourceTree = "<group>"; };
 		2672CFC6BD5777242B16B6A4 /* MadSqliteFTS5Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadSqliteFTS5Tests.swift; sourceTree = "<group>"; };
+		902BB600CB789AE6E00F5C8A /* Pods_MadSqliteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MadSqliteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA2D76916345E50CB6D94476 /* Pods_MadSqlite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MadSqlite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D060DF081DEB1EC700427EEF /* MadSqliteRTreeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadSqliteRTreeTest.swift; sourceTree = "<group>"; };
 		D072C1941DDD2EF0003FF38F /* MadSqlite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MadSqlite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D072C1971DDD2EF0003FF38F /* MadSqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MadSqlite.h; sourceTree = "<group>"; };
@@ -76,6 +82,8 @@
 		D072C1B81DDD36F3003FF38F /* sqlite3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = "../madsqlite/src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h"; sourceTree = "<group>"; };
 		D08E37921DDD823600F8F4D9 /* MadQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MadQuery.h; path = ../MadQuery.h; sourceTree = "<group>"; };
 		D0C0CED01DE47D9900F00E79 /* MadSqlite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MadSqlite-Swift.h"; sourceTree = "<group>"; };
+		D4B607879B04E4BA2F60B1B1 /* Pods-MadSqlite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqlite.release.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqlite/Pods-MadSqlite.release.xcconfig"; sourceTree = "<group>"; };
+		F45070BBF7EF7DF4C22D3DBB /* Pods-MadSqliteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteTests/Pods-MadSqliteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551281614D5A70202C2F2DFF /* Pods_MadSqlite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,12 +100,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D072C19E1DDD2EF1003FF38F /* MadSqlite.framework in Frameworks */,
+				5BEEBF2D3A532B116EA126D2 /* Pods_MadSqliteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25340D23DAB614B20706C8C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA2D76916345E50CB6D94476 /* Pods_MadSqlite.framework */,
+				902BB600CB789AE6E00F5C8A /* Pods_MadSqliteTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D072C18A1DDD2EF0003FF38F = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +132,8 @@
 				D072C1A11DDD2EF1003FF38F /* MadSqliteTests */,
 				D072C1951DDD2EF0003FF38F /* Products */,
 				2672C41D39E7E9050ECD8134 /* generate_docs.sh */,
+				FC19D063E90EE6AC9B6FA46D /* Pods */,
+				25340D23DAB614B20706C8C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +186,17 @@
 			name = cpp;
 			sourceTree = "<group>";
 		};
+		FC19D063E90EE6AC9B6FA46D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D94EE4DEC745234DB4D6951 /* Pods-MadSqlite.debug.xcconfig */,
+				D4B607879B04E4BA2F60B1B1 /* Pods-MadSqlite.release.xcconfig */,
+				01DB0FE9C0FBC63EACA1A2E8 /* Pods-MadSqliteTests.debug.xcconfig */,
+				F45070BBF7EF7DF4C22D3DBB /* Pods-MadSqliteTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -190,10 +222,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D072C1A81DDD2EF1003FF38F /* Build configuration list for PBXNativeTarget "MadSqlite" */;
 			buildPhases = (
+				6C7E5A44C7DE6426DA3826D6 /* [CP] Check Pods Manifest.lock */,
 				D072C18F1DDD2EF0003FF38F /* Sources */,
 				D072C1901DDD2EF0003FF38F /* Frameworks */,
 				D072C1911DDD2EF0003FF38F /* Headers */,
 				D072C1921DDD2EF0003FF38F /* Resources */,
+				2450155E871FF9ECB1B22D4A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -208,9 +242,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D072C1AB1DDD2EF1003FF38F /* Build configuration list for PBXNativeTarget "MadSqliteTests" */;
 			buildPhases = (
+				E521D26EE2CD59E6D60CDB41 /* [CP] Check Pods Manifest.lock */,
 				D072C1991DDD2EF1003FF38F /* Sources */,
 				D072C19A1DDD2EF1003FF38F /* Frameworks */,
 				D072C19B1DDD2EF1003FF38F /* Resources */,
+				87B251F35A3219AEB0FFFCBD /* [CP] Embed Pods Frameworks */,
+				57D44C290830B4359AEA9509 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,6 +317,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2450155E871FF9ECB1B22D4A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MadSqlite/Pods-MadSqlite-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57D44C290830B4359AEA9509 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MadSqliteTests/Pods-MadSqliteTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C7E5A44C7DE6426DA3826D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		87B251F35A3219AEB0FFFCBD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MadSqliteTests/Pods-MadSqliteTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E521D26EE2CD59E6D60CDB41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D072C18F1DDD2EF0003FF38F /* Sources */ = {
@@ -426,6 +541,7 @@
 		};
 		D072C1A91DDD2EF1003FF38F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D94EE4DEC745234DB4D6951 /* Pods-MadSqlite.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -452,6 +568,7 @@
 		};
 		D072C1AA1DDD2EF1003FF38F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4B607879B04E4BA2F60B1B1 /* Pods-MadSqlite.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_ENABLE_MODULES = YES;
@@ -477,6 +594,7 @@
 		};
 		D072C1AC1DDD2EF1003FF38F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01DB0FE9C0FBC63EACA1A2E8 /* Pods-MadSqliteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
@@ -492,6 +610,7 @@
 		};
 		D072C1AD1DDD2EF1003FF38F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F45070BBF7EF7DF4C22D3DBB /* Pods-MadSqliteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
