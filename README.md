@@ -1,15 +1,24 @@
 [![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)
 
-#MadSqlite
+#MadSqlite Android Library
 
-MadSqlite is:
- * A simple C++14 wrapper around [Sqlite](https://www.sqlite.org/)
- * An Android library
- * An iOS Framework (WIP)
-  
-Why:
- * We needed Sqlite with a [customized build configuration](https://www.sqlite.org/compile.html) such as 
- (FTS5, R*Tree, Json) that was not available in the Android SDK
- 
-Status:
- * Alpha
+ * A simple Android Library for [Sqlite](https://www.sqlite.org/)
+ * [FTS5](https://sqlite.org/fts5.html) and [RTree](https://www.sqlite.org/rtree.html) extension modules enabled
+
+####MadSqlite on other Platforms
+ * [MadSqlite C++14](https://github.com/manimaul/madsqlite)
+ * [MadSqlite iOS Framework](https://github.com/manimaul/madsqlite-ios)
+
+####Gradle:
+* TODO
+
+####Documentation:
+* TODO
+
+####Example:
+```
+TODO
+```
+
+####Status:
+ * Alpha WIP
