@@ -1,0 +1,3 @@
+[submodule "madsqlite"]
+	path = madsqlite
+	url = git@github.com:manimaul/madsqlite.git

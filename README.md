@@ -6,16 +6,20 @@
  * [FTS5](https://sqlite.org/fts5.html) and [RTree](https://www.sqlite.org/rtree.html) extension modules enabled
 
 ####MadSqlite on other Platforms
+
  * [MadSqlite C++14](https://github.com/manimaul/madsqlite)
  * [MadSqlite iOS Framework](https://github.com/manimaul/madsqlite-ios)
 
 ####Gradle:
+
 * TODO
 
 ####Documentation:
+
 * TODO
 
 ####Example:
+
 ```
 TODO
 ```
