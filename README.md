@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)
+[![Build Status](https://travis-ci.org/manimaul/madsqlite-android.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite-android)
 
 #MadSqlite Android Library
 
