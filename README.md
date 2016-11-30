@@ -10,7 +10,7 @@
 | [MadSqlite Android](android)                  | Java                                     |  [![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)|
 | [MadSqlite iOS](ios)                          | Objective-C or Swift                     | Todo                                           |
 
-####CMadSqlite iOS - Cocoapod:
+####MadSqlite iOS - Cocoapod:
 * TODO
 
 ####MadSqlite Android - Gradle:
