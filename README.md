@@ -1,19 +1,19 @@
-[![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)
 
-#MadSqlite Library
+#MadSqlite 
 
  * A simple C++14 abstraction for [Sqlite](https://www.sqlite.org/)
  * [FTS5](https://sqlite.org/fts5.html) and [RTree](https://www.sqlite.org/rtree.html) extension modules enabled
 
-####MadSqlite on mobile platforms
+| Platform                                      | Languages                                | Build status                                   |
+| --------------------------------------------- | ---------------------------------------- | ---------------------------------------------- |
+| [MadSqlite Core](madsqlite)                   | C++14                                    | Todo                                           |
+| [MadSqlite Android](android)                  | Java                                     |  [![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)|
+| [MadSqlite iOS](ios)                          | Objective-C or Swift                     | Todo                                           |
 
- * [MadSqlite Android](https://github.com/manimaul/madsqlite-android)
- * [MadSqlite iOS Framework](https://github.com/manimaul/madsqlite-ios)
-
-####Cocoapod:
+####CMadSqlite iOS - Cocoapod:
 * TODO
 
-####Gradle:
+####MadSqlite Android - Gradle:
 * TODO
 
 ####Status:
