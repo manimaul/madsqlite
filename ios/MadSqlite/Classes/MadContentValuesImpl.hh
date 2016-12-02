@@ -8,7 +8,7 @@
 #import "ContentValues.hpp"
 
 
-@interface MadContentValuesImpl : NSObject <MadContentValues>
+@interface MADContentValuesImpl : NSObject <MADContentValues>
 
 - (instancetype)init;
 

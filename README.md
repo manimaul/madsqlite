@@ -9,5 +9,6 @@
 | --------------------------------------------- | ---------------------------------------- | ---------------------------------------------- |
 | [MadSqlite Core](madsqlite)                   | C++14                                    |                                                |
 | [MadSqlite Android](android)                  | Java                                     |  [![Build Status](https://travis-ci.org/manimaul/madsqlite.svg?branch=master)](https://travis-ci.org/manimaul/madsqlite)|
-| [MadSqlite iOS](ios)                          | Objective-C or Swift                     |                                                |
+| [MadSqlite iOS Obj-c](ios)                    | Objective-C                              |                                                |
+| [MadSqlite iOS Swift](ios_swift)              | Swift                                    |                                                |
 

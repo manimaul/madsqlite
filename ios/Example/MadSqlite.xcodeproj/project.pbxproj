@@ -21,9 +21,9 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B8C6C497A3B78F7AC9F89BCD /* Pods_MadSqlite_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97979EA5592260C0A396D901 /* Pods_MadSqlite_Example.framework */; };
-		D031C73D1DF0616B0033747C /* MadSqliteFTS5Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73A1DF0616B0033747C /* MadSqliteFTS5Tests.m */; };
-		D031C73E1DF0616B0033747C /* MadSqliteRTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73B1DF0616B0033747C /* MadSqliteRTreeTests.m */; };
-		D031C73F1DF0616B0033747C /* MadSqliteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73C1DF0616B0033747C /* MadSqliteTests.m */; };
+		D031C73D1DF0616B0033747C /* MADSqliteFTS5Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73A1DF0616B0033747C /* MADSqliteFTS5Tests.m */; };
+		D031C73E1DF0616B0033747C /* MADSqliteRTreeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73B1DF0616B0033747C /* MADSqliteRTreeTests.m */; };
+		D031C73F1DF0616B0033747C /* MADSqliteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D031C73C1DF0616B0033747C /* MADSqliteTests.m */; };
 		D0D4212C1DF1AC70009F69BD /* MadSqlite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D4212A1DF1AB96009F69BD /* MadSqlite.framework */; };
 		F902FF89E14ADE51824E5599 /* Pods_MadSqlite_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A9A4F212FE3E5E1B8293A2 /* Pods_MadSqlite_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -63,9 +63,9 @@
 		9EB3979020A1472641722382 /* Pods-MadSqlite_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqlite_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqlite_Example/Pods-MadSqlite_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B5A9A4F212FE3E5E1B8293A2 /* Pods_MadSqlite_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MadSqlite_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF023F15DC583B94D0202B /* Pods-MadSqlite_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqlite_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqlite_Example/Pods-MadSqlite_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D031C73A1DF0616B0033747C /* MadSqliteFTS5Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MadSqliteFTS5Tests.m; sourceTree = "<group>"; };
-		D031C73B1DF0616B0033747C /* MadSqliteRTreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MadSqliteRTreeTests.m; sourceTree = "<group>"; };
-		D031C73C1DF0616B0033747C /* MadSqliteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MadSqliteTests.m; sourceTree = "<group>"; };
+		D031C73A1DF0616B0033747C /* MADSqliteFTS5Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MADSqliteFTS5Tests.m; sourceTree = "<group>"; };
+		D031C73B1DF0616B0033747C /* MADSqliteRTreeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MADSqliteRTreeTests.m; sourceTree = "<group>"; };
+		D031C73C1DF0616B0033747C /* MADSqliteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MADSqliteTests.m; sourceTree = "<group>"; };
 		D0D421281DF1AB5F009F69BD /* Pods_MadSqlite_Example.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MadSqlite_Example.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MadSqlite-bdyjkkyqisibchfwjtyuviecjsox/Build/Products/Debug-iphonesimulator/Pods_MadSqlite_Example.framework"; sourceTree = "<group>"; };
 		D0D4212A1DF1AB96009F69BD /* MadSqlite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MadSqlite.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/MadSqlite-bdyjkkyqisibchfwjtyuviecjsox/Build/Products/Debug-iphonesimulator/MadSqlite/MadSqlite.framework"; sourceTree = "<group>"; };
 		E36A472F216F51361A3142F3 /* Pods-MadSqlite_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqlite_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqlite_Tests/Pods-MadSqlite_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,9 +165,9 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D031C73A1DF0616B0033747C /* MadSqliteFTS5Tests.m */,
-				D031C73B1DF0616B0033747C /* MadSqliteRTreeTests.m */,
-				D031C73C1DF0616B0033747C /* MadSqliteTests.m */,
+				D031C73A1DF0616B0033747C /* MADSqliteFTS5Tests.m */,
+				D031C73B1DF0616B0033747C /* MADSqliteRTreeTests.m */,
+				D031C73C1DF0616B0033747C /* MADSqliteTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -413,9 +413,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D031C73D1DF0616B0033747C /* MadSqliteFTS5Tests.m in Sources */,
-				D031C73E1DF0616B0033747C /* MadSqliteRTreeTests.m in Sources */,
-				D031C73F1DF0616B0033747C /* MadSqliteTests.m in Sources */,
+				D031C73D1DF0616B0033747C /* MADSqliteFTS5Tests.m in Sources */,
+				D031C73E1DF0616B0033747C /* MADSqliteRTreeTests.m in Sources */,
+				D031C73F1DF0616B0033747C /* MADSqliteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

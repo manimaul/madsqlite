@@ -8,7 +8,7 @@
 #import "MadQuery.h"
 #include "Cursor.hpp"
 
-@interface MadQueryImpl : NSObject <MadQuery>
+@interface MADQueryImpl : NSObject <MADQuery>
 
 -(instancetype) initWithCursor:(Cursor &)cursor;
 

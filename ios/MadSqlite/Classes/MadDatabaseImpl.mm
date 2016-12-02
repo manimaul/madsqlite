@@ -3,13 +3,13 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadDatabaseImpl.hh"
 #include "Database.hpp"
-#import "MadContentValues.h"
-#import "MadContentValuesImpl.hh"
-#import "MadQueryImpl.hh"
+#import "MADDatabaseImpl.hh"
+#import "MADContentValues.h"
+#import "MADContentValuesImpl.hh"
+#import "MADQueryImpl.hh"
 
-@implementation MadDatabaseImpl
+@implementation MADDatabaseImpl
 
 std::shared_ptr<Database> database;
 
@@ -31,24 +31,24 @@ std::shared_ptr<Database> database;
     }
 }
 
-- (BOOL)insert:(NSString *)table withValues:(id <MadContentValues>)values {
-    MadContentValuesImpl *impl = (MadContentValuesImpl *) values;
+- (BOOL)insert:(NSString *)table withValues:(id <MADContentValues>)values {
+    MADContentValuesImpl *impl = (MADContentValuesImpl *) values;
     return database->insert(table.UTF8String, *impl.getValues);
 }
 
-- (id <MadQuery>)query:(NSString *)sql {
+- (id <MADQuery>)query:(NSString *)sql {
     auto c = database->query(sql.UTF8String);
-    MadQueryImpl *impl = [[MadQueryImpl alloc] initWithCursor:c];
+    MADQueryImpl *impl = [[MADQueryImpl alloc] initWithCursor:c];
     return impl;
 }
 
-- (id <MadQuery>)query:(NSString *)sql withArgs:(NSArray<NSString *> *)args {
+- (id <MADQuery>)query:(NSString *)sql withArgs:(NSArray<NSString *> *)args {
     auto vec = std::vector<std::string>();
     for (NSString *arg in args) {
         vec.push_back(arg.UTF8String);
     }
     auto c = database->query(sql.UTF8String, vec);
-    MadQueryImpl *impl = [[MadQueryImpl alloc] initWithCursor:c];
+    MADQueryImpl *impl = [[MADQueryImpl alloc] initWithCursor:c];
     return impl;
 }
 

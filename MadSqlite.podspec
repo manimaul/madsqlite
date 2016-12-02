@@ -37,7 +37,8 @@ Pod::Spec.new do |s|
   s.library                = 'c++'
   s.xcconfig               = {
        'CLANG_CXX_LANGUAGE_STANDARD' => 'c++14',
-       'CLANG_CXX_LIBRARY' => 'libc++'
+       'CLANG_CXX_LIBRARY' => 'libc++',
+       'OTHER_CFLAGS' => '-DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_RTREE'
   }
  
 end

@@ -5,10 +5,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MadQuery;
-@protocol MadContentValues;
+@protocol MADQuery;
+@protocol MADContentValues;
 
-@protocol MadDatabase <NSObject>
+@protocol MADDatabase <NSObject>
 
 /**
  * Convenience method for inserting a row into the database.
@@ -18,7 +18,7 @@
  * values the column values.
  * @return YES if the insert was successful.
  */
-- (BOOL)insert:(NSString *)table withValues:(id <MadContentValues>)values;
+- (BOOL)insert:(NSString *)table withValues:(id <MADContentValues>)values;
 
 /**
  * Query for results.
@@ -26,7 +26,7 @@
  * @param sql - a sqlite query.
  * @return query results.
  */
-- (id <MadQuery>)query:(NSString *)sql;
+- (id <MADQuery>)query:(NSString *)sql;
 
 /**
  * Query for results with bound arguments.
@@ -36,7 +36,7 @@
  * the selection. The values will be bound as Strings.
  * @return query results.
  */
-- (id <MadQuery>)query:(NSString *)sql withArgs:(NSArray<NSString *> *)args;
+- (id <MADQuery>)query:(NSString *)sql withArgs:(NSArray<NSString *> *)args;
 
 /**
  * Execute a single SQL statement that is NOT a SELECT or any other SQL statement that returns data.

@@ -36,8 +36,10 @@
     "madsqlite/src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h"
   ],
   "requires_arc": true,
+  "libraries": "c++",
   "xcconfig": {
     "CLANG_CXX_LANGUAGE_STANDARD": "c++14",
-    "CLANG_CXX_LIBRARY": "libc++"
+    "CLANG_CXX_LIBRARY": "libc++",
+    "OTHER_CFLAGS": "-DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_RTREE"
   }
 }

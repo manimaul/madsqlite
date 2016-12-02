@@ -3,10 +3,10 @@
 // Copyright (c) 2016 William Kamp. All rights reserved.
 //
 
-#import "MadQueryImpl.hh"
+#import "MADQueryImpl.hh"
 
 
-@implementation MadQueryImpl {
+@implementation MADQueryImpl {
     std::unique_ptr<Cursor> curs;
 }
 

@@ -6,7 +6,7 @@
 #import "MadContentValuesImpl.hh"
 
 
-@implementation MadContentValuesImpl {
+@implementation MADContentValuesImpl {
 
     std::shared_ptr<ContentValues> contentValues;
 }

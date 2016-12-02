@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MadContentValues
+@protocol MADContentValues
 
 /**
  * Adds a value to the set.

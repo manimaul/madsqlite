@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyInt INTEGER);"];
 	// Do any additional setup after loading the view, typically from a nib.
 }

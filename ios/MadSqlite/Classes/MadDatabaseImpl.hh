@@ -7,9 +7,9 @@
 #import "MadQuery.h"
 #import "MadDatabase.h"
 
-@protocol MadContentValues;
+@protocol MADContentValues;
 
-@interface MadDatabaseImpl : NSObject<MadDatabase>
+@interface MADDatabaseImpl : NSObject<MADDatabase>
 
 - (instancetype)init;
 

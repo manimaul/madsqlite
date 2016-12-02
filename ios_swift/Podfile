@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'MadSqliteSwift' do
+  pod 'MadSqlite', :git => 'https://github.com/manimaul/madsqlite.git'
+
+  target 'MadSqliteSwiftTests' do
+    inherit! :search_paths
+  end
+end
