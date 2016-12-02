@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
                              'madsqlite/src/main/cpp/sqlite-amalgamation-3140200/sqlite3.h'
   s.requires_arc           = true
 
-  #s.library                = 'c++'
+  s.library                = 'c++'
   s.xcconfig               = {
        'CLANG_CXX_LANGUAGE_STANDARD' => 'c++14',
        'CLANG_CXX_LIBRARY' => 'libc++'
