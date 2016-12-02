@@ -1,31 +1,31 @@
 //
-//  madsqliteTests.m
-//  madsqliteTests
+//  MADsqliteTests.m
+//  MADsqliteTests
 //
 //  Created by William Kamp on 11/27/16.
 //  Copyright © 2016 William Kamp. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
-#import "MadSqliteFactory.hh"
-#import "MadDatabase.h"
-#import "MadContentValues.h"
-#import "MadQuery.h"
+#import "MADSqliteFactory.hh"
+#import "MADDatabase.h"
+#import "MADContentValues.h"
+#import "MADQuery.h"
 
-@interface MadSqliteRTreeTests : XCTestCase
+@interface MADSqliteRTreeTests : XCTestCase
 
 @end
 
-@implementation MadSqliteRTreeTests
+@implementation MADSqliteRTreeTests
 
 - (void)testRTreeBetween {
     double PRECISION_MAX_DELTA = 0.00002;
 
-    id <MadDatabase> md = [self givenAnRTreeDatabase];
+    id <MADDatabase> md = [self givenAnRTreeDatabase];
     [self givenValuesInserted:md];
     [self givenContentValuesInserted:md];
 
-    id <MadQuery> query = [md query:@"SELECT * FROM demo_index WHERE id=2;"];
+    id <MADQuery> query = [md query:@"SELECT * FROM demo_index WHERE id=2;"];
     XCTAssertTrue([query moveToFirst]);
     XCTAssertEqual(2, [query getInt:0].integerValue);
     XCTAssertEqualWithAccuracy(-81.0, [query getReal:1].doubleValue, PRECISION_MAX_DELTA);
@@ -48,8 +48,8 @@
     XCTAssertFalse([query moveToNext]);
 }
 
-- (id <MadDatabase>)givenAnRTreeDatabase {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+- (id <MADDatabase>)givenAnRTreeDatabase {
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     NSString *sql = @"CREATE VIRTUAL TABLE demo_index USING rtree(id INTEGER, "
             "minX REAL, "
             "maxX REAL, "
@@ -59,7 +59,7 @@
     return md;
 }
 
-- (void)givenValuesInserted:(id <MadDatabase>)md {
+- (void)givenValuesInserted:(id <MADDatabase>)md {
     [md exec:@"INSERT INTO demo_index VALUES(1,"
             "-80.7749582,"
             "-80.7747392,"
@@ -68,8 +68,8 @@
     XCTAssertNil([md getError]);
 }
 
-- (void)givenContentValuesInserted:(id <MadDatabase>)md {
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+- (void)givenContentValuesInserted:(id <MADDatabase>)md {
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     [cv putInteger:@"id" withValue:@(2)];
     // NC 12th Congressional District in 2010
     [cv putReal:@"minX" withValue:@(-81.0)];

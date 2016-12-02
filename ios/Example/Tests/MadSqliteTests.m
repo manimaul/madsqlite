@@ -1,29 +1,29 @@
 //
-//  madsqliteTests.m
-//  madsqliteTests
+//  MADsqliteTests.m
+//  MADsqliteTests
 //
 //  Created by William Kamp on 11/27/16.
 //  Copyright © 2016 William Kamp. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
-#import "MadSqliteFactory.hh"
-#import "MadDatabase.h"
-#import "MadContentValues.h"
-#import "MadQuery.h"
+#import "MADSqliteFactory.hh"
+#import "MADDatabase.h"
+#import "MADContentValues.h"
+#import "MADQuery.h"
 
-@interface MadSqliteTests : XCTestCase
+@interface MADSqliteTests : XCTestCase
 
 @end
 
-@implementation MadSqliteTests
+@implementation MADSqliteTests
 
 - (void)testInsertInteger {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyInt INTEGER);"];
     XCTAssertNil([md getError]);
 
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     [cv putInteger:@"keyInt" withValue:@(NSUIntegerMax)];
     [md insert:@"test" withValues:cv];
     XCTAssertNil([md getError]);
@@ -33,7 +33,7 @@
     [md insert:@"test" withValues:cv];
     XCTAssertNil([md getError]);
 
-    id <MadQuery> query = [md query:@"SELECT keyInt FROM test;"];
+    id <MADQuery> query = [md query:@"SELECT keyInt FROM test;"];
     XCTAssertTrue([query moveToFirst]);
     XCTAssertFalse([query isAfterLast]);
     NSNumber *firstResult = [query getInt:0];
@@ -48,12 +48,12 @@
 }
 
 - (void)testInsertReal {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
 
     [md exec:@"CREATE TABLE test(keyReal REAL);"];
     XCTAssertNil([md getError]);
 
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     [cv putReal:@"keyReal" withValue:@(DBL_MAX)];
     [md insert:@"test" withValues:cv];
     XCTAssertNil([md getError]);
@@ -63,7 +63,7 @@
     [md insert:@"test" withValues:cv];
     XCTAssertNil([md getError]);
 
-    id <MadQuery> query = [md query:@"SELECT keyReal FROM test;"];
+    id <MADQuery> query = [md query:@"SELECT keyReal FROM test;"];
     XCTAssertTrue([query moveToFirst]);
     XCTAssertFalse([query isAfterLast]);
     NSNumber *firstResult = [query getReal:0];
@@ -81,11 +81,11 @@
 }
 
 - (void)testInsertBlob {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyBlob BLOB);"];
     XCTAssertNil([md getError]);
 
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     NSString *d = @"data";
     NSData *data = [NSData dataWithBytes:d.UTF8String length:d.length];
     [cv putBlob:@"keyBlob" withValue:data];
@@ -94,7 +94,7 @@
     [md insert:@"test" withValues:cv];
     XCTAssertNil([md getError]);
 
-    id <MadQuery> query = [md query:@"SELECT keyBlob FROM test;"];
+    id <MADQuery> query = [md query:@"SELECT keyBlob FROM test;"];
     XCTAssertTrue([query moveToFirst]);
     XCTAssertFalse([query isAfterLast]);
     NSData *blobResult = [query getBlob:0];
@@ -109,11 +109,11 @@
 }
 
 - (void)testInsertText {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyText TEXT);"];
     XCTAssertNil([md getError]);
 
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     NSString *text = @"the quick brown fox jumped over the lazy dog!";
     [cv putString:@"keyText" withValue:text];
     XCTAssertNil([md getError]);
@@ -121,7 +121,7 @@
     XCTAssertTrue([md insert:@"test" withValues:cv]);
     XCTAssertNil([md getError]);
 
-    id <MadQuery> query = [md query:@"SELECT keyText FROM test;"];
+    id <MADQuery> query = [md query:@"SELECT keyText FROM test;"];
     XCTAssertTrue([query moveToFirst]);
     XCTAssertFalse([query isAfterLast]);
     NSString *strResult = [query getString:0];
@@ -134,11 +134,11 @@
 }
 
 - (void)testQueryArgs {
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyInt INTEGER, keyText TEXT);"];
     XCTAssertNil([md getError]);
 
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     [cv putString:@"keyText" withValue:@"the quick brown fox"];
     [cv putInteger:@"keyInt" withValue:@(99)];
     XCTAssertTrue([md insert:@"test" withValues:cv]);
@@ -150,7 +150,7 @@
     XCTAssertTrue([md insert:@"test" withValues:cv]);
     XCTAssertNil([md getError]);
 
-    id <MadQuery> query = [md query:@"SELECT keyText,keyInt FROM test WHERE keyInt is ?;" withArgs:@[@"99"]];
+    id <MADQuery> query = [md query:@"SELECT keyText,keyInt FROM test WHERE keyInt is ?;" withArgs:@[@"99"]];
     XCTAssertNil([md getError]);
     XCTAssertTrue([query moveToFirst]);
     XCTAssertFalse([query isAfterLast]);
@@ -176,7 +176,7 @@
 }
 
 - (void)testMultiIndexQuery {
-    id<MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id<MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE TABLE test(keyInt INTEGER, keyReal REAL, keyText TEXT);"];
     [self multiIndexQuery:md];
     XCTAssertNil([md getError]);
@@ -184,7 +184,7 @@
 
 - (void)testFileSystemDatabase {
     // ~/Library/Developer/CoreSimulator/Devices/ED77F264-2FF3-4DBF-A2F6-F8CBC2D6EE15/data/Library/test.s3db
-    id <MadDatabase> md = [MadSqliteFactory databaseNamed:@"test.s3db"];
+    id <MADDatabase> md = [MADSqliteFactory databaseNamed:@"test.s3db"];
     [md exec:@"DROP TABLE IF EXISTS test"];
     XCTAssertNil([md getError]);
     [md exec:@"CREATE TABLE test(keyInt INTEGER, keyReal REAL, keyText TEXT);"];
@@ -193,8 +193,8 @@
     [self multiIndexQuery:md];
 }
 
-- (void)multiIndexQuery:(id <MadDatabase>)md {
-    id <MadContentValues> cv = [MadSqliteFactory contentValues];
+- (void)multiIndexQuery:(id <MADDatabase>)md {
+    id <MADContentValues> cv = [MADSqliteFactory contentValues];
     [cv putString:@"keyText" withValue:@"the quick brown fox"];
     [cv putInteger:@"keyInt" withValue:@(99)];
     [cv putReal:@"keyReal" withValue:@(23829.3)];
@@ -208,7 +208,7 @@
     XCTAssertNil([md getError]);
     XCTAssertTrue([md insert:@"test" withValues:cv]);
 
-    id <MadQuery> query = [md query:@"SELECT * FROM test;"];
+    id <MADQuery> query = [md query:@"SELECT * FROM test;"];
     XCTAssertNil([md getError]);
 
     XCTAssertTrue([query moveToFirst]);

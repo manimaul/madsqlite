@@ -1,22 +1,22 @@
 //
-//  madsqliteTests.m
-//  madsqliteTests
+//  MADsqliteTests.m
+//  MADsqliteTests
 //
 //  Created by William Kamp on 11/27/16.
 //  Copyright © 2016 William Kamp. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
-#import "MadSqliteFactory.hh"
-#import "MadDatabase.h"
-#import "MadContentValues.h"
-#import "MadQuery.h"
+#import "MADSqliteFactory.hh"
+#import "MADDatabase.h"
+#import "MADContentValues.h"
+#import "MADQuery.h"
 
-@interface madsqliteFTS5Tests : XCTestCase
+@interface MADsqliteFTS5Tests : XCTestCase
 
 @end
 
-@implementation madsqliteFTS5Tests
+@implementation MADsqliteFTS5Tests
 
 - (void)testMatchNear {
  /*
@@ -38,7 +38,7 @@
         ... MATCH 'NEAR("a b c d" "b c" "e f", 4)';    -- Matches!
         ... MATCH 'NEAR("a b c d" "b c" "e f", 3)';    -- Does not match!
          */
-    id <MadDatabase> md = [MadSqliteFactory inMemoryDatabase];
+    id <MADDatabase> md = [MADSqliteFactory inMemoryDatabase];
     [md exec:@"CREATE VIRTUAL TABLE f USING fts5(x);"];
     XCTAssertNil([md getError]);
     [md exec:@"INSERT INTO f(rowid, x) VALUES(1, 'A B C D x x x E F x');"];
@@ -58,16 +58,16 @@
     [self assertDoesNotMatch:md withSql:@"SELECT * FROM f WHERE f MATCH 'NEAR(\"a b c d\" \"b c\" \"e f\", 3)';"];
 }
 
-- (void)assertDoesNotMatch:(id <MadDatabase>)md withSql:(NSString *)sql {
+- (void)assertDoesNotMatch:(id <MADDatabase>)md withSql:(NSString *)sql {
     XCTAssertTrue([self queryMatches:md withSql:sql].count == 0);
 }
 
-- (void)assertMatches:(id <MadDatabase>)md withSql:(NSString *)sql {
+- (void)assertMatches:(id <MADDatabase>)md withSql:(NSString *)sql {
     XCTAssertTrue([self queryMatches:md withSql:sql].count > 0);
 }
 
-- (NSArray<NSString *> *)queryMatches:(id <MadDatabase>)md withSql:(NSString *)sql {
-    id <MadQuery> query = [md query:sql];
+- (NSArray<NSString *> *)queryMatches:(id <MADDatabase>)md withSql:(NSString *)sql {
+    id <MADQuery> query = [md query:sql];
     XCTAssertNil([md getError]);
     XCTAssertTrue([query moveToFirst]);
     NSMutableArray<NSString *> *rValue = [NSMutableArray new];
