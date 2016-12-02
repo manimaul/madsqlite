@@ -1,29 +1,14 @@
-# MadSqlite
+# MadSqlite iOS Framework
 
-[![CI Status](http://img.shields.io/travis/William Kamp/MadSqlite.svg?style=flat)](https://travis-ci.org/William Kamp/MadSqlite)
-[![Version](https://img.shields.io/cocoapods/v/MadSqlite.svg?style=flat)](http://cocoapods.org/pods/MadSqlite)
-[![License](https://img.shields.io/cocoapods/l/MadSqlite.svg?style=flat)](http://cocoapods.org/pods/MadSqlite)
-[![Platform](https://img.shields.io/cocoapods/p/MadSqlite.svg?style=flat)](http://cocoapods.org/pods/MadSqlite)
+ * A simple [Sqlite](https://sqlite.org) abstraction
+ * [FTS5](https://sqlite.org/fts5.html) and [RTree](https://www.sqlite.org/rtree.html) extension modules enabled
+ * [BSD License](../LICENSE.md)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
-## Installation
 
 MadSqlite is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "MadSqlite"
+pod 'MadSqlite', :git => 'https://github.com/manimaul/madsqlite.git'
 ```
 
-## Author
-
-William Kamp, manimaul@gmail.com
-
-## License
-
-MadSqlite is available under the MIT license. See the LICENSE file for more info.
