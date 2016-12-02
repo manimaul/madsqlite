@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author                 = { 'William Kamp' => 'manimaul@gmail.com' }
   s.documentation_url      = 'https://manimaul.github.io/madsqlite/ios' 
 
-  s.source                 = { :git => 'https://github.com/manimaul/madsqlite.git', :tag => s.version.to_s }
+  s.source                 = { :git => 'https://github.com/manimaul/madsqlite.git' }
 
   s.ios.deployment_target  = '8.0'
   s.source_files           = 'ios/MadSqlite/Classes/**/*.{h,m,hh,mm}',
