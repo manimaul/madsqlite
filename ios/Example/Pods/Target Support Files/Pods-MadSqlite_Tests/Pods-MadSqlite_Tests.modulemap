@@ -1,0 +1,6 @@
+framework module Pods_MadSqlite_Tests {
+  umbrella header "Pods-MadSqlite_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module MadSqlite {
+  umbrella header "MadSqlite-umbrella.h"
+
+  export *
+  module * { export * }
+}
