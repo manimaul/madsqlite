@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2672C0E247A40A812A9CF44B /* MadContentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C317DE9F1E99508DFEF6 /* MadContentValues.swift */; };
+		2672C3517AC53AF73AA47654 /* MadQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CA7C46AC2D32FF300897 /* MadQuery.swift */; };
+		2672CE8A8871D8A2FF390A26 /* MadDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CA7B61B4231EF7BE01C9 /* MadDatabase.swift */; };
+		D0AEDC1F1DF36F800094CE9D /* MadSqliteFTS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AEDC1E1DF36F800094CE9D /* MadSqliteFTS5Tests.swift */; };
+		D0AEDC211DF372010094CE9D /* MadSqliteRTreeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AEDC201DF372010094CE9D /* MadSqliteRTreeTest.swift */; };
 		D0D4217F1DF1DDD1009F69BD /* MadSqliteSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D421751DF1DDD1009F69BD /* MadSqliteSwift.framework */; };
 		D0D421841DF1DDD1009F69BD /* MadSqliteSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D421831DF1DDD1009F69BD /* MadSqliteSwiftTests.swift */; };
 		D0D421861DF1DDD1009F69BD /* MadSqliteSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = D0D421781DF1DDD1009F69BD /* MadSqliteSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0EB9B311DF216020093DD36 /* MadDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB9B301DF216020093DD36 /* MadDatabase.swift */; };
-		D0EB9B381DF2172C0093DD36 /* MADSqliteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB9B371DF2172C0093DD36 /* MADSqliteFactory.swift */; };
 		E66CDD54C80EB766DA02AFCF /* Pods_MadSqliteSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79644DA1FE1E94A3C97E1878 /* Pods_MadSqliteSwift.framework */; };
 		EFE9CC9EC3E85BB7386F5461 /* Pods_MadSqliteSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AB15D8B01DB90BBA841F95 /* Pods_MadSqliteSwiftTests.framework */; };
 /* End PBXBuildFile section */
@@ -27,19 +30,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2672C317DE9F1E99508DFEF6 /* MadContentValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadContentValues.swift; sourceTree = "<group>"; };
+		2672CA7B61B4231EF7BE01C9 /* MadDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadDatabase.swift; sourceTree = "<group>"; };
+		2672CA7C46AC2D32FF300897 /* MadQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadQuery.swift; sourceTree = "<group>"; };
 		483A244F8C7927FA55854910 /* Pods-MadSqliteSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteSwift/Pods-MadSqliteSwift.release.xcconfig"; sourceTree = "<group>"; };
 		79644DA1FE1E94A3C97E1878 /* Pods_MadSqliteSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MadSqliteSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0779A82A3863C35094FF96 /* Pods-MadSqliteSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteSwift/Pods-MadSqliteSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		923034369752AD0706D715CD /* Pods-MadSqliteSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteSwiftTests/Pods-MadSqliteSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9AB15D8B01DB90BBA841F95 /* Pods_MadSqliteSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MadSqliteSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0AEDC1E1DF36F800094CE9D /* MadSqliteFTS5Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadSqliteFTS5Tests.swift; sourceTree = "<group>"; };
+		D0AEDC201DF372010094CE9D /* MadSqliteRTreeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadSqliteRTreeTest.swift; sourceTree = "<group>"; };
 		D0D421751DF1DDD1009F69BD /* MadSqliteSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MadSqliteSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D421781DF1DDD1009F69BD /* MadSqliteSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MadSqliteSwift.h; sourceTree = "<group>"; };
 		D0D421791DF1DDD1009F69BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0D4217E1DF1DDD1009F69BD /* MadSqliteSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MadSqliteSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0D421831DF1DDD1009F69BD /* MadSqliteSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MadSqliteSwiftTests.swift; sourceTree = "<group>"; };
 		D0D421851DF1DDD1009F69BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0EB9B301DF216020093DD36 /* MadDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadDatabase.swift; sourceTree = "<group>"; };
-		D0EB9B371DF2172C0093DD36 /* MADSqliteFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MADSqliteFactory.swift; sourceTree = "<group>"; };
 		F028DC1E61E671E3299CB628 /* Pods-MadSqliteSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MadSqliteSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MadSqliteSwiftTests/Pods-MadSqliteSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +73,6 @@
 		D0D4216B1DF1DDD1009F69BD = {
 			isa = PBXGroup;
 			children = (
-				D0EB9B371DF2172C0093DD36 /* MADSqliteFactory.swift */,
 				D0D421771DF1DDD1009F69BD /* MadSqliteSwift */,
 				D0D421821DF1DDD1009F69BD /* MadSqliteSwiftTests */,
 				D0D421761DF1DDD1009F69BD /* Products */,
@@ -90,7 +95,9 @@
 			children = (
 				D0D421781DF1DDD1009F69BD /* MadSqliteSwift.h */,
 				D0D421791DF1DDD1009F69BD /* Info.plist */,
-				D0EB9B301DF216020093DD36 /* MadDatabase.swift */,
+				2672C317DE9F1E99508DFEF6 /* MadContentValues.swift */,
+				2672CA7B61B4231EF7BE01C9 /* MadDatabase.swift */,
+				2672CA7C46AC2D32FF300897 /* MadQuery.swift */,
 			);
 			path = MadSqliteSwift;
 			sourceTree = "<group>";
@@ -98,8 +105,10 @@
 		D0D421821DF1DDD1009F69BD /* MadSqliteSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				D0D421831DF1DDD1009F69BD /* MadSqliteSwiftTests.swift */,
 				D0D421851DF1DDD1009F69BD /* Info.plist */,
+				D0D421831DF1DDD1009F69BD /* MadSqliteSwiftTests.swift */,
+				D0AEDC1E1DF36F800094CE9D /* MadSqliteFTS5Tests.swift */,
+				D0AEDC201DF372010094CE9D /* MadSqliteRTreeTest.swift */,
 			);
 			path = MadSqliteSwiftTests;
 			sourceTree = "<group>";
@@ -320,8 +329,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0EB9B311DF216020093DD36 /* MadDatabase.swift in Sources */,
-				D0EB9B381DF2172C0093DD36 /* MADSqliteFactory.swift in Sources */,
+				2672C0E247A40A812A9CF44B /* MadContentValues.swift in Sources */,
+				2672CE8A8871D8A2FF390A26 /* MadDatabase.swift in Sources */,
+				2672C3517AC53AF73AA47654 /* MadQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0AEDC1F1DF36F800094CE9D /* MadSqliteFTS5Tests.swift in Sources */,
 				D0D421841DF1DDD1009F69BD /* MadSqliteSwiftTests.swift in Sources */,
+				D0AEDC211DF372010094CE9D /* MadSqliteRTreeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

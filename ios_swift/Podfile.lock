@@ -2,20 +2,21 @@ PODS:
   - MadSqlite (0.1.0)
 
 DEPENDENCIES:
-  - MadSqlite (from `https://github.com/manimaul/madsqlite.git`)
+  - MadSqlite (from `https://github.com/manimaul/madsqlite.git`, tag `0.1.0`)
 
 EXTERNAL SOURCES:
   MadSqlite:
     :git: https://github.com/manimaul/madsqlite.git
+    :tag: 0.1.0
 
 CHECKOUT OPTIONS:
   MadSqlite:
-    :commit: 91f4ad0d303e9c498df4256ed29dcf4f42cffe55
     :git: https://github.com/manimaul/madsqlite.git
+    :tag: 0.1.0
 
 SPEC CHECKSUMS:
-  MadSqlite: 651032da37dda598ec29f8eb178e51578a2c93c9
+  MadSqlite: ebd62887d43de67d0943d70d36f701071a66943e
 
-PODFILE CHECKSUM: ba6afc4e800b27ba490fd394b37d3d458a5934f7
+PODFILE CHECKSUM: 4a940009975158fc3d0cfbef5a6f3553f1e0e867
 
 COCOAPODS: 1.1.1
