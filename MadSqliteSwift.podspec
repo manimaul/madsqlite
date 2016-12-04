@@ -15,11 +15,13 @@ Pod::Spec.new do |s|
   s.homepage               = 'https://manimaul.github.io/madsqlite/'
   s.license                = { :type => 'BSD', :file => 'LICENSE.md' }
   s.author                 = { 'William Kamp' => 'manimaul@gmail.com' }
-  s.documentation_url      = 'https://manimaul.github.io/madsqlite/ios' 
+  s.documentation_url      = 'https://manimaul.github.io/madsqlite/ios'
 
   s.source                 = { :git => 'https://github.com/manimaul/madsqlite.git', :tag => s.version.to_s }
 
   s.ios.deployment_target  = '10.1'
-  s.source_files           = 'ios_swift/MadSqlite/**/*.{swift}',
+  s.source_files           = 'ios_swift/MadSqliteSwift/**/*.{swift}'
   s.requires_arc           = true
+  s.dependency 'MadSqlite'
+  s.swift-version            = '3.1'
 end
