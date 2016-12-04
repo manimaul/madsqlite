@@ -29,7 +29,7 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path "../madsqlite/CMakeLists.txt"
+            path "../madsqlite-core/CMakeLists.txt"
         }
     }
 }
