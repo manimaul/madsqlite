@@ -31,7 +31,7 @@ enum JniBridge {
 
     //region MadQuery ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    static native void closeCursor(long nativePtr);
+    static native void closeQuery(long nativePtr);
     static native boolean moveToNext(long nativePtr);
     static native boolean isAfterLast(long nativePtr);
     static native String getString(long nativePtr, int columnIndex);

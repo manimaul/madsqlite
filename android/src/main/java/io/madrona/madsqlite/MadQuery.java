@@ -70,7 +70,7 @@ public final class MadQuery implements Closeable {
 
     @Override
     public void close() {
-        JniBridge.closeCursor(nativePtr);
+        JniBridge.closeQuery(nativePtr);
         nativePtr = 0L;
     }
 
